@@ -1,15 +1,15 @@
-title: 'COMSOL Server'
+title: 'RStudio Server'
 compute:
-  - name: 'COMSOL Server'
-    batch: 'oakley'
+  - name: 'RStudio Server'
+    batch: 'owens'
     node:
       - type: 'any'
-        ppn: 12
+        ppn: 28
         desc: >
           Choose any type of compute node. This reduces the wait time
           as there are no node specific requirements.
     webserver?: true
     pbs:
       envvars:
-        COMSOL_MODULE: 'comsol/52a_server'
-        COMSOL_APP_TOKEN: 'comsol_server'
+        R_MODULE: 'R/3.3.2'
+        RSTUDIO_APP_TOKEN: 'rstudio'
