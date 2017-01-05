@@ -1,44 +1,50 @@
 #!/bin/bash -l
 
-# Load the COMSOL Server module
-module load ${COMSOL_MODULE}
+# Load the R module
+module load ${R_MODULE}
+
+# Load the RStudio Module
+module load ${RSTUDIO_MODULE}
 
 # Include wrappers for better support of the OSC batch environment
-export PATH="${ROOT}/bin:${PATH}"
+# export PATH="${ROOT}/bin:${PATH}"
 
 # Initialize COMSOL Server environment
-export COMSOL_PREFSDIR="${HOME}/.comsol/${COMSOL_APP_TOKEN}"
-mkdir -p "${COMSOL_PREFSDIR}/output"
-mkdir -p "${COMSOL_PREFSDIR}/applications"
-if [[ "${COMSOL_APP_ROOT}" ]]; then
-  # Create a symlink for all *.mphapp and *.mph files
-  ln -s "${COMSOL_APP_ROOT}/"*.mph{,app} "${COMSOL_PREFSDIR}/applications/."
-  # Remove any old broken symlinks
-  symlinks -d "${COMSOL_PREFSDIR}/applications"
-fi
+#export COMSOL_PREFSDIR="${HOME}/.comsol/${COMSOL_APP_TOKEN}"
+#mkdir -p "${COMSOL_PREFSDIR}/output"
+#mkdir -p "${COMSOL_PREFSDIR}/applications"
+#if [[ "${COMSOL_APP_ROOT}" ]]; then
+#  # Create a symlink for all *.mphapp and *.mph files
+#  ln -s "${COMSOL_APP_ROOT}/"*.mph{,app} "${COMSOL_PREFSDIR}/applications/."
+#  # Remove any old broken symlinks
+#  symlinks -d "${COMSOL_PREFSDIR}/applications"
+#fi
 
 # Set default values for server.prefs if not already set
-touch "${COMSOL_PREFSDIR}/server.prefs"
-awk -F'[= ]' '
-  # Read first file for default values
-  FNR==NR{
-    default[$1] = $2; next
-  }
+#touch "${COMSOL_PREFSDIR}/server.prefs"
+#awk -F'[= ]' '
+#  # Read first file for default values
+#  FNR==NR{
+#    default[$1] = $2; next
+#  }
 
-  # Remove default values if found in remaining files
-  $1 in default{
-    delete default[$1]
-  }
+#  # Remove default values if found in remaining files
+#  $1 in default{
+#    delete default[$1]
+#  }
 
-  # Print out remaining default values
-  END{
-    for (k in default) print k "=" default[k]
-  }
-' <(cat "${ROOT}/server.prefs.default" "${COMSOL_SERVER_PREFS}" 2>/dev/null) "${COMSOL_PREFSDIR}/server.prefs" >> "${COMSOL_PREFSDIR}/server.prefs"
+#  # Print out remaining default values
+#  END{
+#    for (k in default) print k "=" default[k]
+#  }
+#' <(cat "${ROOT}/server.prefs.default" "${COMSOL_SERVER_PREFS}" 2>/dev/null) "${COMSOL_PREFSDIR}/server.prefs" >> "${COMSOL_PREFSDIR}/server.prefs"
 
 # For debugging purposes output license server information
-lmutil lmstat -a
+#lmutil lmstat -a
 
 # Launch COMSOL Server
 # NB: use -silent or the server will suspend itself
-comsol server -serviceport ${HOST_PORT} -prefsdir "${COMSOL_PREFSDIR}" -silent -login never
+#comsol server -serviceport ${HOST_PORT} -prefsdir "${COMSOL_PREFSDIR}" -silent -login never
+
+# Launch RStudio Server
+rserver
