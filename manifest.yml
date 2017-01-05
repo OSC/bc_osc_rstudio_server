@@ -1,0 +1,10 @@
+---
+name: COMSOL Server
+description: |-
+  **COMSOL Server** provides access to a COMSOL Server running on one or more
+  compute nodes on the Oakley cluster at the Ohio Supercomputer Center (OSC).
+category: Desktop Apps
+subcategory: Interactive HPC
+role: ihpc
+icon: fa://area-chart
+url: /pun/sys/vncsim/%{app_token}/sessions

@@ -1,0 +1,3 @@
+server.general.showbuiltinapplications=off
+application.server.enable=off
+application.server.allowexternalprocess=on

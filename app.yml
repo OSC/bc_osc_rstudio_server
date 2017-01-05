@@ -1,0 +1,15 @@
+title: 'COMSOL Server'
+compute:
+  - name: 'COMSOL Server'
+    batch: 'oakley'
+    node:
+      - type: 'any'
+        ppn: 12
+        desc: >
+          Choose any type of compute node. This reduces the wait time
+          as there are no node specific requirements.
+    webserver?: true
+    pbs:
+      envvars:
+        COMSOL_MODULE: 'comsol/52a_server'
+        COMSOL_APP_TOKEN: 'comsol_server'
