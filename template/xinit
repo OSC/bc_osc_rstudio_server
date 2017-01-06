@@ -3,6 +3,11 @@ function random () {
   shuf -i ${1}-${2} -n 1
 }
 
+# Generate random alphanumeric password with $1 (default: 32) characters
+function create_passwd () {
+  tr -cd '[:alnum:]' < /dev/urandom 2>/dev/null | head -c${1:-32}
+}
+
 # Check if port $1 is in use
 function used_port () {
   local PORT=${1}
@@ -18,5 +23,14 @@ function find_port () {
   done
   echo ${PORT}
 }
+
+export RSTUDIO_PREFSDIR="${HOME}/.rstudio/${RSTUDIO_APP_TOKEN}"
+mkdir -p $RSTUDIO_PREFSDIR
+
+PASSWORD=$(create_passwd 12)
+PASSWORD_FILE="${RSTUDIO_PREFSDIR}/${PBS_JOBID}.pass"
+touch $PASSWORD_FILE
+echo $PASSWORD > $PASSWORD_FILE
+chmod 600 $PASSWORD_FILE
 
 export HOST_PORT=$(find_port)
