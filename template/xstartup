@@ -47,4 +47,4 @@ module load ${RSTUDIO_MODULE}
 #comsol server -serviceport ${HOST_PORT} -prefsdir "${COMSOL_PREFSDIR}" -silent -login never
 
 # Launch RStudio Server
-rserver --www-port ${HOST_PORT}
+rserver --www-port ${HOST_PORT} --auth-none=false
