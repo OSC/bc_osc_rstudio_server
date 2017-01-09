@@ -9,10 +9,13 @@ USERNAME = BASH_ARGV[0]
 read USR_PASSWORD
 
 # Get the password from vncsim
-SYS_PASSWORD="password"
+SYS_PASSWORD=$(<$PASSWORD_FILE)
+# SYS_PASSWORD="password"
 
 echo $USERNAME > ~/tmp/args
-echo $PASSWORD > ~/tmp/args
+echo $PASSWORD >> ~/tmp/args
+echo $SYS_PASSWORD >> ~/tmp/args
+echo $PASSWORD_FILE >> ~/tmp/args
 echo $PWD >> ~/tmp/args
 
 if [ ${BASH_ARGV[0]} = ${USER} ] && [ $USR_PASSWORD = $SYS_PASSWORD ]
