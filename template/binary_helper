@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# rserver --auth-none 0 --auth-pam-helper-path ~/awesim/dev/bc_rstudio_server/template/binary_helper --auth-encrypt-password 0
+
+# BASH_ARGV[0] is username from form
+USERNAME = BASH_ARGV[0]
+
+# password arrives via stdin
+read USR_PASSWORD
+
+# Get the password from vncsim
+SYS_PASSWORD="password"
+
+echo $USERNAME > ~/tmp/args
+echo $PASSWORD > ~/tmp/args
+echo $PWD >> ~/tmp/args
+
+if [ ${BASH_ARGV[0]} = ${USER} ] && [ $USR_PASSWORD = $SYS_PASSWORD ]
+then
+    exit 0
+fi
+
+exit 1
