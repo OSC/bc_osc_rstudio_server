@@ -29,8 +29,7 @@ mkdir -p $RSTUDIO_PREFSDIR
 
 PASSWORD=$(create_passwd 12)
 export PASSWORD_FILE="${RSTUDIO_PREFSDIR}/${PBS_JOBID}.pass"
-touch $PASSWORD_FILE
+(umask 077; touch $PASSWORD_FILE)
 echo $PASSWORD > $PASSWORD_FILE
-chmod 600 $PASSWORD_FILE
 
 export HOST_PORT=$(find_port)
