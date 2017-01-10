@@ -1,24 +1,17 @@
-# Batch Connect - COMSOL Server
+# Batch Connect - RStudio Server
 
-![GitHub Release](https://img.shields.io/github/release/osc/bc_comsol_server.svg)
-![GitHub License](https://img.shields.io/github/license/osc/bc_comsol_server.svg)
+![GitHub Release](TODO)
+![GitHub License](TODO)
 
-A VNCSim app used for launching COMSOL Server under OSC's supercomputer
+A VNCSim app used for launching RStudio Server under OSC's supercomputer
 environment. It is designed to:
 
-  - launch COMSOL Server using the
-    [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod)
-    package manager
-  - provide sensible defaults for the COMSOL Server when started under a
+  - launch RStudio Server using the
+  - provide sensible defaults for the RStudio Server when started under a
     per-user-environment
-  - supply wrapper scripts for subsequently submitting jobs to the computer
-    clusters within a COMSOL Server app
+  - Enable access to an RStudio Server session over a secure session
 
-> **Warning:**
->
-> Care must be taken when installing the COMSOL Server on your cluster such
-> that it has a proper Authentication module in place. We recommend setting up
-> the LDAP module for the local authentication of your users.
+# TODO Update everything after this
 
 ## Bower Install
 
