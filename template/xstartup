@@ -1,10 +1,9 @@
 #!/bin/bash -l
 
-# Load the R module
+# Load the require modules
 module load ${R_MODULE}
-
-# Load the RStudio Module
 module load ${RSTUDIO_MODULE}
 
-# Launch RStudio Server
-rserver --www-port ${HOST_PORT} --auth-none 0 --auth-pam-helper-path ~/awesim/dev/bc_rstudio_server/template/binary_helper --auth-encrypt-password 0
+# Start up the RStudio Server
+echo "Starting up rserver..."
+rserver --www-port ${HOST_PORT} --auth-none 0 --auth-pam-helper-path "${ROOT}/bin/auth" --auth-encrypt-password 0

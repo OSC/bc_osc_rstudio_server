@@ -1,10 +1,10 @@
-Click the button to connect directly to RStudio Server.
-<form method="post" action="{{> rnode}}/auth-do-sign-in" class="inline">
+<form action="{{> rnode}}/auth-do-sign-in" method="post" target="_blank">
     <input type="hidden" name="username" value="{{sshuser}}">
     <input type="hidden" name="password" value="{{password}}">
     <input type="hidden" name="staySignedIn" value="1">
     <input type="hidden" name="appUri" value="">
-    <button class="btn btn-primary" type="submit" name="submit_param" value="submit_value" class="link-button">
-        Connect to RStudio Server
+    <button class="btn btn-primary" type="submit">
+      <i class="fa fa-eye"></i>
+      Connect to RStudio Server
     </button>
 </form>

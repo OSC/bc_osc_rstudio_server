@@ -1,10 +1,11 @@
 {
-  "name": "bc_comsol_server",
-  "homepage": "https://github.com/OSC/bc_comsol_server",
+  "name": "bc_osc_rstudio_server",
+  "homepage": "https://github.com/OSC/bc_osc_rstudio_server",
   "authors": [
-    "Jeremy Nicklas <jnicklas@osc.edu>"
+    "Brian McMichael <bmcmichael@osc.edu>",
+    "Jeremy Nicklas <jnicklas@osc.edu"
   ],
-  "description": "Batch Connect - COMSOL Server",
+  "description": "Batch Connect - OSC RStudio Server",
   "main": "",
   "license": "MIT",
   "private": true,

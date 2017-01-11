@@ -1,5 +1,5 @@
 title: 'RStudio Server'
-connection: "connection.html.mustache"
+connection: 'connection.html.mustache'
 compute:
   - name: 'RStudio Server'
     batch: 'owens'
@@ -14,4 +14,3 @@ compute:
       envvars:
         R_MODULE: 'R/3.3.2'
         RSTUDIO_MODULE: 'rstudio/1.0.136_server'
-        RSTUDIO_APP_TOKEN: 'rstudio'

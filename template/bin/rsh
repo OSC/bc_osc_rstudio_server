@@ -1,7 +1,0 @@
-#!/bin/bash
-
-echo "Original rsh command arguments:"
-echo "$@"
-echo ""
-
-exec /usr/local/bin/pbsrsh $1 -- ${*:2}

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Output to log file if defined
+[[ ${VNC_LOGFILE} ]] && exec &> "${VNC_LOGFILE}"
+
+# Confirm username is supplied
+if [[ $# -ne 1 ]]; then
+  echo "Usage: auth USERNAME"
+  exit 1
+fi
+USERNAME="${1}"
+
+# Confirm password file exists
+if [[ ! -f ${PASSWORD_FILE} ]]; then
+  echo "Password file does not exist: ${PASSWORD_FILE}"
+  exit 1
+fi
+
+# Read in the password from user
+read -s -p "Password: " PASSWORD
+echo ""
+
+if [[ ${USERNAME} == ${USER} && ${PASSWORD} == $(cat "${PASSWORD_FILE}") ]]; then
+  echo "Successful authentication"
+  exit 0
+else
+  echo "Invalid authentication"
+  exit 1
+fi
