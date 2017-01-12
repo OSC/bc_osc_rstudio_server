@@ -6,5 +6,4 @@ description: |-
 category: Desktop Apps
 subcategory: Interactive HPC
 role: ihpc
-icon: fa://registered
 url: /pun/sys/vncsim/%{app_token}/sessions
