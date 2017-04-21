@@ -11,15 +11,15 @@ environment.
 1. Git clone this app in the desired location and go into the directory:
 
    ```sh
-   $ git clone <repo> bc_osc_rstudio_server
+   git clone <repo> bc_osc_rstudio_server
 
-   $ cd bc_osc_rstudio_server
+   cd bc_osc_rstudio_server
    ```
 
 2. Checkout the version of the app you want to deploy:
 
    ```sh
-   $ git checkout <tag>
+   git checkout <tag>
    ```
 
 3. Setup the app for use:
@@ -33,13 +33,13 @@ environment.
 1. Fetch the updated code:
 
    ```sh
-   $ git fetch
+   git fetch
    ```
 
 2. Checkout the desired tag:
 
    ```sh
-   $ git checkout <tag>
+   git checkout <tag>
    ```
 
 3. Setup the app for use:
