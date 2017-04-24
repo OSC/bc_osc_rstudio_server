@@ -2,7 +2,7 @@
 
 Features:
 
-  - added `bin/setup` script for easier deployment
+  - set `proot` as an external dependency
 
 ## 0.0.1 (2017-01-20)
 

@@ -14,3 +14,4 @@ compute:
       envvars:
         R_MODULE: 'R/3.3.2'
         RSTUDIO_MODULE: 'rstudio/1.0.136_server'
+        PROOT_PATH: '/usr/local/bin/proot'

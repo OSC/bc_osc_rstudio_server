@@ -7,4 +7,4 @@ module load ${RSTUDIO_MODULE}
 # Start up the RStudio Server
 echo "Starting up rserver..."
 
-${ROOT}/bin/proot-x86_64 -b ${TMPDIR}:/tmp rserver --www-port ${HOST_PORT} --auth-none 0 --auth-pam-helper-path "${ROOT}/bin/auth" --auth-encrypt-password 0
+${PROOT_PATH} -b ${TMPDIR}:/tmp rserver --www-port ${HOST_PORT} --auth-none 0 --auth-pam-helper-path "${ROOT}/bin/auth" --auth-encrypt-password 0
