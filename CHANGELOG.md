@@ -1,5 +1,7 @@
 ## Unreleased
 
+## 0.0.2 (2017-05-02)
+
 Features:
 
   - set `proot` as an external dependency
