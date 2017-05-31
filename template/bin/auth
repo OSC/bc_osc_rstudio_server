@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Output to log file if defined
-[[ ${VNC_LOGFILE} ]] && exec &> "${VNC_LOGFILE}"
-
 # Confirm username is supplied
 if [[ $# -ne 1 ]]; then
   echo "Usage: auth USERNAME"
