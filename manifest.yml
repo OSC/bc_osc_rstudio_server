@@ -1,9 +1,5 @@
 ---
 name: RStudio Server
-description: |-
-  **RStudio Server** provides access to a RStudio Server running on one or more
-  compute nodes on the Owens cluster at the Ohio Supercomputer Center (OSC).
-category: Desktop Apps
-subcategory: Interactive HPC
-role: ihpc
-url: /pun/sys/vncsim/%{app_token}/sessions
+category: Interactive Apps
+subcategory: Servers
+role: batch_connect

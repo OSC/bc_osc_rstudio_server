@@ -3,8 +3,18 @@
 ![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_rstudio_server.svg)
 ![GitHub License](https://img.shields.io/github/license/osc/bc_osc_rstudio_server.svg)
 
-A VNCSim app used for launching RStudio Server under OSC's supercomputer
-environment.
+A Batch Connect app designed for OSC OnDemand that launches an RStudio Server
+within an Owens batch job.
+
+## Prerequisites
+
+This app requires the following software be installed on the nodes that the
+batch job is intended to run on:
+
+- [R](https://www.r-project.org/) 3.3.2+
+- [RStudio Server](https://www.rstudio.com/products/rstudio-server/) 1.0.136+
+- [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod) 6.0.1+
+- [PRoot](https://proot-me.github.io/) 5.1.0+ (used to setup fake bind mount)
 
 ## Install
 
@@ -12,9 +22,9 @@ Use git to clone this app and checkout the desired branch/version you want to
 use:
 
 ```sh
-git clone <repo>
+scl enable git19 -- git clone <repo>
 cd <dir>
-git checkout <tag/branch>
+scl enable git19 -- git checkout <tag/branch>
 ```
 
 You will not need to do anything beyond this as all necessary assets are
@@ -25,29 +35,13 @@ To update the app you would:
 
 ```sh
 cd <dir>
-git fetch
-git checkout <tag/branch>
+scl enable git19 -- git fetch
+scl enable git19 -- git checkout <tag/branch>
 ```
 
 Again, you do not need to restart the app as it isn't a Passenger app.
 
-## Specification
-
-### ROOT
-
-All assets in this package look for dependencies in the specified `$ROOT`
-directory. This should be set to correspond to the included `template/`
-directory.
-
-An example running the `xstartup` script included in this package:
-
-```sh
-# Path where you installed this project
-BC_RSTUDIO_SERVER_DIR="/path/to/bc_osc_rstudio_server/template"
-
-# Run the `xstartup` script with proper `$ROOT` set
-ROOT="${BC_RSTUDIO_SERVER_DIR}" ${BC_RSTUDIO_SERVER_DIR}/xstartup
-```
+## Template Specification
 
 ### R_MODULE
 
