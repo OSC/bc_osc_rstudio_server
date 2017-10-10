@@ -4,6 +4,7 @@ cluster: "owens"
 description: |
   This app will launch an RStudio Server on one or more Owens nodes.
 attributes:
+  bc_num_slots: "1"
   bc_account:
     help: "You can leave this blank if **not** in multiple projects."
   node_type:
