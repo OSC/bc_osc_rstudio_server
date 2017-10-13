@@ -1,17 +1,47 @@
 #!/bin/bash -l
 
-# Set working directory to home directory
-cd "${HOME}"
-
 #
 # Start RStudio Server
 #
 
-# Restore the module environment to avoid conflicts
-module restore
+# Load the required environment
+setup_env () {
+  module purge
+  module load intel/16.0.3 R/3.3.2 rstudio/1.0.136_server
+}
+setup_env
 
-# Load the require modules
-module load R/3.3.2 rstudio/1.0.136_server
+# Generate an `rsession` wrapper script
+export RSESSION_WRAPPER_FILE="${PWD}/rsession.sh"
+(
+umask 077
+sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
+  #!/bin/bash -l
+
+  # Log all output from this script
+  export RSESSION_LOG_FILE="${PWD}/rsession.log"
+  exec &>"\${RSESSION_LOG_FILE}"
+
+  # Load the required environment
+  $(declare -f setup_env)
+  setup_env
+
+  # Load the PBS environment
+  $(declare -xp | grep PBS)
+
+  # Some debugging info
+  module list
+
+  # Launch the original command
+  echo "Launching rsession..."
+  echo "exec rsession \${@}"
+  exec rsession "\${@}"
+EOL
+)
+chmod 755 "${RSESSION_WRAPPER_FILE}"
+
+# Set working directory to home directory
+cd "${HOME}"
 
 # Launch the RStudio Server
 echo "Starting up rserver..."
@@ -20,4 +50,5 @@ echo "Starting up rserver..."
     --www-port ${port} \
     --auth-none 0 \
     --auth-pam-helper-path "<%= session.staged_root.join("bin", "auth") %>" \
-    --auth-encrypt-password 0
+    --auth-encrypt-password 0 \
+    --rsession-path "${RSESSION_WRAPPER_FILE}"

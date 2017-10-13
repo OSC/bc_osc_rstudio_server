@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Wrapper script used to launch `rsession` in similar environment as original
+  batch job. [#8](https://github.com/OSC/bc_osc_rstudio_server/issues/8)
+
 ### Changed
 - Modified app to take advantage of ERB templates in updated Dashboard.
 
