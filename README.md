@@ -41,29 +41,6 @@ scl enable git19 -- git checkout <tag/branch>
 
 Again, you do not need to restart the app as it isn't a Passenger app.
 
-## Template Specification
-
-### R_MODULE
-
-This environment variable describes the specific R version to load. This also
-assumes module support through the
-[Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod)
-package manager is installed on the running compute node as well as the
-requested module in `$R_MODULE`.
-
-### RSTUDIO_MODULE
-
-This environment variable describes the specific RStudio Server version to
-load. This also assumes module support through the
-[Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod)
-package manager is installed on the running compute node as well as the
-requested module in `$RSTUDIO_MODULE`.
-
-### PROOT_PATH
-
-This environment variable holds the path for the `proot` binary used to set up
-a fake bind mount for the RStudio Server process.
-
 ## Contributing
 
 1. Fork it ( https://github.com/OSC/bc_osc_rstudio_server/fork )

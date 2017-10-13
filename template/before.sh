@@ -1,5 +1,5 @@
 # Find available port to run server on
-export port=$(find_port)
+port=$(find_port)
 
 # Define a password and password file used for authentication
 password="$(create_passwd 12)"

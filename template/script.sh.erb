@@ -1,0 +1,23 @@
+#!/bin/bash -l
+
+# Set working directory to home directory
+cd "${HOME}"
+
+#
+# Start RStudio Server
+#
+
+# Restore the module environment to avoid conflicts
+module restore
+
+# Load the require modules
+module load R/3.3.2 rstudio/1.0.136_server
+
+# Launch the RStudio Server
+echo "Starting up rserver..."
+/usr/local/proot/bin/proot-x86_64 -b ${TMPDIR}:/tmp \
+  rserver \
+    --www-port ${port} \
+    --auth-none 0 \
+    --auth-pam-helper-path "<%= session.staged_root.join("bin", "auth") %>" \
+    --auth-encrypt-password 0

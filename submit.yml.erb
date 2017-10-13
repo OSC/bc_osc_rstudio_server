@@ -1,9 +1,7 @@
 ---
+batch_connect:
+  template: "basic"
 script:
-  job_environment:
-    R_MODULE: "R/3.3.2"
-    RSTUDIO_MODULE: "rstudio/1.0.136_server"
-    PROOT_PATH: "/usr/local/proot/bin/proot-x86_64"
   native:
     resources:
-      nodes: "<%= bc_num_slots %><%= node_type %>"
+      nodes: "<%= bc_num_slots.blank? ? "1" : bc_num_slots.to_i %><%= node_type %>"

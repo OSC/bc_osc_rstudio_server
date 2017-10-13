@@ -1,5 +1,7 @@
 ---
 name: RStudio Server
+description: |
+  This app will launch an RStudio Server on one or more Owens nodes.
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect

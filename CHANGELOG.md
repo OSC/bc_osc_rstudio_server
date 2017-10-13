@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Modified app to take advantage of ERB templates in updated Dashboard.
+
+### Fixed
+- Removed need for message to user about waiting for server to start.
+  [#6](https://github.com/OSC/bc_osc_rstudio_server/issues/6)
 
 ## [0.1.1] - 2017-10-11
 ### Changed
