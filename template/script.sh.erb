@@ -38,7 +38,7 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
   exec rsession "\${@}"
 EOL
 )
-chmod 755 "${RSESSION_WRAPPER_FILE}"
+chmod 700 "${RSESSION_WRAPPER_FILE}"
 
 # Set working directory to home directory
 cd "${HOME}"
