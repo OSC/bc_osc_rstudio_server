@@ -1,9 +1,9 @@
 # Find available port to run server on
-port=$(find_port)
+port=$(find_port ${host})
 
 # Define a password and password file used for authentication
-password="$(create_passwd 12)"
+password="$(create_passwd 16)"
 export PASSWORD_FILE="${PWD}/passwd"
 
-# Create password file used by RStudio Server
+# Generate the password file used by RStudio Server
 (umask 077 && echo "${password}" > "${PASSWORD_FILE}")

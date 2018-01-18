@@ -7,34 +7,34 @@
 # Load the required environment
 setup_env () {
   module purge
-  module load intel/16.0.3 R/3.3.2 rstudio/1.0.136_server
+  module load singularity
+
+  export SINGULARITY_CACHEDIR="${HOME}/.Singularity/data/<%= session.token %>"
+  export IMG="shub://nickjer/singularity-rstudio:3.4.3"
 }
 setup_env
+
+# Create Singularity image if it doesn't already exist
+echo "Pulling down container..."
+mkdir -p "${SINGULARITY_CACHEDIR}"
+set -x
+singularity pull "${IMG}"
+{ set +x; } 2>/dev/null
 
 # Generate an `rsession` wrapper script
 export RSESSION_WRAPPER_FILE="${PWD}/rsession.sh"
 (
 umask 077
 sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
-  #!/bin/bash -l
+  #!/usr/bin/env bash
 
   # Log all output from this script
   export RSESSION_LOG_FILE="${PWD}/rsession.log"
   exec &>"\${RSESSION_LOG_FILE}"
 
-  # Load the required environment
-  $(declare -f setup_env)
-  setup_env
-
-  # Load the PBS environment
-  $(declare -xp | grep PBS)
-
-  # Some debugging info
-  module list
-
   # Launch the original command
   echo "Launching rsession..."
-  echo "exec rsession \${@}"
+  set -x
   exec rsession "\${@}"
 EOL
 )
@@ -45,10 +45,11 @@ cd "${HOME}"
 
 # Launch the RStudio Server
 echo "Starting up rserver..."
-/usr/local/proot/bin/proot-x86_64 -b ${TMPDIR}:/tmp \
-  rserver \
-    --www-port ${port} \
-    --auth-none 0 \
-    --auth-pam-helper-path "<%= session.staged_root.join("bin", "auth") %>" \
-    --auth-encrypt-password 0 \
-    --rsession-path "${RSESSION_WRAPPER_FILE}"
+set -x
+singularity exec -B "${TMPDIR}:/tmp" "${IMG}" \
+    rserver \
+      --www-port ${port} \
+      --auth-none 0 \
+      --auth-pam-helper-path "<%= session.staged_root.join("bin", "auth") %>" \
+      --auth-encrypt-password 0 \
+      --rsession-path "${RSESSION_WRAPPER_FILE}"
