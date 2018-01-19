@@ -1,25 +1,55 @@
 #!/bin/bash -l
 
-#
-# Start RStudio Server
-#
+<%-
+  img_owner = "nickjer"
+  img_repo  = "singularity-rstudio"
+  img_tag   = "3.4.3"
+
+  img_name  = "#{img_owner}-#{img_repo}-#{img_tag}.simg"
+
+  singularity_root = Pathname.new(ENV["HOME"]).join(".Singularity")
+  singularity_cache = singularity_root.join("cache")
+  singularity_image = singularity_root.join("data", session.token, img_name)
+-%>
 
 # Load the required environment
 setup_env () {
   module purge
   module load singularity
 
-  export SINGULARITY_CACHEDIR="${HOME}/.Singularity/data/<%= session.token %>"
-  export IMG="shub://nickjer/singularity-rstudio:3.4.3"
+  export IMG="<%= singularity_image %>"
 }
 setup_env
 
-# Create Singularity image if it doesn't already exist
-echo "Pulling down container..."
+#
+# Setup Singularity
+#
+
+# Pull down Singularity image
+echo "Pulling down image..."
+export SINGULARITY_CACHEDIR="<%= singularity_cache %>"
 mkdir -p "${SINGULARITY_CACHEDIR}"
 set -x
-singularity pull "${IMG}"
+IMG_PATH=$( \
+singularity pull \
+    --hash \
+    "shub://<%= img_owner %>/<%= img_repo %>:<%= img_tag %>" \
+  | tee >(cat 1>&2) \
+  | awk 'END{print $NF}' \
+)
 { set +x; } 2>/dev/null
+[[ ! -e ${IMG_PATH} ]] && exit 1
+
+# Setup Singularity image for usage
+echo "Setting up image..."
+mkdir -p "<%= singularity_image.dirname %>"
+set -x
+ln -sf "${IMG_PATH}" "<%= singularity_image %>"
+{ set +x; } 2>/dev/null
+
+#
+# Start RStudio Server
+#
 
 # Generate an `rsession` wrapper script
 export RSESSION_WRAPPER_FILE="${PWD}/rsession.sh"
@@ -46,7 +76,7 @@ cd "${HOME}"
 # Launch the RStudio Server
 echo "Starting up rserver..."
 set -x
-singularity exec -B "${TMPDIR}:/tmp" "${IMG}" \
+singularity exec -B "$(mktemp -d):/tmp" "${IMG}" \
     rserver \
       --www-port ${port} \
       --auth-none 0 \
