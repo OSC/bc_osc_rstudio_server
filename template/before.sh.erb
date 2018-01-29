@@ -7,3 +7,6 @@ export PASSWORD_FILE="${PWD}/passwd"
 
 # Generate the password file used by RStudio Server
 (umask 077 && echo "${password}" > "${PASSWORD_FILE}")
+
+# Export the module function if it exists
+[[ $(type -t module) == "function" ]] && export -f module
