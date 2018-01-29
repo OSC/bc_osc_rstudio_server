@@ -50,7 +50,7 @@ singularity pull \
 # Using system installed image
 IMG_PATH="<%= uri.path %>"
 <%- end -%>
-if [[ ! -e ${IMG_PATH} ]]; then
+if [[ ! -e "${IMG_PATH}" ]]; then
   echo "Image does not exist: ${IMG_PATH}"
   exit 1
 fi
