@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Added support for R 3.4.2 alongside 3.3.2 on Owens.
+  [#3](https://github.com/OSC/bc_osc_rstudio_server/issues/3)
+
 ### Security
 - Fixed permissions on generated script with env vars inside.
 

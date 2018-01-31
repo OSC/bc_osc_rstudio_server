@@ -7,7 +7,7 @@
 # Load the required environment
 setup_env () {
   module purge
-  module load intel/16.0.3 R/3.3.2 rstudio/1.0.136_server
+  module load <%= context.version %>
 }
 setup_env
 
