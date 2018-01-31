@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added support for R 3.4.2 alongside 3.3.2 on Owens.
   [#3](https://github.com/OSC/bc_osc_rstudio_server/issues/3)
 
+### Updated
+- Updated the date in `LICENSE.txt`.
+
 ### Security
 - Fixed permissions on generated script with env vars inside.
 
