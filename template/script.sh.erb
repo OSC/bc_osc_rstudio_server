@@ -1,70 +1,20 @@
 #!/usr/bin/env bash
 
-<%-
-  uri = URI("shub://nickjer/singularity-rstudio:3.4.3")
-  singularity_root = Pathname.new(ENV["HOME"]).join(".Singularity")
--%>
-
-<%-
-  singularity_image = singularity_root.join(
-    "data",
-    session.token,
-    uri.host || "root",
-    "#{File.basename(uri.path).parameterize}.simg"
-  )
-
-  singularity_cache = singularity_root.join(
-    "cache"
-  )
--%>
-
 # Load the required environment
 setup_env () {
   module purge
   module load singularity
-
-  export IMG="<%= singularity_image %>"
-  export SINGULARITY_CACHEDIR="<%= singularity_cache %>"
+  module use "/users/appl/jnicklas/ondemand/dev/bc_osc_rstudio_server/example_module/modulefiles"
+  module load rstudio_singularity/3.4.3
 }
 setup_env
 
 #
-# Setup Singularity
-#
-
-mkdir -p "${SINGULARITY_CACHEDIR}"
-
-<%- if uri.scheme -%>
-# Pull down Singularity image
-echo "Pulling down image..."
-set -x
-IMG_PATH=$( \
-singularity pull \
-    --hash \
-    "<%= uri.to_s %>" \
-  | tee >(cat 1>&2) \
-  | awk 'END{print $NF}' \
-)
-{ set +x; } 2>/dev/null
-<%- else -%>
-# Using system installed image
-IMG_PATH="<%= uri.path %>"
-<%- end -%>
-if [[ ! -e "${IMG_PATH}" ]]; then
-  echo "Image does not exist: ${IMG_PATH}"
-  exit 1
-fi
-
-# Setup Singularity image for usage
-echo "Setting up image..."
-mkdir -p "$(dirname "${IMG}")"
-set -x
-ln -sf "${IMG_PATH}" "${IMG}"
-{ set +x; } 2>/dev/null
-
-#
 # Start RStudio Server
 #
+
+# PAM auth helper used by RStudio
+export RSTUDIO_AUTH="${PWD}/bin/auth"
 
 # Generate an `rsession` wrapper script
 export RSESSION_WRAPPER_FILE="${PWD}/rsession.sh"
@@ -74,13 +24,13 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
   #!/usr/bin/env bash
 
   # Log all output from this script
-  export RSESSION_LOG_FILE="${PWD}/rsession.log"
-  exec &>"\${RSESSION_LOG_FILE}"
+  export RSESSION_LOG_FILE="${SINGULARITY_HOST_FS}${PWD}/rsession.log"
+  exec &>>"\${RSESSION_LOG_FILE}"
 
   # Launch the original command
   echo "Launching rsession..."
   set -x
-  exec rsession "\${@}"
+  exec rsession --r-libs-user "${R_LIBS_USER}" "\${@}"
 EOL
 )
 chmod 700 "${RSESSION_WRAPPER_FILE}"
@@ -91,10 +41,9 @@ cd "${HOME}"
 # Launch the RStudio Server
 echo "Starting up rserver..."
 set -x
-singularity exec -B "$(mktemp -d):/tmp" "${IMG}" \
-    rserver \
-      --www-port ${port} \
-      --auth-none 0 \
-      --auth-pam-helper-path "<%= session.staged_root.join("bin", "auth") %>" \
-      --auth-encrypt-password 0 \
-      --rsession-path "${RSESSION_WRAPPER_FILE}"
+rserver \
+  --www-port ${port} \
+  --auth-none 0 \
+  --auth-pam-helper-path "${SINGULARITY_HOST_FS}${RSTUDIO_AUTH}" \
+  --auth-encrypt-password 0 \
+  --rsession-path "${SINGULARITY_HOST_FS}${RSESSION_WRAPPER_FILE}"
