@@ -34,7 +34,7 @@ OnDemand node):
 [PRoot]: https://proot-me.github.io/
 [Singularity]: http://singularity.lbl.gov/
 [Lmod]: https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
-[nickjer/singulartiy-rstudio]: https://www.singularity-hub.org/collections/463
+[nickjer/singularity-rstudio]: https://www.singularity-hub.org/collections/463
 [example_module]: example_module/
 
 ## Install
