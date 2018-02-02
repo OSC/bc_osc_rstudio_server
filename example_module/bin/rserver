@@ -2,4 +2,4 @@
 
 export SINGULARITY_WORKDIR="${SINGULARITY_WORKDIR:-$(mktemp -d)}"
 
-exec singularity exec "${RSTUDIO_IMAGE}" rserver "${@}"
+exec singularity exec rserver "${@}"

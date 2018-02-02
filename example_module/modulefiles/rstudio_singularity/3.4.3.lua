@@ -15,7 +15,7 @@ local user_library = os.getenv("HOME") .. "/R/library-3.4"
 
 prereq("singularity")
 prepend_path("PATH", bin)
-setenv("RSTUDIO_IMAGE", img)
+setenv("SINGULARITY_IMAGE", img)
 setenv("SINGULARITY_HOST_FS", host_fs)
 setenv("SINGULARITY_BINDPATH", library .. ":/usr/local/lib/R/site-library,/:" .. host_fs)
 setenv("SINGULARITY_CONTAIN", "1")
