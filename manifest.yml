@@ -1,5 +1,5 @@
 ---
-name: RStudio Server (Singularity)
+name: RStudio Server
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect

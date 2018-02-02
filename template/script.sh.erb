@@ -3,9 +3,15 @@
 # Load the required environment
 setup_env () {
   module purge
-  module load singularity
-  module use "/users/appl/jnicklas/ondemand/dev/bc_osc_rstudio_server/example_module/modulefiles"
-  module load rstudio_singularity/3.4.3
+  # If you want to use Singularity it is recommended you setup a module similar
+  # to the included `example_module` and load it as:
+  #
+  #     module use "/path/to/example_module/modulefiles"
+  #     module load singularity rstudio_singularity/3.4.3
+  #
+  # Bonus points if you install the `example_module` on the system so you don't
+  # need to run `module use`.
+  module load <%= context.version %>
 }
 setup_env
 

@@ -1,6 +1,7 @@
 ---
 cluster: "owens"
 form:
+  - version
   - bc_account
   - bc_num_hours
   - bc_num_slots
@@ -22,3 +23,10 @@ attributes:
     options:
       - [ "any",     ":ppn=28"         ]
       - [ "hugemem", ":ppn=48:hugemem" ]
+  version:
+    widget: select
+    label: "R version"
+    help: "This defines the version of R you want to load."
+    options:
+      - [ "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server"]
+      - [ "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server"]
