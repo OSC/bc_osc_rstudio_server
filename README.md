@@ -12,22 +12,22 @@ This Batch Connect app requires the following software be installed on the
 **compute nodes** that the batch job is intended to run on (**NOT** the
 OnDemand node):
 
+- [Lmod] 6.0.1+ or any other `module restore` and `module load <modules>` based
+  CLI used to load appropriate environments within the batch job before
+  launching the RStudio Server.
+
+**without Singularity**
+
 - [R] 3.3.2+ (earlier versions are untested but may work for you)
 - [RStudio Server] 1.0.136+ (earlier versions are untested by may work for you)
 - [PRoot] 5.1.0+ (used to setup fake bind mount)
 
-**OR**
+**or with Singularity**
 
 - [Singularity] 2.4.2+
 - A Singularity image similar to [nickjer/singularity-rstudio]
 - Corresponding module to launch the above Singularity image (see
   [example_module])
-
-**AND**
-
-- [Lmod] 6.0.1+ or any other `module restore` and `module load <modules>` based
-  CLI used to load appropriate environments within the batch job before
-  launching the RStudio Server.
 
 [R]: https://www.r-project.org/
 [RStudio Server]: https://www.rstudio.com/products/rstudio-server/
