@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Confirm username is supplied
 if [[ $# -ne 1 ]]; then
@@ -7,9 +7,9 @@ if [[ $# -ne 1 ]]; then
 fi
 USERNAME="${1}"
 
-# Confirm password file exists
-if [[ ! -f "${PASSWORD_FILE}" ]]; then
-  echo "Password file does not exist: ${PASSWORD_FILE}"
+# Confirm password environment variable exists
+if [[ -z ${RSTUDIO_PASSWORD} ]]; then
+  echo "The environment variable RSTUDIO_PASSWORD is not set"
   exit 1
 fi
 
@@ -17,10 +17,11 @@ fi
 read -s -p "Password: " PASSWORD
 echo ""
 
-if [[ ${USERNAME} == ${USER} && ${PASSWORD} == $(cat "${PASSWORD_FILE}") ]]; then
+if [[ ${USERNAME} == ${USER} && ${PASSWORD} == ${RSTUDIO_PASSWORD} ]]; then
   echo "Successful authentication"
   exit 0
 else
   echo "Invalid authentication"
   exit 1
 fi
+

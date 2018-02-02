@@ -3,18 +3,39 @@
 ![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_rstudio_server.svg)
 ![GitHub License](https://img.shields.io/github/license/osc/bc_osc_rstudio_server.svg)
 
-A Batch Connect app designed for OSC OnDemand that launches an RStudio Server
+An interactive app designed for OSC OnDemand that launches an RStudio Server
 within an Owens batch job.
 
 ## Prerequisites
 
-This app requires the following software be installed on the nodes that the
-batch job is intended to run on:
+This Batch Connect app requires the following software be installed on the
+**compute nodes** that the batch job is intended to run on (**NOT** the
+OnDemand node):
 
-- [R](https://www.r-project.org/) 3.3.2+
-- [RStudio Server](https://www.rstudio.com/products/rstudio-server/) 1.0.136+
-- [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod) 6.0.1+
-- [PRoot](https://proot-me.github.io/) 5.1.0+ (used to setup fake bind mount)
+- [Lmod] 6.0.1+ or any other `module restore` and `module load <modules>` based
+  CLI used to load appropriate environments within the batch job before
+  launching the RStudio Server.
+
+**without Singularity**
+
+- [R] 3.3.2+ (earlier versions are untested but may work for you)
+- [RStudio Server] 1.0.136+ (earlier versions are untested by may work for you)
+- [PRoot] 5.1.0+ (used to setup fake bind mount)
+
+**or with Singularity**
+
+- [Singularity] 2.4.2+
+- A Singularity image similar to [nickjer/singularity-rstudio]
+- Corresponding module to launch the above Singularity image (see
+  [example_module])
+
+[R]: https://www.r-project.org/
+[RStudio Server]: https://www.rstudio.com/products/rstudio-server/
+[PRoot]: https://proot-me.github.io/
+[Singularity]: http://singularity.lbl.gov/
+[Lmod]: https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
+[nickjer/singularity-rstudio]: https://www.singularity-hub.org/collections/463
+[example_module]: example_module/
 
 ## Install
 
