@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add support for using a Singularity image.
 
+## [0.3.0] - 2018-01-31
+### Added
+- Added support for R 3.4.2 alongside 3.3.2 on Owens.
+  [#3](https://github.com/OSC/bc_osc_rstudio_server/issues/3)
+
+### Updated
+- Updated the date in `LICENSE.txt`.
+
 ### Security
 - Fixed permissions on generated script with env vars inside.
 
@@ -48,7 +56,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.1.0...v0.1.1
