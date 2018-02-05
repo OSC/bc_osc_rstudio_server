@@ -5,15 +5,15 @@ image for portability.
 
 whatis([[Description: RStudio Server environment using Singularity]])
 
-local root = "/users/appl/jnicklas/ondemand/dev/bc_osc_rstudio_server/example_module"
+local root = "/scratch/user/jnicklas/ondemand/dev/bc_osc_rstudio_server/example_module"
 local bin = pathJoin(root, "/bin")
 local img = pathJoin(root, "/3.4.3/singularity-rstudio.simg")
 local library = pathJoin(root, "/library-3.4")
 local host_fs = "/mnt"
 
-local user_library = os.getenv("HOME") .. "/R/library-3.4"
+local user_library = os.getenv("SCRATCH") .. "/R/library-3.4"
 
-prereq("singularity")
+prepend_path("PATH", "/software/hprc/singularity/2.4.2/bin")
 prepend_path("PATH", bin)
 setenv("SINGULARITY_IMAGE", img)
 setenv("SINGULARITY_HOST_FS", host_fs)

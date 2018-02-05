@@ -11,7 +11,8 @@ setup_env () {
   #
   # Bonus points if you install the `example_module` on the system so you don't
   # need to run `module use`.
-  module load <%= context.version %>
+  module use "/scratch/user/jnicklas/ondemand/dev/bc_osc_rstudio_server/example_module/modulefiles"
+  module load rstudio_singularity/3.4.3
 }
 setup_env
 

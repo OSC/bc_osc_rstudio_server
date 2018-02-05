@@ -1,32 +1,19 @@
 ---
-cluster: "owens"
+cluster: "ada"
 form:
-  - version
   - bc_account
   - bc_num_hours
   - bc_num_slots
-  - node_type
   - bc_email_on_started
 attributes:
-  bc_num_slots: "1"
   bc_account:
-    help: "You can leave this blank if **not** in multiple projects."
-  node_type:
-    widget: select
-    label: "Node type"
+    help: "This field is optional."
+  bc_num_slots:
+    label: "Number of cores:"
+    min: 1
+    max: 20
     help: |
-      - **any** - (*28 cores*) Use any available Owens node. This reduces the
-        wait time as there are no node requirements.
-      - **hugemem** - (*48 cores*) Use an Owens node that has 1.5TB of
-        available RAM as well as 48 cores. There are 16 of these nodes on
-        Owens.
-    options:
-      - [ "any",     ":ppn=28"         ]
-      - [ "hugemem", ":ppn=48:hugemem" ]
-  version:
-    widget: select
-    label: "R version"
-    help: "This defines the version of R you want to load."
-    options:
-      - [ "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server"]
-      - [ "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server"]
+      Specify the number of cores `[1-20]` allocated on a node from the
+      [Ada cluster].
+
+      [Ada cluster]: https://hprc.tamu.edu/wiki/Ada
