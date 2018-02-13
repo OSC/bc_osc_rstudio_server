@@ -20,7 +20,7 @@ The downloaded Singularity image [nickjer/singularity-rstudio] is entirely
 optional. You are welcome to create and maintain your own images using the
 above image as an example.
 
-[nickjer/singulartiy-rstudio]: https://www.singularity-hub.org/collections/463
+[nickjer/singularity-rstudio]: https://www.singularity-hub.org/collections/463
 
 ## Install Libraries
 
