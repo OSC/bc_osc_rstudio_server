@@ -30,7 +30,7 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
   #!/usr/bin/env bash
 
   # Log all output from this script
-  export RSESSION_LOG_FILE="${SINGULARITY_HOST_FS}${PWD}/rsession.log"
+  export RSESSION_LOG_FILE="${SINGULARITY_HOST_MNT}${PWD}/rsession.log"
   exec &>>"\${RSESSION_LOG_FILE}"
 
   # Launch the original command
@@ -56,6 +56,6 @@ set -x
 ${RSERVER_LAUNCHER}rserver \
   --www-port ${port} \
   --auth-none 0 \
-  --auth-pam-helper-path "${SINGULARITY_HOST_FS}${RSTUDIO_AUTH}" \
+  --auth-pam-helper-path "${SINGULARITY_HOST_MNT}${RSTUDIO_AUTH}" \
   --auth-encrypt-password 0 \
-  --rsession-path "${SINGULARITY_HOST_FS}${RSESSION_WRAPPER_FILE}"
+  --rsession-path "${SINGULARITY_HOST_MNT}${RSESSION_WRAPPER_FILE}"
