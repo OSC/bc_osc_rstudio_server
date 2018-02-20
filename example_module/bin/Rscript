@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-export SINGULARITY_WORKDIR="${SINGULARITY_WORKDIR:-$(mktemp -d)}"
-
-exec singularity exec Rscript "${@}"

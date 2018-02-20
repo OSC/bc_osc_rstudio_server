@@ -35,7 +35,7 @@ OnDemand node):
 [Singularity]: http://singularity.lbl.gov/
 [Lmod]: https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
 [nickjer/singularity-rstudio]: https://www.singularity-hub.org/collections/463
-[example_module]: example_module/
+[example_module]: https://github.com/nickjer/singularity-rstudio/blob/master/example_module/
 
 ## Install
 
