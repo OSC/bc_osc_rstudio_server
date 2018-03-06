@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add support for using a Singularity image.
 
+### Changed
+- Changed "Account" label to "Project".
+
 ## [0.3.0] - 2018-01-31
 ### Added
 - Added support for R 3.4.2 alongside 3.3.2 on Owens.
