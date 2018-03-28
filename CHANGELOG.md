@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Changed "Account" label to "Project".
+- Changed icon that appears in the "Connect" button.
 
 ## [0.3.0] - 2018-01-31
 ### Added
