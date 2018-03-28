@@ -30,7 +30,7 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
   #!/usr/bin/env bash
 
   # Log all output from this script
-  export RSESSION_LOG_FILE="${SINGULARITY_HOST_MNT}${PWD}/rsession.log"
+  export RSESSION_LOG_FILE="${RSTUDIO_SINGULARITY_HOST_MNT}${PWD}/rsession.log"
   exec &>>"\${RSESSION_LOG_FILE}"
 
   # Launch the original command
@@ -42,13 +42,16 @@ EOL
 chmod 700 "${RSESSION_WRAPPER_FILE}"
 
 # Define launcher for `rserver` if not using Singularity
-if [[ -z "${SINGULARITY_IMAGE}" ]]; then
-  PROOT_BIN="/usr/local/proot/bin/proot-x86_64"
+if [[ -z "${RSTUDIO_SINGULARITY_IMAGE}" ]]; then
+  PROOT_BIN="${PROOT_BIN:-"/usr/local/proot/bin/proot-x86_64"}"
   RSERVER_LAUNCHER="${PROOT_BIN} -b $(mktemp -d):/tmp "
 fi
 
 # Set working directory to home directory
 cd "${HOME}"
+
+# Output debug info
+module list
 
 # Launch the RStudio Server
 echo "Starting up rserver..."
@@ -56,6 +59,6 @@ set -x
 ${RSERVER_LAUNCHER}rserver \
   --www-port ${port} \
   --auth-none 0 \
-  --auth-pam-helper-path "${SINGULARITY_HOST_MNT}${RSTUDIO_AUTH}" \
+  --auth-pam-helper-path "${RSTUDIO_SINGULARITY_HOST_MNT}${RSTUDIO_AUTH}" \
   --auth-encrypt-password 0 \
-  --rsession-path "${SINGULARITY_HOST_MNT}${RSESSION_WRAPPER_FILE}"
+  --rsession-path "${RSTUDIO_SINGULARITY_HOST_MNT}${RSESSION_WRAPPER_FILE}"
