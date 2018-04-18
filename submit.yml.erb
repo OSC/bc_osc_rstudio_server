@@ -1,5 +1,5 @@
 <%-
-  ppn   = 28
+  ppn   = num_cores.blank? ? 28 : num_cores.to_i
   props = case node_type
           when "hugemem"
             ":ppn=48"
