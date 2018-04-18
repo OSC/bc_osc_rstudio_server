@@ -1,10 +1,19 @@
 <%-
-  num_nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
+  ppn   = 28
+  props = case node_type
+          when "hugemem"
+            ":ppn=48"
+          else
+            ":ppn=#{ppn}"
+          end
 -%>
 ---
 batch_connect:
   template: "basic"
 script:
+  <%- if node_type == "debug" -%>
+  queue_name: "debug"
+  <%- end -%>
   native:
     resources:
-      nodes: "<%= num_nodes %><%= node_type %>"
+      nodes: "1<%= props %>"
