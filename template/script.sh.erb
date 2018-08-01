@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 <%
-r_versions = context.version.split(':')
-modules_to_load = r_versions.first
-has_alternate_r_version = r_versions.size == 2
-alternate_r_version = has_alternate_r_version ? r_versions.last : ''
+modules_to_load, alternate_r_version = context.version.split(':')
 %>
 # Load the required environment
 setup_env () {
@@ -17,7 +14,7 @@ setup_env () {
   # Bonus points if you install the `example_module` on the system so you don't
   # need to run `module use`.
   module load <%= modules_to_load %>
-  <% if has_alternate_r_version %>
+  <% if alternate_r_version %>
   module switch <%= alternate_r_version %>
   export RSTUDIO_WHICH_R=/usr/local/<%= alternate_r_version %>
   <% end %>
