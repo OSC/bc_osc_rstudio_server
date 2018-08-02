@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-
+<%
+modules_to_load, alternate_r_version = context.version.split(':')
+%>
 # Load the required environment
 setup_env () {
   module purge
@@ -11,7 +13,11 @@ setup_env () {
   #
   # Bonus points if you install the `example_module` on the system so you don't
   # need to run `module use`.
-  module load <%= context.version %>
+  module load <%= modules_to_load %>
+  <% if alternate_r_version %>
+  module switch <%= alternate_r_version %>
+  export RSTUDIO_WHICH_R=/usr/local/<%= alternate_r_version %>
+  <% end %>
 }
 setup_env
 
