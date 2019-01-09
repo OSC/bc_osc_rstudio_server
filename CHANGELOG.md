@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.6.1] - 2018-01-09
+### Added
+- JS to enforce the PPN limits per node type
+
+## [0.6.0] - 2018-08-02
+### Added
+
+- A method to optionally set non-standard versions of R to be used with RStudio Server.
+- Added R 3.5.0 as an option
 
 ## [0.5.0] - 2018-04-18
 ### Added
@@ -70,7 +79,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.6.1...HEAD
+[0.6.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.6.0...v0.6.1
+[0.6.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.2.1...v0.3.0
