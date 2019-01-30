@@ -10,8 +10,6 @@ setup_env () {
   module switch <%= alternate_r_version %>
   export RSTUDIO_WHICH_R=/usr/local/<%= alternate_r_version %>
 <% end %>
-
-  module load singularity
 }
 setup_env
 
@@ -48,15 +46,11 @@ cd "${HOME}"
 # Output debug info
 module list
 
-# Create tmpdir rooted in PBSTMP
-# This will be bound into the guest and mounted at /tmp
-CONTAINER_TMP=$(mktemp -d)
-
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
-export SINGULARITY_BINDPATH="/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64,/users,$CONTAINER_TMP:/tmp"
+export SINGULARITY_BINDPATH="/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64,/users,$TMPDIR:/tmp"
 
 singularity run /users/PZS0002/mrodgers/singularity/centos7.simg \
  --www-port "${port}" \
