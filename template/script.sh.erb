@@ -5,19 +5,13 @@ modules_to_load, alternate_r_version = context.version.split(':')
 # Load the required environment
 setup_env () {
   module purge
-  # If you want to use Singularity it is recommended you setup a module similar
-  # to the included `example_module` and load it as:
-  #
-  #     module use "/path/to/example_module/modulefiles"
-  #     module load singularity rstudio_singularity/3.4.3
-  #
-  # Bonus points if you install the `example_module` on the system so you don't
-  # need to run `module use`.
   module load <%= modules_to_load %>
-  <% if alternate_r_version %>
+<% if alternate_r_version %>
   module switch <%= alternate_r_version %>
   export RSTUDIO_WHICH_R=/usr/local/<%= alternate_r_version %>
-  <% end %>
+<% end %>
+
+  module load singularity
 }
 setup_env
 
@@ -37,6 +31,7 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
 
   # Log all output from this script
   export RSESSION_LOG_FILE="${RSTUDIO_SINGULARITY_HOST_MNT}${PWD}/rsession.log"
+
   exec &>>"\${RSESSION_LOG_FILE}"
 
   # Launch the original command
@@ -47,24 +42,25 @@ EOL
 )
 chmod 700 "${RSESSION_WRAPPER_FILE}"
 
-# Define launcher for `rserver` if not using Singularity
-if [[ -z "${RSTUDIO_SINGULARITY_IMAGE}" ]]; then
-  PROOT_BIN="${PROOT_BIN:-"/usr/local/proot/bin/proot-x86_64"}"
-  RSERVER_LAUNCHER="${PROOT_BIN} -b $(mktemp -d):/tmp "
-fi
-
 # Set working directory to home directory
 cd "${HOME}"
 
 # Output debug info
 module list
 
+# Create tmpdir rooted in PBSTMP
+# This will be bound into the guest and mounted at /tmp
+CONTAINER_TMP=$(mktemp -d)
+
+set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
-set -x
-${RSERVER_LAUNCHER}rserver \
-  --www-port ${port} \
-  --auth-none 0 \
-  --auth-pam-helper-path "${RSTUDIO_SINGULARITY_HOST_MNT}${RSTUDIO_AUTH}" \
-  --auth-encrypt-password 0 \
-  --rsession-path "${RSTUDIO_SINGULARITY_HOST_MNT}${RSESSION_WRAPPER_FILE}"
+
+export SINGULARITY_BINDPATH="/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64,/users,$CONTAINER_TMP:/tmp"
+
+singularity run /users/PZS0002/mrodgers/singularity/centos7.simg \
+ --www-port "${port}" \
+ --auth-none 0 \
+ --auth-pam-helper-path "${RSTUDIO_AUTH}" \
+ --auth-encrypt-password 0 \
+ --rsession-path "${RSESSION_WRAPPER_FILE}"
