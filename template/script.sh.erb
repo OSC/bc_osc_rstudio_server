@@ -50,9 +50,9 @@ set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
-export SINGULARITY_BINDPATH="/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64,/users,$TMPDIR:/tmp"
+export SINGULARITY_BINDPATH="/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64,$TMPDIR:/tmp"
 
-singularity run /users/PZS0002/mrodgers/singularity/centos7.simg \
+singularity run /usr/local/project/ondemand/singularity/rstudio/rstudio_launcher_centos7.simg \
  --www-port "${port}" \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
