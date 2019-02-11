@@ -4,8 +4,12 @@ modules_to_load, alternate_r_version = context.version.split(':')
 %>
 # Load the required environment
 setup_env () {
+  # Additional environment which could be moved into a module
+  export SINGULARITY_BINDPATH="/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64,$TMPDIR:/tmp"
+  export RSTUDIO_SERVER_IMAGE="/usr/local/project/ondemand/singularity/rstudio/rstudio_launcher_centos7.simg"
+
   module purge
-  module load <%= modules_to_load %>
+  module load <%= modules_to_load %>  # rstudio_launcher
 <% if alternate_r_version %>
   module switch <%= alternate_r_version %>
   export RSTUDIO_WHICH_R=/usr/local/<%= alternate_r_version %>
@@ -50,9 +54,7 @@ set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
-export SINGULARITY_BINDPATH="/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64,$TMPDIR:/tmp"
-
-singularity run /usr/local/project/ondemand/singularity/rstudio/rstudio_launcher_centos7.simg \
+singularity run "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
