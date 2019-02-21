@@ -6,7 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ## [0.6.2] - 2018-02-21
+### Changed
 - Replace the Proot dependency with Singularity
+
+### Fixed
 - Fix the PPN frontend behavior to permit a blank field
 
 ## [0.6.1] - 2018-01-09
