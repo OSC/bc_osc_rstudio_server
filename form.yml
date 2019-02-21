@@ -44,6 +44,6 @@ attributes:
     help: "This defines the version of R you want to load."
     options:
       # Define functioning R version overloads using a colon after the module load statement
-      - [ "3.5.0", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server:R/3.5.0"]
+      - [ "3.5.0", "intel/16.0.3 R/3.5.0 rstudio/1.1.380_server"]
       - [ "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server"]
       - [ "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server"]
