@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Load the required environment
 setup_env () {
   module purge
@@ -18,6 +17,7 @@ setup_env () {
 }
 setup_env
 
+<% if (context.rstudio_mode == "server") %>
 #
 # Start RStudio Server
 #
@@ -61,3 +61,37 @@ singularity run -B "$TMPDIR:/tmp" "$RSTUDIO_SERVER_IMAGE" \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
  --auth-encrypt-password 0 \
  --rsession-path "${RSESSION_WRAPPER_FILE}"
+
+<% else %>
+#
+# Start RStudio Desktop
+# 
+# RStudio Desktop does not need to be 'chrooted' using Singularity
+#
+
+# Set working directory to home directory
+cd "${HOME}"
+
+#
+# Launch Xfce Window Manager and Panel
+#
+(
+  export XDG_CONFIG_HOME="<%= session.staged_root.join("config") %>"
+  export XDG_DATA_HOME="<%= session.staged_root.join("share") %>"
+  export XDG_CACHE_HOME="$(mktemp -d)"
+  xfwm4 --compositor=off --daemon --sm-client-disable
+  xsetroot -solid "#D3D3D3"
+  xfsettingsd --sm-client-disable
+  xfce4-panel --sm-client-disable
+) &
+
+#
+# Start RStudio
+#
+export PATH="$PATH:/users/PZS0002/mrodgers/rstudio-1.1.463/bin"
+
+rstudio
+
+<% end %>
+
+echo 'Fin'

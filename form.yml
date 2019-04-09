@@ -4,6 +4,7 @@ form:
   - version
   - bc_account
   - bc_num_hours
+  - rstudio_mode
   - node_type
   - num_cores
   - bc_email_on_started
@@ -22,6 +23,18 @@ attributes:
   bc_account:
     label: "Project"
     help: "You can leave this blank if **not** in multiple projects."
+  rstudio_mode:
+    widget: select
+    label: "RStudio Mode"
+    help: |
+      - **Desktop** - Run RStudio as a desktop application over VNC. This is best
+        for developing code that requires an X11 server for
+        visualizations.
+      - **Server** - Run RStudio Server. This is offers the best copy and paste
+        experience, but cannot be used to open X11 windows.
+    options:
+      - [ "Desktop", "desktop" ]
+      - [ "Server",  "server"  ]
   node_type:
     widget: select
     label: "Node type"

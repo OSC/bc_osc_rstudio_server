@@ -6,10 +6,11 @@
           else
             ":ppn=#{ppn}"
           end
+  template = (rstudio_mode == "desktop") ? "vnc" : "basic"
 -%>
 ---
 batch_connect:
-  template: "basic"
+  template: "<%= template %>"
 script:
   <%- if node_type == "debug" -%>
   queue_name: "debug"
