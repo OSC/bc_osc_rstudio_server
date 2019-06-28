@@ -45,5 +45,5 @@ attributes:
     options:
       - [ "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.1.380_server"]
       - [ "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server"]
-      - [ "3.4.2", "intel/18.0.3 R/3.4.2 rstudio/1.1.380_server"]
-      - [ "3.3.2", "intel/18.0.3 R/3.3.2 rstudio/1.0.136_server"]
+      - [ "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server"]
+      - [ "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server"]
