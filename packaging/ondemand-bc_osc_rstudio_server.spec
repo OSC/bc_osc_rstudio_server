@@ -2,6 +2,7 @@
 %global debug_package %{nil}
 %global repo_name bc_osc_rstudio_server
 %global app_name bc_osc_rstudio_server
+%define git_tag_minus_v %(echo %{git_tag} | sed -r 's/^v//')
 
 Name:     ondemand-%{app_name}
 Version:  0.8.1
@@ -23,7 +24,7 @@ AutoReqProv: no
 DESCRIPTION
 
 %prep
-%setup -q -n %{repo_name}-%{version}
+%setup -q -n %{repo_name}-%{git_tag_minus_v}
 
 
 %build
