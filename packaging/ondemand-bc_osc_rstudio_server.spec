@@ -5,8 +5,8 @@
 %define git_tag_minus_v %(echo %{git_tag} | sed -r 's/^v//')
 
 Name:     ondemand-%{app_name}
-Version:  0.8.1
-Release:  1%{?dist}
+Version:  %{package_version}
+Release:  %{package_release}%{?dist}
 Summary:  SUMMARY
 
 Group:    System Environment/Daemons
