@@ -50,12 +50,21 @@ cd "${HOME}"
 
 # Output debug info
 module list
+hostname
+
+# Remove once module is updated
+export SINGULARITY_HOME="$HOME"
+export SINGULARITY_BINDPATH="/dev,/etc,/fs/project,/fs/scratch,/media,/mnt,/opt,/proc,/srv,/sys,/usr,/var"
 
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
-singularity run -B "$TMPDIR:/tmp" "$RSTUDIO_SERVER_IMAGE" \
+# --contain is used to override the bindpaths specified in OSC's
+# singularity.conf which would otherwise conflict in /etc
+# using --contain requires us to bind mount in addition directories including
+# /dev and /proc
+singularity run --contain -B "$TMPDIR:/tmp" "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
