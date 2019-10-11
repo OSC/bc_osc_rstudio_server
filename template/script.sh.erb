@@ -52,10 +52,6 @@ cd "${HOME}"
 module list
 hostname
 
-# Remove once module is updated
-export SINGULARITY_HOME="$HOME"
-export SINGULARITY_BINDPATH="/dev,/etc,/fs/project,/fs/scratch,/media,/mnt,/opt,/proc,/srv,/sys,/usr,/var"
-
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
