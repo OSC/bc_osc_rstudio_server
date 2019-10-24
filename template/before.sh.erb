@@ -7,3 +7,20 @@ port=$(find_port ${host})
 # Define a password and export it for RStudio authentication
 password="$(create_passwd 16)"
 export RSTUDIO_PASSWORD="${password}"
+
+<%- if context.include_tutorials == "1" -%>
+#
+# Create workshop/tutorial notebooks
+#
+
+# TODO: remove Jupyter specific stuff
+export tutorials_root="/jupyter/tutorials/jupyter_spark" # connection variable
+export TUTORIALS_ROOT="$(pwd -P)${tutorials_root}"
+mkdir -p "${TUTORIALS_ROOT}"
+
+# Copy over workshops/tutorials
+set -x
+ln -sfn "/users/PZS0645/support/workshop/Bigdata"/*.ipynb "${TUTORIALS_ROOT}"
+symlinks -d "${TUTORIALS_ROOT}"
+{ set +x; } 2>/dev/null
+<%- end -%>

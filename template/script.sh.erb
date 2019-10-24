@@ -34,6 +34,10 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
 
   # Log all output from this script
   export RSESSION_LOG_FILE="${RSTUDIO_SINGULARITY_HOST_MNT}${PWD}/rsession.log"
+  <%- if context.include_tutorials == "1" -%>
+  export TUTORIALS_ROOT="${TUTORIALS_ROOT}"
+  export R_PROFILE_USER="${PWD}/.Rprofile"
+  <%- end -%>
 
   exec &>>"\${RSESSION_LOG_FILE}"
 

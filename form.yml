@@ -6,6 +6,7 @@ form:
   - bc_num_hours
   - node_type
   - num_cores
+  - include_tutorials
   - bc_email_on_started
 attributes:
   num_cores:
@@ -47,3 +48,6 @@ attributes:
       - [ "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server"]
       - [ "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server"]
       - [ "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server"]
+  include_tutorials:
+    widget: "check_box"
+    label: Include access to OSC tutorial/workshop materials.
