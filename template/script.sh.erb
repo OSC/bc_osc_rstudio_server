@@ -37,6 +37,7 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
   <%- if context.include_tutorials == "1" -%>
   export TUTORIALS_ROOT="${TUTORIALS_ROOT}"
   export R_PROFILE_USER="${PWD}/.Rprofile"
+  export R_ENVIRON_USER="/dev/null"
   <%- end -%>
 
   exec &>>"\${RSESSION_LOG_FILE}"

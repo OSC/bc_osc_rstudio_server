@@ -14,13 +14,13 @@ export RSTUDIO_PASSWORD="${password}"
 #
 
 # TODO: remove Jupyter specific stuff
-export tutorials_root="/jupyter/tutorials/jupyter_spark" # connection variable
+export tutorials_root="/R_tutorial" # connection variable
 export TUTORIALS_ROOT="$(pwd -P)${tutorials_root}"
 mkdir -p "${TUTORIALS_ROOT}"
 
 # Copy over workshops/tutorials
 set -x
-ln -sfn "/users/PZS0645/support/workshop/Bigdata"/*.ipynb "${TUTORIALS_ROOT}"
-symlinks -d "${TUTORIALS_ROOT}"
+
+cp "/users/PZS0645/support/workshop/ParallelR/Workshop.rmd" "${TUTORIALS_ROOT}"
 { set +x; } 2>/dev/null
 <%- end -%>

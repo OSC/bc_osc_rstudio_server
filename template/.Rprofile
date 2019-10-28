@@ -13,7 +13,7 @@ source_regular_rprofile <- function() {
 
 ## Main ##
 # Attempt to load the user's regular .Rprofile
-source_regular_rprofile()
+# source_regular_rprofile()  # Shameema prefers that we do NOT source the user's Rprofile
 # Correct the working directory
 setwd(tutorials_root())
 # Prevent these functions from cluttering the user's environment
