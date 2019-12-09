@@ -54,9 +54,13 @@ chmod 700 "${RSESSION_WRAPPER_FILE}"
 cd "${HOME}"
 
 <%- if context.include_tutorials == "1" -%>
-# Backup ~/.RData if exists AND we are in tutorial mode
+# Backup ~/.RData and ~/.rstudio if exists AND we are in tutorial mode
 if [[ -f "$HOME/.RData" ]]; then
   mv "$HOME/.RData" "$HOME/.RData.$(date +%F-%H:%M:%S).bak"
+fi
+
+if [[ -d "$HOME/.rstudio" ]]; then
+  mv "$HOME/.rstudio" "$HOME/.rstudio.$(date +%F-%H:%M:%S).bak"
 fi
 <%- end -%>
 

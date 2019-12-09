@@ -5,12 +5,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-## 0.8.5 - 2019-12-04
+## [0.8.6] - 2019-12-09
+### Fixed
+- Fixed bug where RStudio's history was not cleared when tutorial mode was selected
+
+## [0.8.5] - 2019-12-04
 ### Added
 - Added R 3.6.1
 - Added controls to access tutorial materials
 
-## 0.8.4 - 2019-10-11
+## [0.8.4] - 2019-10-11
 ### Changed
 - Removed hardcoded fix that shadowed the module variables
 
@@ -118,7 +122,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.5...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.6...HEAD
+[0.8.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.5...v0.8.6
 [0.8.5]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.4...v0.8.5
 [0.8.4]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.3...v0.8.4
 [0.8.3]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.2...v0.8.3

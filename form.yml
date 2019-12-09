@@ -53,4 +53,7 @@ attributes:
     widget: "check_box"
     label: Include access to OSC tutorial/workshop materials.
     help: |
-      Selecting this option will cause your ~/.Renviron and ~/.Rprofile to be ignored, and your ~/.RData will be renamed to ~/.RData.$DATETIME.bak
+      Accessing the tutorial materials will start you with a clean environment by:
+
+      - Ignoring your ~/.Renviron and ~/.Rprofile
+      - Renaming your ~/.RData and ~/.rstudio to ~/.(RData|rstudio).$DATETIME.bak
