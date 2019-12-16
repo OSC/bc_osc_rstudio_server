@@ -3,9 +3,11 @@
 <%-
 if context.include_tutorials == "1"
   optional_tutorial_home_bind = "-B \"#{session.staged_root}:$HOME\""
-  pam_auth_path = '$HOME/bin/auth'
+  working_dir = '${HOME}'
+  pam_auth_path = '${HOME}/bin/auth'
 else
   optional_tutorial_home_bind = ''
+  working_dir = '${PWD}'
   pam_auth_path = '${PWD}/bin/auth'
 end
 %>
@@ -33,19 +35,19 @@ setup_env
 #
 
 # PAM auth helper used by RStudio
-export RSTUDIO_AUTH="<%= pam_auth_path %>"
+export RSTUDIO_AUTH="<%= working_dir %>/bin/auth"
 
 # NOTE TO MONDAY-SELF ALL REFERENCES TO PWD MUST BE CONTAINERIZED
 
 # Generate an `rsession` wrapper script
-export RSESSION_WRAPPER_FILE="${PWD}/rsession.sh"
+export RSESSION_WRAPPER_FILE="<%= working_dir %>/rsession.sh"
 (
 umask 077
-sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
+sed 's/^ \{2\}//' > "<%= session.staged_root %>/rsession.sh" << EOL
   #!/usr/bin/env bash
 
   # Log all output from this script
-  export RSESSION_LOG_FILE="${RSTUDIO_SINGULARITY_HOST_MNT}${PWD}/rsession.log"
+  export RSESSION_LOG_FILE="<%= working_dir %>/rsession.log"
 
   exec &>>"\${RSESSION_LOG_FILE}"
 
@@ -55,7 +57,7 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
   exec rsession --r-libs-user "${R_LIBS_USER}" "\${@}"
 EOL
 )
-chmod 700 "${RSESSION_WRAPPER_FILE}"
+chmod 700 "<%= session.staged_root %>/rsession.sh"
 
 # Set working directory to home directory
 cd "${HOME}"
