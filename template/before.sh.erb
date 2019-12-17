@@ -12,14 +12,9 @@ export RSTUDIO_PASSWORD="${password}"
 #
 # Create workshop/tutorial notebooks
 #
-
-export tutorials_root="/ParallelR" # connection variable
-export TUTORIALS_ROOT="$(pwd -P)${tutorials_root}"
-mkdir -p "${TUTORIALS_ROOT}"
-
 # Copy over workshops/tutorials
 set -x
-
-cp "/users/PZS0645/support/workshop/ParallelR/Workshop.rmd" "${TUTORIALS_ROOT}"
+rsync -avz "/users/PZS0645/support/workshop/ParallelR" "<%= session.staged_root %>"
+mv "<%= session.staged_root %>/bin" "<%= session.staged_root %>/ParallelR/"
 { set +x; } 2>/dev/null
 <%- end -%>

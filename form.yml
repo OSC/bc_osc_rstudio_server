@@ -53,7 +53,5 @@ attributes:
     widget: "check_box"
     label: Include access to OSC tutorial/workshop materials.
     help: |
-      Accessing the tutorial materials will start you with a clean environment by:
-
-      - Ignoring your ~/.Renviron and ~/.Rprofile
-      - Renaming your ~/.RData and ~/.rstudio to ~/.(RData|rstudio).$DATETIME.bak
+      Accessing the tutorial materials will start you with a clean environment.
+      You will be placed into a subdirectory of your $HOME.

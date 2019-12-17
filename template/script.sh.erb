@@ -1,12 +1,25 @@
 #!/usr/bin/env bash
 
+<%-
+# If in tutorial mode change $HOME inside the container to ensure a clean environment
+if context.include_tutorials == "1"
+  working_dir_host = session.staged_root.join('ParallelR')
+  working_dir_container = '${HOME}'
+  optional_tutorial_home_bind = "-B \"#{working_dir_host}:$HOME\""
+else
+  working_dir_host = '${PWD}'
+  working_dir_container = working_dir_host
+  optional_tutorial_home_bind = ''
+end
+%>
+
 # Load the required environment
 setup_env () {
   module purge
 
   # The rserver container module should set these environment variables:
 
-  #   SINGULARITY_BINDPATH="/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64"
+  #   SINGULARITY_BINDPATH="/etc,/media,/mnt,/opt,/run,/srv,/usr,/var,/users"
   #   RSTUDIO_SERVER_IMAGE="/usr/local/project/ondemand/singularity/rstudio/rstudio_launcher_centos7.simg"
   #   PATH="$PATH:/path/to/R:/path/to/rstudio/rserver"
  
@@ -23,22 +36,17 @@ setup_env
 #
 
 # PAM auth helper used by RStudio
-export RSTUDIO_AUTH="${PWD}/bin/auth"
+export RSTUDIO_AUTH="<%= working_dir_container %>/bin/auth"
 
 # Generate an `rsession` wrapper script
-export RSESSION_WRAPPER_FILE="${PWD}/rsession.sh"
+export RSESSION_WRAPPER_FILE="<%= working_dir_container %>/rsession.sh"
 (
 umask 077
-sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
+sed 's/^ \{2\}//' > "<%= working_dir_host %>/rsession.sh" << EOL
   #!/usr/bin/env bash
 
   # Log all output from this script
-  export RSESSION_LOG_FILE="${RSTUDIO_SINGULARITY_HOST_MNT}${PWD}/rsession.log"
-  <%- if context.include_tutorials == "1" -%>
-  export TUTORIALS_ROOT="${TUTORIALS_ROOT}"
-  export R_PROFILE_USER="${PWD}/.Rprofile"
-  export R_ENVIRON_USER="/dev/null"
-  <%- end -%>
+  export RSESSION_LOG_FILE="<%= working_dir_container %>/rsession.log"
 
   exec &>>"\${RSESSION_LOG_FILE}"
 
@@ -48,21 +56,10 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
   exec rsession --r-libs-user "${R_LIBS_USER}" "\${@}"
 EOL
 )
-chmod 700 "${RSESSION_WRAPPER_FILE}"
+chmod 700 "<%= working_dir_host %>/rsession.sh"
 
 # Set working directory to home directory
 cd "${HOME}"
-
-<%- if context.include_tutorials == "1" -%>
-# Backup ~/.RData and ~/.rstudio if exists AND we are in tutorial mode
-if [[ -f "$HOME/.RData" ]]; then
-  mv "$HOME/.RData" "$HOME/.RData.$(date +%F-%H:%M:%S).bak"
-fi
-
-if [[ -d "$HOME/.rstudio" ]]; then
-  mv "$HOME/.rstudio" "$HOME/.rstudio.$(date +%F-%H:%M:%S).bak"
-fi
-<%- end -%>
 
 # Output debug info
 module list
@@ -76,7 +73,10 @@ echo "Starting up rserver..."
 # singularity.conf which would otherwise conflict in /etc
 # using --contain requires us to bind mount in addition directories including
 # /dev and /proc
-singularity run --contain -B "$TMPDIR:/tmp" "$RSTUDIO_SERVER_IMAGE" \
+# optional_tutorial_home_bind is used when include_tutorials to change the home
+# directory to get a clean environment without clobbering files
+singularity run --contain -B "$TMPDIR:/tmp" <%= optional_tutorial_home_bind %> \
+ "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
