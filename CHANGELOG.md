@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.8.7] - 2019-12-17
+### Fixed
+- Fixed bug which prevented running simultaneous tutorial sessions
+
 ## [0.8.6] - 2019-12-09
 ### Fixed
 - Fixed bug where RStudio's history was not cleared when tutorial mode was selected
@@ -122,7 +126,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.6...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.7...HEAD
+[0.8.7]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.6...v0.8.7
 [0.8.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.5...v0.8.6
 [0.8.5]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.4...v0.8.5
 [0.8.4]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.3...v0.8.4

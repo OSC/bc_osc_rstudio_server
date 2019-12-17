@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
 <%-
+# If in tutorial mode change $HOME inside the container to ensure a clean environment
 if context.include_tutorials == "1"
-  optional_tutorial_home_bind = "-B \"#{session.staged_root}:$HOME\""
-  working_dir = '${HOME}'
-  pam_auth_path = '${HOME}/bin/auth'
+  working_dir_host = session.staged_root.join('ParallelR')
+  working_dir_container = '${HOME}'
+  optional_tutorial_home_bind = "-B \"#{working_dir_host}:$HOME\""
 else
+  working_dir_host = '${PWD}'
+  working_dir_container = working_dir_host
   optional_tutorial_home_bind = ''
-  working_dir = '${PWD}'
-  pam_auth_path = '${PWD}/bin/auth'
 end
 %>
 
@@ -18,7 +19,7 @@ setup_env () {
 
   # The rserver container module should set these environment variables:
 
-  #   SINGULARITY_BINDPATH="/usr/local,/etc/profile.d/lmod.sh,/usr/share/lmod,/opt/intel,/opt/mvapich2,/usr/lib64"
+  #   SINGULARITY_BINDPATH="/etc,/media,/mnt,/opt,/run,/srv,/usr,/var,/users"
   #   RSTUDIO_SERVER_IMAGE="/usr/local/project/ondemand/singularity/rstudio/rstudio_launcher_centos7.simg"
   #   PATH="$PATH:/path/to/R:/path/to/rstudio/rserver"
  
@@ -35,19 +36,17 @@ setup_env
 #
 
 # PAM auth helper used by RStudio
-export RSTUDIO_AUTH="<%= working_dir %>/bin/auth"
-
-# NOTE TO MONDAY-SELF ALL REFERENCES TO PWD MUST BE CONTAINERIZED
+export RSTUDIO_AUTH="<%= working_dir_container %>/bin/auth"
 
 # Generate an `rsession` wrapper script
-export RSESSION_WRAPPER_FILE="<%= working_dir %>/rsession.sh"
+export RSESSION_WRAPPER_FILE="<%= working_dir_container %>/rsession.sh"
 (
 umask 077
-sed 's/^ \{2\}//' > "<%= session.staged_root %>/rsession.sh" << EOL
+sed 's/^ \{2\}//' > "<%= working_dir_host %>/rsession.sh" << EOL
   #!/usr/bin/env bash
 
   # Log all output from this script
-  export RSESSION_LOG_FILE="<%= working_dir %>/rsession.log"
+  export RSESSION_LOG_FILE="<%= working_dir_container %>/rsession.log"
 
   exec &>>"\${RSESSION_LOG_FILE}"
 
@@ -57,7 +56,7 @@ sed 's/^ \{2\}//' > "<%= session.staged_root %>/rsession.sh" << EOL
   exec rsession --r-libs-user "${R_LIBS_USER}" "\${@}"
 EOL
 )
-chmod 700 "<%= session.staged_root %>/rsession.sh"
+chmod 700 "<%= working_dir_host %>/rsession.sh"
 
 # Set working directory to home directory
 cd "${HOME}"

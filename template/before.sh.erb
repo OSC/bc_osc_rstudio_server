@@ -15,5 +15,6 @@ export RSTUDIO_PASSWORD="${password}"
 # Copy over workshops/tutorials
 set -x
 rsync -avz "/users/PZS0645/support/workshop/ParallelR" "<%= session.staged_root %>"
+mv "<%= session.staged_root %>/bin" "<%= session.staged_root %>/ParallelR/"
 { set +x; } 2>/dev/null
 <%- end -%>
