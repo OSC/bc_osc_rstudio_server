@@ -50,6 +50,8 @@ sed 's/^ \{2\}//' > "<%= working_dir_host %>/rsession.sh" << EOL
 
   exec &>>"\${RSESSION_LOG_FILE}"
 
+  source <%= session.staged_root.join('.env') %>
+
   # Launch the original command
   echo "Launching rsession..."
   set -x
@@ -68,6 +70,9 @@ hostname
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
+
+# Dump environment without functions for use in rsession.sh, filtering readonly variables
+(set -o posix; set) | grep -vP '^(BASHOPTS|BASH_VERSINFO|EUID|PPID|SHELLOPTS|UID)' > <%= session.staged_root.join('.env') %>
 
 # --contain is used to override the bindpaths specified in OSC's
 # singularity.conf which would otherwise conflict in /etc
