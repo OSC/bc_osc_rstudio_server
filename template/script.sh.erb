@@ -80,7 +80,7 @@ echo "Starting up rserver..."
 # /dev and /proc
 # optional_tutorial_home_bind is used when include_tutorials to change the home
 # directory to get a clean environment without clobbering files
-singularity run --contain -B "$TMPDIR:/tmp" <%= optional_tutorial_home_bind %> \
+SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain -B "$TMPDIR:/tmp" <%= optional_tutorial_home_bind %> \
  "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
