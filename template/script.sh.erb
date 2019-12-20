@@ -50,6 +50,8 @@ sed 's/^ \{2\}//' > "<%= working_dir_host %>/rsession.sh" << EOL
 
   exec &>>"\${RSESSION_LOG_FILE}"
 
+  source "<%= working_dir_container %>/.env"
+
   # Launch the original command
   echo "Launching rsession..."
   set -x
@@ -69,13 +71,16 @@ set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
+# Dump environment without functions for use in rsession.sh, filtering readonly variables
+(set -o posix; set) | grep -vP '^(BASHOPTS|BASH_VERSINFO|EUID|PPID|SHELLOPTS|UID)' > "<%= working_dir_host %>/.env"
+
 # --contain is used to override the bindpaths specified in OSC's
 # singularity.conf which would otherwise conflict in /etc
 # using --contain requires us to bind mount in addition directories including
 # /dev and /proc
 # optional_tutorial_home_bind is used when include_tutorials to change the home
 # directory to get a clean environment without clobbering files
-singularity run --contain -B "$TMPDIR:/tmp" <%= optional_tutorial_home_bind %> \
+SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain -B "$TMPDIR:/tmp" <%= optional_tutorial_home_bind %> \
  "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
