@@ -5,7 +5,9 @@
 if context.include_tutorials == "1"
   working_dir_host = session.staged_root.join('ParallelR')
   working_dir_container = '${HOME}'
-  optional_tutorial_home_bind = "-B \"#{working_dir_host}:$HOME\""
+  host_home = ENV['HOME']
+  user_name = ENV['USER']
+  optional_tutorial_home_bind = "-B \"#{working_dir_host}:$HOME\" -B \"#{host_home}:/Rworkshop_home/#{user_name}\""
 else
   working_dir_host = '${PWD}'
   working_dir_container = working_dir_host
@@ -31,6 +33,10 @@ setup_env () {
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= working_dir_container %>/Rworkshop"
   mkdir -p "<%= working_dir_host %>/Rworkshop"
+  (
+    cd <%= working_dir_host %>
+    ln -s "/Rworkshop_home/<%= user_name %>" "HOME"
+  )
   <%- end %>
 }
 setup_env
