@@ -11,7 +11,7 @@ function fix_num_cores() {
   if(num_cores_input.val() === '') {
     return;
   }
-  
+
   if(node_type === 'hugemem') {
     set_ppn_owens_hugemem(num_cores_input);
   } else {
@@ -21,7 +21,7 @@ function fix_num_cores() {
 
 /**
  * Sets the PPN limits available for Owens hugemem nodes.
- * 
+ *
  * hugemem reservations are always assigned the full node
  *
  * @param      {element}  num_cores_input  The input for num_cores
@@ -54,8 +54,62 @@ function set_node_type_change_handler() {
   node_type_input.change(node_type_input, fix_num_cores);
 }
 
-$(document).ready(function() {
-  // Set the max value to be what was set in the last session
-  fix_num_cores();
-  set_node_type_change_handler();
+/**
+ * Add a change listener to the version select
+ */
+function set_version_change_hander() {
+  let version_select = $("#batch_connect_session_context_version");
+  version_select.change(toggle_tutorial_control_visibility);
+
+}
+
+/**
+ * Toggle the visibility of the tutorial
+ * @param  {Object} event The change event
+ */
+function toggle_tutorial_control_visibility(event) {
+  const selector = '#batch_connect_session_context_include_tutorials';
+  const show = !! event.target.value.match(/R\/3\.6\.1/);
+  toggle_visibilty_of_form_group( selector, show );
+
+  // Ensure unchecked if control is hidden
+  if ( ! show ) {
+    $(selector).prop('checked', false);
+  }
+}
+
+/**
+ * Toggle the visibilty of a form group
+ *
+ * @param      {string}    form_id  The form identifier
+ * @param      {boolean}   show     Whether to show or hide
+ */
+function toggle_visibilty_of_form_group(form_id, show) {
+  let form_element = $(form_id);
+  let parent = form_element;
+
+  while (
+    (! parent[0].classList.contains('form-group')) &&
+    (! parent.is('html')) // ensure that we don't loop infinitely
+  ) {
+    parent = parent.parent();
+  }
+
+  if(show) {
+    parent.show();
+  } else {
+    form_element.val('');
+    parent.hide();
+  }
+}
+
+// Main
+
+// Set the max value to be what was set in the last session
+fix_num_cores();
+// Fake the event
+toggle_tutorial_control_visibility({
+  target: document.querySelector('#batch_connect_session_context_version')
 });
+set_node_type_change_handler();
+set_version_change_hander();
