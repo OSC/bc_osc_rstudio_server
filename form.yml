@@ -54,4 +54,4 @@ attributes:
     label: Include access to OSC tutorial/workshop materials.
     help: |
       Accessing the tutorial materials will start you with a clean environment.
-      You will be placed into a subdirectory of your $HOME.
+      While running in tutorial mode you will not have access to the files your $HOME.

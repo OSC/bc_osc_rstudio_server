@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.9.1] - 2020-01-02
+### Fixed
+- Fixed bug where workshop mode would not be activated when requested
+
+### Changed
+- Changed label for workshop mode to better describe the sandbox
+
 ## [0.9.0] - 2020-01-02
 ### Added
 - Added JS to ensure that the tutorial control is only shown if R version 3.6.1 is selected
@@ -135,7 +142,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.9.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.9.1...HEAD
+[0.9.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.8...v0.9.0
 [0.8.8]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.7...v0.8.8
 [0.8.7]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.8.6...v0.8.7

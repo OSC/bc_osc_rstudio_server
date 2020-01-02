@@ -95,10 +95,14 @@ function toggle_visibilty_of_form_group(form_id, show) {
     parent = parent.parent();
   }
 
+  // If parent is HTML then something has gone wrong and visibility should not be changed
+  if ( parent.is('html') ) {
+    return;
+  }
+
   if(show) {
     parent.show();
   } else {
-    form_element.val('');
     parent.hide();
   }
 }
