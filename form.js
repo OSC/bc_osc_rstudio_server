@@ -111,9 +111,9 @@ function toggle_visibilty_of_form_group(form_id, show) {
 
 // Set the max value to be what was set in the last session
 fix_num_cores();
-// Fake the event
-toggle_tutorial_control_visibility({
-  target: document.querySelector('#batch_connect_session_context_version')
-});
+toggle_tutorial_control_visibility(
+  // Fake the event
+  { target: document.querySelector('#batch_connect_session_context_version') }
+);
 set_node_type_change_handler();
 set_version_change_hander();
