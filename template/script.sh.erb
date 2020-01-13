@@ -28,6 +28,7 @@ setup_env () {
 
   module use /usr/local/share/lmodfiles/project/ondemand
   module load xalt/latest <%= context.version %> rstudio_container/2019Feb
+  module load texlive
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= working_dir_container %>/Rworkshop"
   mkdir -p "<%= working_dir_host %>/Rworkshop"
