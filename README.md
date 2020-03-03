@@ -69,3 +69,10 @@ Again, you do not need to restart the app as it isn't a Passenger app.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## License
+
+* Documentation, website content, and logo is licensed under
+  [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
+* Code is licensed under MIT (see LICENSE.txt)o
+* RStudio, Shiny and the RStudio logo are all registered trademarks of RStudio.
