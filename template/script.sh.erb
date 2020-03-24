@@ -26,9 +26,8 @@ setup_env () {
   # SINGULARITY_BINDPATH is being used to bind all RStudio's requirements from
   # the host into the guest, and so those values may vary between sites.
 
-  module use /usr/local/share/lmodfiles/project/ondemand
-  module load xalt/latest <%= context.version %> rstudio_container/2019Feb
-  module load texlive
+  module load ondemand
+  module load xalt/latest <%= context.version %> rstudio_launcher/centos7
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= working_dir_container %>/Rworkshop"
   mkdir -p "<%= working_dir_host %>/Rworkshop"
