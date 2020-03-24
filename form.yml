@@ -45,11 +45,11 @@ attributes:
     help: "This defines the version of R you want to load."
     options:
       - [ "3.6.3", "app_rstudio_server/3.6.3"]
-      - [ "3.6.1", "gnu/9.1.0 mkl/2019.0.3 R/3.6.1 rstudio/1.1.380_server"]
-      - [ "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.1.380_server"]
-      - [ "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server"]
-      - [ "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server"]
-      - [ "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server"]
+      - [ "3.6.1", "gnu/9.1.0 mkl/2019.0.3 R/3.6.1 rstudio/1.1.380_server texlive" ]
+      - [ "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.1.380_server texlive" ]
+      - [ "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server texlive" ]
+      - [ "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server texlive" ]
+      - [ "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server texlive" ]
   include_tutorials:
     widget: "check_box"
     label: Include access to OSC tutorial/workshop materials.

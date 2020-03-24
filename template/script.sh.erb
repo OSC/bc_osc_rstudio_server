@@ -28,7 +28,6 @@ setup_env () {
 
   module load ondemand
   module load xalt/latest <%= context.version %> rstudio_launcher/centos7
-  module load texlive
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= working_dir_container %>/Rworkshop"
   mkdir -p "<%= working_dir_host %>/Rworkshop"
