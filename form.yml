@@ -37,7 +37,7 @@ attributes:
         8AM - 6PM, Monday - Friday. There are 6 of these nodes on Owens.
       - **gpu** - (*1-28 cores*) Use an Owens node that has an [NVIDIA Tesla P100
         GPU] and loads the appropriate [CUDA] module(s). There are 160 of these nodes
-        on Owens. GPU Nodes are only available for R version 3.6.3.
+        on Owens. GPU nodes are only available for R version 3.6.3.
     options:
       - [ "any",     "any"     ]
       - [ "hugemem", "hugemem" ]
