@@ -35,10 +35,14 @@ attributes:
       - **debug** - (*1-28 cores*) For short sessions (= 1 hour) the debug
         queue will have the shortest wait time. This is only accessible during
         8AM - 6PM, Monday - Friday. There are 6 of these nodes on Owens.
+      - **gpu** - (*1-28 cores*) Use an Owens node that has an [NVIDIA Tesla P100
+        GPU] and loads the appropriate [CUDA] module(s). There are 160 of these nodes
+        on Owens. GPU Nodes are only available for R version 3.6.3.
     options:
       - [ "any",     "any"     ]
       - [ "hugemem", "hugemem" ]
       - [ "debug",   "debug"   ]
+      - [ "gpu",     "gpu"     ]
   version:
     widget: select
     label: "R version"

@@ -59,12 +59,14 @@ function set_node_type_change_handler() {
  */
 function set_version_change_hander() {
   let version_select = $("#batch_connect_session_context_version");
-  version_select.change(toggle_tutorial_control_visibility);
-
+  version_select.change(function(event){
+    toggle_tutorial_control_visibility(event);
+    toggle_gpu_nodes(event);
+  });
 }
 
 /**
- * Toggle the visibility of the tutorial
+ * Toggle the visibility of the tutorial for specific versions of R
  * @param  {Object} event The change event
  */
 function toggle_tutorial_control_visibility(event) {
@@ -75,6 +77,24 @@ function toggle_tutorial_control_visibility(event) {
   // Ensure unchecked if control is hidden
   if ( ! show ) {
     $(selector).prop('checked', false);
+  }
+}
+
+/**
+ * Given a change event from choosing a different verion of R, toggle 
+ * the ability to choose GPUs depending on the version.
+ * 
+ * @param  {Object} event The change event
+ */
+function toggle_gpu_nodes(event){
+  const show = /3\.6\.3/.test(event.target.value); // test seems more readable than = !! match
+  const gpu = $("#batch_connect_session_context_node_type option[value='gpu']");
+
+  if(show) {
+    gpu.show();
+  }else {
+    gpu.hide();
+    gpu.prop('selected', false);
   }
 }
 
