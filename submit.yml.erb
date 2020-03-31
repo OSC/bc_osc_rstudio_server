@@ -3,10 +3,10 @@
   props = case node_type
           when "hugemem"
             ":ppn=48"
-          else
-            ":ppn=#{ppn}"
           when "gpu"
             ":ppn=#{ppn}:gpus=1"
+          else
+            ":ppn=#{ppn}"
           end
 -%>
 ---
