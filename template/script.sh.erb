@@ -54,7 +54,9 @@ sed 's/^ \{2\}//' > "<%= working_dir_host %>/rsession.sh" << EOL
 
   exec &>>"\${RSESSION_LOG_FILE}"
 
-  source "<%= working_dir_container %>/.env"
+  # rsession.sh doesn't share the same env as the outside script, so these
+  # need to be set explicitly
+  export R_LIBS_SITE="${R_LIBS_SITE}"
 
   # Launch the original command
   echo "Launching rsession..."
@@ -74,9 +76,6 @@ hostname
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
-
-# Dump environment without functions for use in rsession.sh, filtering readonly variables
-(set -o posix; set) | grep -vP '^(BASHOPTS|BASH_VERSINFO|EUID|PPID|SHELLOPTS|UID)' > "<%= working_dir_host %>/.env"
 
 # --contain is used to override the bindpaths specified in OSC's
 # singularity.conf which would otherwise conflict in /etc
