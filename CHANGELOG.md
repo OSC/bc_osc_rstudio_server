@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.11.5] - 2020-05-20
+### Changed
+- removed the way env gets written and read. It didnt work due to wrong paths and
+  when it could find the file, it is not formatted correctly besides.
+
+### Added
+loads R_LIBS_SITE environment variable if it is set.
+
 ## [0.11.4] - 2020-03-31
 ### Fixed
 - Fixed switch statement in submit
@@ -170,7 +178,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.4...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.5...HEAD
+[0.11.5]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.4...v0.11.5
 [0.11.4]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.3...v0.11.4
 [0.11.3]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.2...v0.11.3
 [0.11.2]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.1...v0.11.2
