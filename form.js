@@ -71,7 +71,7 @@ function set_version_change_hander() {
  */
 function toggle_tutorial_control_visibility(event) {
   const selector = '#batch_connect_session_context_include_tutorials';
-  const show = !! event.target.value.match(/R\/3\.6\.1/);
+  const show = /3\.6\.[13]/.test(event.target.value);
   toggle_visibilty_of_form_group( selector, show );
 
   // Ensure unchecked if control is hidden
@@ -92,7 +92,7 @@ function toggle_gpu_nodes(event){
 
   if(show) {
     gpu.show();
-  }else {
+  } else {
     gpu.hide();
     gpu.prop('selected', false);
   }
