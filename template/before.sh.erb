@@ -9,12 +9,20 @@ password="$(create_passwd 16)"
 export RSTUDIO_PASSWORD="${password}"
 
 <%- if context.include_tutorials == "1" -%>
+<%-
+    workshop_base = "/users/PZS0645/support/workshop/ParallelR/"
+    workshop_src = if /3.6.3/.match?(context.version)
+                      workshop_base + "3.6.3/"
+                   else
+                      workshop_base + "3.6.1/"
+                   end
+-%>
 #
 # Create workshop/tutorial notebooks
 #
 # Copy over workshops/tutorials
 set -x
-rsync -avz "/users/PZS0645/support/workshop/ParallelR" "<%= session.staged_root %>"
+rsync -avz "<%= workshop_src %>" "<%= session.staged_root %>/ParallelR/"
 mv "<%= session.staged_root %>/bin" "<%= session.staged_root %>/ParallelR/"
 { set +x; } 2>/dev/null
 <%- end -%>
