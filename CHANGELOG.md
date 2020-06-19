@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.11.7] - 2020-06-19
+### Changed
+- Workshop materials are loaded for 3.6.1 and 3.6.3 from their respective
+  directories
+- RPM writes out version file so it can be shown in the UI
+
 ## [0.11.6] - 2020-05-22
 ### Changed
 - Workshop materials are available for 3.6.1 and 3.6.3.
@@ -182,7 +188,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.6...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.7...HEAD
+[0.11.7]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.6...v0.11.7
 [0.11.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.5...v0.11.6
 [0.11.5]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.4...v0.11.5
 [0.11.4]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.3...v0.11.4
