@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.12.0] - 2020-07-09
+### Changed
+- Changed the way tutorials change HOME directory from mounting the
+  session (the old way) to changing SINGULARITY_HOME (the new way).
+  This is to support the stragey classes will use 
+  [#36](https://github.com/OSC/bc_osc_rstudio_server/pull/36).
+
 ## [0.11.7] - 2020-06-19
 ### Changed
 - Workshop materials are loaded for 3.6.1 and 3.6.3 from their respective
@@ -188,7 +195,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.7...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.0...HEAD
+[0.12.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.7...v0.12.0
 [0.11.7]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.6...v0.11.7
 [0.11.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.5...v0.11.6
 [0.11.5]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.4...v0.11.5
