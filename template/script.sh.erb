@@ -1,16 +1,8 @@
 #!/usr/bin/env bash
 
 <%-
-# If in tutorial mode change $HOME inside the container to ensure a clean environment
-if context.include_tutorials == "1"
-  working_dir_host = session.staged_root.join('ParallelR')
-  working_dir_container = '${HOME}'
-  optional_tutorial_home_bind = "-B \"#{working_dir_host}:$HOME\""
-else
-  working_dir_host = '${PWD}'
-  working_dir_container = working_dir_host
-  optional_tutorial_home_bind = ''
-end
+  session_dir = session.staged_root
+  tutorial_dir = session.staged_root.join('ParallelR')
 %>
 
 # Load the required environment
@@ -27,30 +19,39 @@ setup_env () {
   # the host into the guest, and so those values may vary between sites.
 
   module load ondemand
-  module load xalt/latest <%= context.version %> rstudio_launcher/centos7
+  module load xalt/latest rstudio_launcher/0.1 <%= context.version %>
   <%- if context.include_tutorials == "1" %>
-  export R_LIBS_USER="<%= working_dir_container %>/Rworkshop"
-  mkdir -p "<%= working_dir_host %>/Rworkshop"
+  export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
+  mkdir -p "<%= tutorial_dir %>/Rworkshop"
+  export SINGULARITY_HOME="<%= tutorial_dir %>"
   <%- end %>
 }
 setup_env
 
+# if you're in a specialized version of RStudio (classes or tutorials)
+if [[ "$SINGULARITY_HOME" != "$HOME" ]]; then
+  mkdir -p "<%= tutorial_dir %>"
+  mv "<%= session_dir %>/bin" "<%= tutorial_dir %>"
+  export WORKING_DIR="<%= tutorial_dir %>"
+else
+  export WORKING_DIR="<%= session_dir %>"
+fi
+
 #
 # Start RStudio Server
 #
-
 # PAM auth helper used by RStudio
-export RSTUDIO_AUTH="<%= working_dir_container %>/bin/auth"
+export RSTUDIO_AUTH="$WORKING_DIR/bin/auth"
 
 # Generate an `rsession` wrapper script
-export RSESSION_WRAPPER_FILE="<%= working_dir_container %>/rsession.sh"
+export RSESSION_WRAPPER_FILE="$WORKING_DIR/rsession.sh"
 (
 umask 077
-sed 's/^ \{2\}//' > "<%= working_dir_host %>/rsession.sh" << EOL
+sed 's/^ \{2\}//' > "$WORKING_DIR/rsession.sh" << EOL
   #!/usr/bin/env bash
 
   # Log all output from this script
-  export RSESSION_LOG_FILE="<%= working_dir_container %>/rsession.log"
+  export RSESSION_LOG_FILE="$WORKING_DIR/rsession.log"
 
   exec &>>"\${RSESSION_LOG_FILE}"
 
@@ -64,10 +65,11 @@ sed 's/^ \{2\}//' > "<%= working_dir_host %>/rsession.sh" << EOL
   exec rsession --r-libs-user "${R_LIBS_USER}" "\${@}"
 EOL
 )
-chmod 700 "<%= working_dir_host %>/rsession.sh"
+chmod 700 "$WORKING_DIR/rsession.sh"
+
 
 # Set working directory to home directory
-cd "${HOME}"
+cd "${SINGULARITY_HOME}"
 
 # Output debug info
 module list
@@ -83,7 +85,9 @@ echo "Starting up rserver..."
 # /dev and /proc
 # optional_tutorial_home_bind is used when include_tutorials to change the home
 # directory to get a clean environment without clobbering files
-SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain -B "$TMPDIR:/tmp" <%= optional_tutorial_home_bind %> \
+SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain \
+ -B $TMPDIR:/tmp \
+ -B $WORKING_DIR \
  "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
