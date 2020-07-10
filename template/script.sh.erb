@@ -30,9 +30,13 @@ setup_env
 
 # if you're in a specialized version of RStudio (classes or tutorials)
 if [[ "$SINGULARITY_HOME" != "$HOME" ]]; then
+
+  # prepare the host directories and files
   mkdir -p "<%= tutorial_dir %>"
   mkdir -p "$SINGULARITY_HOME"
   mv "<%= session_dir %>/bin" "<%= tutorial_dir %>"
+  touch "$SINGULARITY_HOME/0_${OSC_CLASS_ID:-osc_class}.md"
+
   export WORKING_DIR="<%= tutorial_dir %>"
 else
   export WORKING_DIR="<%= session_dir %>"
@@ -67,7 +71,6 @@ sed 's/^ \{2\}//' > "$WORKING_DIR/rsession.sh" << EOL
 EOL
 )
 chmod 700 "$WORKING_DIR/rsession.sh"
-
 
 # Set working directory to home directory
 cd "${SINGULARITY_HOME}"
