@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.12.2] - 2020-07-10
+### Changed
+- Create a markdown file in a class directory [#38](https://github.com/OSC/bc_osc_rstudio_server/pull/38)
+
 ## [0.12.1] - 2020-07-10
 ### Fixed
 - Create SINGULARTIY_HOME in case it doesn't already exist
