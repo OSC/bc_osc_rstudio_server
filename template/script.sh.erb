@@ -63,6 +63,7 @@ sed 's/^ \{2\}//' > "$WORKING_DIR/rsession.sh" << EOL
   # rsession.sh doesn't share the same env as the outside script, so these
   # need to be set explicitly
   export R_LIBS_SITE="${R_LIBS_SITE}"
+  export TZ="US/Eastern"
 
   # Launch the original command
   echo "Launching rsession..."
