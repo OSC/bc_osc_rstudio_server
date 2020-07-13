@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.12.3] - 2020-07-13
+### Fixed
+- Specify TZ to get rid of warnings in Sys.timezone() [#39](https://github.com/OSC/bc_osc_rstudio_server/pull/39)
+
 ## [0.12.2] - 2020-07-10
 ### Changed
 - Create a markdown file in a class directory [#38](https://github.com/OSC/bc_osc_rstudio_server/pull/38)
@@ -203,7 +207,10 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.3...HEAD
+[0.12.3]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.2...v0.12.3
+[0.12.2]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.1...v0.12.2
+[0.12.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.7...v0.12.0
 [0.11.7]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.6...v0.11.7
 [0.11.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.11.5...v0.11.6
