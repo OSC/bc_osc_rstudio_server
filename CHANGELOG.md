@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.12.4] - 2020-07-16
+### Fixed
+- Fixed a bug where Rstudio could not create $HOME/.rstudio. We're now back to the rstudio_launcher/centos7
+  module where we mount /etc entirely.
+
 ## [0.12.3] - 2020-07-13
 ### Fixed
 - Specify TZ to get rid of warnings in Sys.timezone() [#39](https://github.com/OSC/bc_osc_rstudio_server/pull/39)
