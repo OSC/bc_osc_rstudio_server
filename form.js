@@ -118,18 +118,20 @@ function toggle_node_type(){
   all_options.hide();
   let cluster = $('#batch_connect_session_context_cluster').val();
   let cluster_options = $("#batch_connect_session_context_node_type option[data-cluster=" + cluster + "]");
+  $("#batch_connect_session_context_node_type option[value=any][data-cluster=" + cluster + "]").attr('selected', 'selected');
   cluster_options.show();
+  fix_num_cores();
 }
 
 // Main
 
 // Set the max value to be what was set in the last session
-fix_num_cores();
 toggle_tutorial_control_visibility(
   // Fake the event
   { target: document.querySelector('#batch_connect_session_context_version') }
 );
 toggle_node_type();
+fix_num_cores();
 
 
 set_cluster_change_handler();
