@@ -72,7 +72,7 @@ function set_version_change_hander() {
 function toggle_tutorial_control_visibility(event) {
   const selector = '#batch_connect_session_context_include_tutorials';
   const show = /3\.6\.[13]/.test(event.target.value);
-  toggle_visibilty_of_form_group( selector, show );
+  toggle_visibility_of_form_group( selector, show );
 
   // Ensure unchecked if control is hidden
   if ( ! show ) {
@@ -99,14 +99,19 @@ function toggle_gpu_nodes(event){
 }
 
 /**
- * Toggle the visibilty of a form group
+ * Toggle the visibility of a form group
  *
  * @param      {string}    form_id  The form identifier
  * @param      {boolean}   show     Whether to show or hide
  */
-function toggle_visibilty_of_form_group(form_id, show) {
+function toggle_visibility_of_form_group(form_id, show) {
   let form_element = $(form_id);
   let parent = form_element;
+
+  // kick out if you didn't find what you're looking for
+  if(parent.size() <= 0) {
+    return;
+  }
 
   while (
     (! parent[0].classList.contains('form-group')) &&
