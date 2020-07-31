@@ -87,7 +87,7 @@ function toggle_tutorial_control_visibility(event) {
  * @param  {Object} event The change event
  */
 function toggle_gpu_nodes(event){
-  const show = /3\.6\.3/.test(event.target.value); // test seems more readable than = !! match
+  const show = /3\.6\.3|4\.0\.2/.test(event.target.value); // test seems more readable than = !! match
   const gpu = $("#batch_connect_session_context_node_type option[value='gpu']");
 
   if(show) {
