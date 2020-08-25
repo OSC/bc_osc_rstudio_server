@@ -17,16 +17,34 @@ function clamp(min, max, val) {
  */
 function current_cluster_capitalized(){
   var cluster = $('#batch_connect_session_context_cluster').val();
-  return capitalize(cluster);
+  return capitalize_words(cluster);
 }
 
 /**
- * Capitalize a string.
+ * Capitalize the words in a string and remove and '-'.  In the simplest case
+ * it simple capitalizes.  It assumes 'words' are hyphenated.
  *
- * @param      {string}  str     The string to capitalize
+ * @param      {string}  str     The word string to capitalize
+ *
+ * @example  given 'foo' this returns 'Foo'
+ * @example  given 'foo-bar' this returns 'FooBar'
  */
-function capitalize(str) {
-  return str ? str.charAt(0).toUpperCase() + str.slice(1) : "";
+function capitalize_words(str) {
+  var camel_case = "";
+  var capitalize = true;
+
+  str.split('').forEach((c) => {
+    if (capitalize) {
+      camel_case += c.toUpperCase();
+      capitalize = false;
+    } else if(c == '-') {
+      capitalize = true;
+    } else {
+      camel_case += c;
+    }
+  });
+
+  return camel_case;
 }
 
 /**
@@ -144,6 +162,7 @@ function set_cluster_change_handler() {
   cluster_input.change((event) => {
     fix_num_cores(event);
     toggle_options("batch_connect_session_context_version");
+    toggle_options("batch_connect_session_context_node_type");
   });
 }
 
@@ -172,7 +191,7 @@ function submit_blank_cores() {
  */
 function max_cores_for_cluster(cluster_name) {
   if(cluster_name.charAt(0).toUpperCase != cluster_name.charAt(0)){
-    cluster_name = capitalize(cluster_name);
+    cluster_name = capitalize_words(cluster_name);
   }
 
   const node_type_input = $('#batch_connect_session_context_node_type');
@@ -257,11 +276,12 @@ function toggle_visibility_of_form_group(form_id, show) {
 
 // Set the max value to be what was set in the last session
 fix_num_cores({ target: document.querySelector('#batch_connect_session_node_type') });
-toggle_options("batch_connect_session_context_version");
 toggle_tutorial_control_visibility(
   // Fake the event
   { target: document.querySelector('#batch_connect_session_context_version') }
 );
+toggle_options("batch_connect_session_context_version");
+toggle_options("batch_connect_session_context_node_type");
 
 // install handlers
 set_node_type_change_handler();
