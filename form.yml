@@ -28,7 +28,7 @@ attributes:
     widget: select
     label: "Node type"
     help: |
-      Pitzer nodes have up to 40 cores available and Owens nodes have up to 28.
+      Owens nodes have up to 28 cores available and Pitzer nodes have up to 40.
 
       - **any** - Use any available node. This reduces the wait time as there are no node requirements.
       - **gpu** - Use a node that has a GPU and loads the requested [CUDA] module.
@@ -39,7 +39,7 @@ attributes:
         - Pitzer has 4 of these nodes with 3TB of RAM and 80 cores.
       - **debug** - For short sessions (= 1 hour) the debug queueq
         will have the shortest wait time. This is only accessible during 8AM -
-        6PM, Monday - Friday. There are 6 of these nodes on Owens.
+        6PM, Monday - Friday. There are 6 of these nodes on both Owens and pitzer.
 
       [NVIDIA Tesla P100 GPU]: http://www.nvidia.com/object/tesla-p100.html
       [NVIDIA Tensor Core V100 GPU]: https://www.nvidia.com/en-us/data-center/v100/
@@ -47,9 +47,9 @@ attributes:
     options:
       - [
           "any",     "any",
-          data-min-ppn-owens: 0,
+          data-min-ppn-owens: 1,
           data-max-ppn-owens: 28,
-          data-min-ppn-pitzer: 0,
+          data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 40
         ]
       - [
@@ -61,16 +61,16 @@ attributes:
         ]
       - [
           "debug",   "debug",
-          data-min-ppn-owens: 0,
+          data-min-ppn-owens: 1,
           data-max-ppn-owens: 28,
           data-min-ppn-pitzer: 0,
           data-max-ppn-pitzer: 40
         ]
       - [
           "gpu",     "gpu",
-          data-min-ppn-owens: 0,
+          data-min-ppn-owens: 1,
           data-max-ppn-owens: 28,
-          data-min-ppn-pitzer: 0,
+          data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 40
         ]
   version:
