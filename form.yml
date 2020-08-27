@@ -42,8 +42,6 @@ attributes:
       - **hugemem** - Use a node that has a large amounts of RAM cores.
         - Owens has 16 of these nodes with 1.5TB of RAM and 40 cores.
         - Pitzer has 4 of these nodes with 3TB of RAM and 80 cores.
-      - **largemem** - Use a node that has a semi-large amounts of RAM cores.
-        - Pitzer Expansion has 12 of these nodes with 768GB of RAM and 80 cores.
       - **debug** - For short sessions (= 1 hour) the debug queueq
         will have the shortest wait time. This is only accessible during 8AM -
         6PM, Monday - Friday. There are 6 of these nodes on both Owens and pitzer.
@@ -59,7 +57,7 @@ attributes:
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 40,
           data-min-ppn-pitzer-exp: 1,
-          data-max-ppn-pitzer-exp: 40,
+          data-max-ppn-pitzer-exp: 48,
           data-option-for-owens: true,
           data-option-for-pitzer: true,
           data-option-for-pitzer-exp: true
@@ -73,14 +71,6 @@ attributes:
           data-option-for-owens: true,
           data-option-for-pitzer: true,
           data-option-for-pitzer-exp: false
-        ]
-      - [
-          "largemem", "largemem",
-          data-min-ppn-pitzer-exp: 80,
-          data-max-ppn-pitzer-exp: 80,
-          data-option-for-owens: false,
-          data-option-for-pitzer: false,
-          data-option-for-pitzer-exp: true
         ]
       - [
           "debug",   "debug",
@@ -101,7 +91,7 @@ attributes:
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 40,
           data-min-ppn-pitzer-exp: 1,
-          data-max-ppn-pitzer-exp: 40,
+          data-max-ppn-pitzer-exp: 48,
           data-option-for-owens: true,
           data-option-for-pitzer: true,
           data-option-for-pitzer-exp: true
