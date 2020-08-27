@@ -1,8 +1,6 @@
 ---
-cluster:
-  - "owens"
-  - "pitzer"
 form:
+  - cluster
   - version
   - bc_account
   - bc_num_hours
@@ -11,6 +9,12 @@ form:
   - include_tutorials
   - bc_email_on_started
 attributes:
+  cluster:
+    widget: "select"
+    options:
+      - "owens"
+      - "pitzer"
+      - "pitzer-exp"
   num_cores:
     widget: "number_field"
     label: "Number of cores"
@@ -18,7 +22,7 @@ attributes:
     help: |
       Number of cores on node type (4 GB per core unless requesting whole
       node). Leave blank if requesting full node.
-    min: 0
+    min: 1
     max: 28
     step: 1
   bc_account:
@@ -34,6 +38,7 @@ attributes:
       - **gpu** - Use a node that has a GPU and loads the requested [CUDA] module.
         - Owens has 160 of these nodes with a [NVIDIA Tesla P100 GPU].
         - Pitzer has 32 of these nodes with two [NVIDIA Tensor Core V100 GPU]s.
+        - Pitzer Expansion has 42 of these nodes with two [NVIDIA Tensor Core V100 GPU]s.
       - **hugemem** - Use a node that has a large amounts of RAM cores.
         - Owens has 16 of these nodes with 1.5TB of RAM and 40 cores.
         - Pitzer has 4 of these nodes with 3TB of RAM and 80 cores.
@@ -50,28 +55,46 @@ attributes:
           data-min-ppn-owens: 1,
           data-max-ppn-owens: 28,
           data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 40
+          data-max-ppn-pitzer: 40,
+          data-min-ppn-pitzer-exp: 1,
+          data-max-ppn-pitzer-exp: 48,
+          data-option-for-owens: true,
+          data-option-for-pitzer: true,
+          data-option-for-pitzer-exp: true
         ]
       - [
           "hugemem", "hugemem",
           data-min-ppn-owens: 40,
           data-max-ppn-owens: 40,
           data-min-ppn-pitzer: 80,
-          data-max-ppn-pitzer: 80
+          data-max-ppn-pitzer: 80,
+          data-option-for-owens: true,
+          data-option-for-pitzer: true,
+          data-option-for-pitzer-exp: false
         ]
       - [
           "debug",   "debug",
           data-min-ppn-owens: 1,
           data-max-ppn-owens: 28,
-          data-min-ppn-pitzer: 0,
-          data-max-ppn-pitzer: 40
+          data-min-ppn-pitzer: 1,
+          data-max-ppn-pitzer: 40,
+          data-min-ppn-pitzer: 1,
+          data-max-ppn-pitzer: 48,
+          data-option-for-owens: true,
+          data-option-for-pitzer: true,
+          data-option-for-pitzer-exp: true
         ]
       - [
           "gpu",     "gpu",
           data-min-ppn-owens: 1,
           data-max-ppn-owens: 28,
           data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 40
+          data-max-ppn-pitzer: 40,
+          data-min-ppn-pitzer-exp: 1,
+          data-max-ppn-pitzer-exp: 48,
+          data-option-for-owens: true,
+          data-option-for-pitzer: true,
+          data-option-for-pitzer-exp: true
         ]
   version:
     widget: select
@@ -81,52 +104,62 @@ attributes:
       - [
           "4.0.2", "app_rstudio_server/4.0.2",
           data-option-for-owens: true,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-pitzer-exp: true
         ]
       - [
           "3.6.3", "app_rstudio_server/3.6.3",
           data-option-for-owens: true,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-pitzer-exp: true
         ]
       - [
           "3.6.1", "gnu/9.1.0 mkl/2019.0.3 R/3.6.1 rstudio/1.1.380_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-pitzer-exp: false
         ]
       - [
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.1.380_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-pitzer-exp: false
         ]
       - [
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.2.1335 texlive",
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-pitzer-exp: true
         ]
       - [
           "3.5.2", "intel/18.0.4 R/3.5.2 rstudio/1.1.456 texlive",
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-pitzer-exp: true
         ]
       - [
           "3.5.1", "intel/18.0.4 R/3.5.1 rstudio/1.1.456 texlive",
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-pitzer-exp: true
         ]
       - [
           "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-pitzer-exp: false
         ]
       - [
           "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-pitzer-exp: false
         ]
       - [
           "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-pitzer-exp: false
         ]
   include_tutorials:
     widget: "check_box"
