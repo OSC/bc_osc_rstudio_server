@@ -5,6 +5,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.14.0] - 2020-08-27
+### Added
+- support for owens, pitzer and pitzer expansion clusters
+  - Added javascript to toggle the select options (node_type and version
+    availability are different across clusters).
+  - PR [45](https://github.com/OSC/bc_osc_rstudio_server/pull/45) merged
+    this app with pitzer
+  - PR [46](https://github.com/OSC/bc_osc_rstudio_server/pull/46) added
+    the pitzer expansion cluster
+
+### Changed
+- javascript now populates the num_cores if it's blank (instead of populating
+  in the submit.yml.erb).
+- min/max number of cores available for a given node type are now found in the
+  data attributes instead of being purely defined in javascript.
+- min cores is 1 instead of 0.
+
 ## [0.13.0] - 2020-07-31
 ### Added
 - added R module 4.0.2
@@ -220,7 +237,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.13.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.14.0...HEAD
+[0.14.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.3...v0.13.0
 [0.12.3]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.2...v0.12.3
 [0.12.2]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.1...v0.12.2
