@@ -78,8 +78,8 @@ attributes:
           data-max-ppn-owens: 28,
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 40,
-          data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 48,
+          data-min-ppn-pitzer-exp: 1,
+          data-max-ppn-pitzer-exp: 48,
           data-option-for-owens: true,
           data-option-for-pitzer: true,
           data-option-for-pitzer-exp: true
