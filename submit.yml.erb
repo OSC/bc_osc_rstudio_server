@@ -5,6 +5,21 @@
   slurm_args = case node_type
               when "gpu"
                 base_slurm_args += ["--gpus-per-node", "1"]
+              when "gpu-40core"
+                base_slurm_args += ["--gpus-per-node", "1", "--constraint", "40core"]
+              when "gpu-48core"
+                base_slurm_args += ["--gpus-per-node", "1", "--constraint", "48core"]
+              when "any-40core"
+                base_slurm_args += ["--constraint", "40core"]
+              when "any-48core"
+                base_slurm_args += ["--constraint", "48core"]
+              when "hugemem"
+                base_slurm_args += ["--partition", "hugemem", "--exclusive"]
+              when "largemem"
+                base_slurm_args += ["--partition", "largemem", "--exclusive"]
+              # handled in the script.queue_name below. Need to change when Owens switches to Slurm
+              # when "debug"
+              #   base_slurm_args += ["--partition", "debug", "--exclusive"]
               else
                 base_slurm_args
               end
@@ -27,7 +42,7 @@ script:
   queue_name: "debug"
   <%- end -%>
   native:
-    <%- unless cluster == 'pitzer-exp' %>
+    <%- if cluster == 'owens' %>
     resources:
       nodes: "1<%= torque_args %>"
     <%- else %>
