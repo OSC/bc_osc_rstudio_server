@@ -47,6 +47,8 @@ attributes:
         with 48 cores and 1.5 TB of RAM. Pitzer has 4 with 3 TB of RAM and 80 cores.
         Pitzer also has 12 Largmem nodes have 48 cores with 768 GB of RAM.
 
+      [NVIDIA Tesla P100 GPU]: http://www.nvidia.com/object/tesla-p100.html
+      [NVIDIA Tesla V100 GPUs]: https://www.nvidia.com/en-us/data-center/v100/
     options:
       - [
           "any",     "any",
