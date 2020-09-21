@@ -28,9 +28,9 @@
                 base_slurm_args += ["--partition", "hugemem", "--exclusive"]
               when "largemem"
                 base_slurm_args += ["--partition", "largemem", "--exclusive"]
-              # handled in the script.queue_name below. Need to change when Owens switches to Slurm
-              # when "debug"
-              #   base_slurm_args += ["--partition", "debug", "--exclusive"]
+              when "debug"
+                # partition handled in the script.queue_name below. Need to change when Owens switches to Slurm
+                base_slurm_args += ["--exclusive"]
               else
                 base_slurm_args
               end
