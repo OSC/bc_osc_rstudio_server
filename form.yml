@@ -98,8 +98,8 @@ attributes:
         ]
       - [
           "hugemem", "hugemem",
-          data-min-ppn-owens: 40,
-          data-max-ppn-owens: 40,
+          data-min-ppn-owens: 48,
+          data-max-ppn-owens: 48,
           data-min-ppn-pitzer: 80,
           data-max-ppn-pitzer: 80,
           data-option-for-owens: true,
