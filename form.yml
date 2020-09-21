@@ -58,14 +58,14 @@ attributes:
           data-option-for-pitzer: true
         ]
       - [
-          "any 40 core",     "any-40core",
+          "40 core",     "any-40core",
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 40,
           data-option-for-owens: false,
           data-option-for-pitzer: true
         ]
       - [
-          "any 48 core",     "any-48core",
+          "48 core",     "any-48core",
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 48,
           data-option-for-owens: false,
