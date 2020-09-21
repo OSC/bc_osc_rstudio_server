@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.15.0] - 2020-09-21
+### Changed
+- PR [48](https://github.com/OSC/bc_osc_rstudio_server/pull/48) pitzer-exp merged into
+  the pitzer cluster
+  - Removed pitzer-exp as an option.
+  - Created new node type pitzer options to accomidate pitzer-exp merging into
+    pitzer
+  - Changed the help text for node types
+  - logic for handling submitting blank cores is again in the submit.yml.erb
+    instead of the javascript.
+
 ## [0.14.0] - 2020-08-27
 ### Added
 - support for owens, pitzer and pitzer expansion clusters
@@ -237,7 +248,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.14.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.15.0...HEAD
+[0.15.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.3...v0.13.0
 [0.12.3]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.12.2...v0.12.3
