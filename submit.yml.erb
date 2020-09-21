@@ -39,7 +39,7 @@
               when "gpu"
                 ":ppn=#{cores}:gpus=1"
               when "hugemem"
-                ppn == 80 ? ":ppn=#{cores},mem=2989GB" : ":ppn=#{cores}"
+                cores == 80 ? ":ppn=#{cores},mem=2989GB" : ":ppn=#{cores}"
               else
                 ":ppn=#{cores}"
               end
