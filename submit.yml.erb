@@ -45,6 +45,24 @@
                 ":ppn=#{cores}"
               end
 
+  lmod_file = "/users/reporting/lmod/#{cluster}.json"
+  lmod_raw = JSON.parse(File.read(lmod_file))
+  available_modules = lmod_raw.map do |default_version, modules|
+    versions = []
+    if modules.is_a?(Hash)
+      modules.each do |version_key, version_value|
+        versions.concat [ version_value['fullName'] ]
+      end
+    end
+    [ default_version ] + versions
+  end.flatten.to_a
+
+  extra_modules.split.each do |selected_module|
+    unless available_modules.include?(selected_module)
+      raise StandardError, "The #{selected_module} module is not available on the #{cluster} cluster."
+    end
+  end
+
 -%>
 ---
 batch_connect:

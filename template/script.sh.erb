@@ -20,6 +20,7 @@ setup_env () {
 
   module load ondemand
   module load xalt/latest rstudio_launcher/centos7 <%= context.version %>
+  module load <%= context.extra_modules %>
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
   mkdir -p "<%= tutorial_dir %>/Rworkshop"

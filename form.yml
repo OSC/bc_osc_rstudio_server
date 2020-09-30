@@ -6,6 +6,7 @@ form:
   - bc_num_hours
   - node_type
   - num_cores
+  - extra_modules
   - include_tutorials
   - bc_email_on_started
 attributes:
@@ -176,6 +177,9 @@ attributes:
           data-option-for-owens: true,
           data-option-for-pitzer: false
         ]
+  extra_modules:
+    widet: "text_field"
+    label: "Extra modules to load"
   include_tutorials:
     widget: "check_box"
     label: Include access to OSC tutorial/workshop materials.
