@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - PR [48](https://github.com/OSC/bc_osc_rstudio_server/pull/48) pitzer-exp merged into
   the pitzer cluster
   - Removed pitzer-exp as an option.
-  - Created new node type pitzer options to accomidate pitzer-exp merging into
+  - Created new node type pitzer options to accommodate pitzer-exp merging into
     pitzer
   - Changed the help text for node types
   - logic for handling submitting blank cores is again in the submit.yml.erb
