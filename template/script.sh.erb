@@ -19,7 +19,7 @@ setup_env () {
   # the host into the guest, and so those values may vary between sites.
 
   module load ondemand
-  module load xalt/latest rstudio_launcher/centos7 <%= context.version %>
+  module load xalt/latest rstudio_launcher/centos7 <%= context.version %> <%= context.extra_modules %>
 
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
@@ -57,6 +57,8 @@ sed 's/^ \{2\}//' > "$WORKING_DIR/rsession.sh" << EOL
   #!/usr/bin/env bash
   source /etc/profile
   module load <%= context.extra_modules %>
+  # LD_LIBRARY_PATH not right within the container, so load all the modules outside
+  # and re-set it here when writing this rsession.sh file.
   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
 
   # Log all output from this script
