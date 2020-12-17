@@ -45,7 +45,12 @@
               end
 
   lmod_file = "/users/reporting/lmod/#{cluster}.json"
-  lmod_raw = JSON.parse(File.read(lmod_file))
+  lmod_raw = begin
+              JSON.parse(File.read(lmod_file))
+            rescue
+              {}
+            end
+
   available_modules = lmod_raw.map do |default_version, modules|
     versions = []
     if modules.is_a?(Hash)
