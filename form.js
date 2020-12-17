@@ -204,7 +204,7 @@ function toggle_tutorial_control_visibility(event) {
 }
 
 /**
- * Given a change event from choosing a different verion of R, toggle 
+ * Given a change event from choosing a different version of R, toggle 
  * the ability to choose GPUs depending on the version.
  * 
  * @param  {Object} event The change event
