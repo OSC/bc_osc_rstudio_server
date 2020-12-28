@@ -65,6 +65,9 @@ sed 's/^ \{2\}//' > "$WORKING_DIR/rsession.sh" << EOL
   export R_LIBS_SITE="${R_LIBS_SITE}"
   export TZ="US/Eastern"
   export HOME="$SINGULARITY_HOME"
+  export MODULEPATH_ROOT="$MODULEPATH_ROOT"
+  export MODULEPATH="$MODULEPATH"
+  export LMOD_PKG="$LMOD_PKG"
 
   # Launch the original command
   echo "Launching rsession..."
