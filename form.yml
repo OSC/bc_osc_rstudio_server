@@ -1,6 +1,8 @@
 ---
+cluster:
+  - "owens"
+  - "pitzer"
 form:
-  - cluster
   - version
   - bc_account
   - bc_num_hours
@@ -9,12 +11,6 @@ form:
   - include_tutorials
   - bc_email_on_started
 attributes:
-  cluster:
-    widget: "select"
-    options:
-      - "owens"
-      - "owens-slurm"
-      - "pitzer"
   num_cores:
     widget: "number_field"
     label: "Number of cores"
