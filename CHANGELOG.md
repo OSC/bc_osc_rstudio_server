@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.18.0] - 2021-01-20
+### Changed
+- [61](https://github.com/OSC/bc_osc_rstudio_server/pull/61) removed unused
+  owens-slurm data attributes
+- [60](https://github.com/OSC/bc_osc_rstudio_server/pull/60) changed the account field
+  to be a select widget with only valid groups as options
+
+### Added
+- [56](https://github.com/OSC/bc_osc_rstudio_server/pull/56) aloows users to load modules
+  within the rstudio-server session
+
 ## [0.17.0] - 2020-12-28
 ### Changed
 - Removed owens-slurm cluster and torque related configs in
@@ -268,7 +279,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.17.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.18.0...HEAD
+[0.18.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.17.0...v0.18.0
 [0.17.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.16.0...v0.17.0
 [0.16.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.15.1...v0.16.0
 [0.15.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.15.0...v0.15.1
