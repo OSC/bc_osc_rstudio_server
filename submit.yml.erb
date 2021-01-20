@@ -39,6 +39,7 @@
 batch_connect:
   template: "basic"
 script:
+  accounting_id: "<%= account %>"
   native:
     <%- slurm_args.each do |arg| %>
     - "<%= arg %>"
