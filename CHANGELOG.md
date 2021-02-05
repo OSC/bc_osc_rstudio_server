@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.18.1] - 2021-01-20
+### Added
+- [62](https://github.com/OSC/bc_osc_rstudio_server/pull/62) added the ability for
+  classrooms to populate class materials  in the users' home directory if
+  OSC_CLASS_FILES is set.
+
 ## [0.18.0] - 2021-01-20
 ### Changed
 - [61](https://github.com/OSC/bc_osc_rstudio_server/pull/61) removed unused
@@ -279,7 +285,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.18.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.18.1...HEAD
+[0.18.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.18.0...v0.18.1
 [0.18.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.17.0...v0.18.0
 [0.17.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.16.0...v0.17.0
 [0.16.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.15.1...v0.16.0
