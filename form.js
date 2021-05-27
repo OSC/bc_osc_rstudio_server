@@ -21,6 +21,23 @@ function current_cluster_capitalized(){
 }
 
 /**
+ * Simple helper to return the selected node type.
+ */
+function current_node_type(){
+  var node_type = $('#batch_connect_session_context_node_type').val();
+  return node_type;
+}
+
+/**
+  * Helper to return capitalized cluster name from node type
+  */
+function current_cluster_node_type(){
+  var node_type = current_node_type();
+  var cluster_node_type = capitalize_words(node_type.split("-")[0]);
+  return cluster_node_type;
+}
+
+/**
  * Capitalize the words in a string and remove and '-'.  In the simplest case
  * it simple capitalizes.  It assumes 'words' are hyphenated.
  *
@@ -106,6 +123,7 @@ function shift_num_cores_value(num_cores_input, previous_cluster){
  */
 function toggle_options(element_name) {
   const cluster = current_cluster_capitalized();
+  const cluster_node_type = current_cluster_node_type();
   const search = "#" + element_name + " option"
   const options = $(search);
 
@@ -114,7 +132,10 @@ function toggle_options(element_name) {
     // or hide methods so we have to query for it again
     let option_element = $(search + "[value='" + option.value + "']");
     let data = option_element.data();
-    let show = data["optionFor" + cluster];
+    let show = data["optionFor" + cluster + cluster_node_type];
+    if (typeof show === 'undefined') {
+      show = data["optionFor" + cluster];
+    }
 
     if(show) {
       option_element.show();
@@ -140,7 +161,10 @@ function toggle_options(element_name) {
  */
 function set_node_type_change_handler() {
   const node_type_input = $('#batch_connect_session_context_node_type');
-  node_type_input.change((event) => fix_num_cores(event));
+  node_type_input.change((event) => {
+    fix_num_cores(event)
+    toggle_options("batch_connect_session_context_version");
+  });
 }
 
 /**
@@ -161,8 +185,8 @@ function set_cluster_change_handler() {
   const cluster_input = $('#batch_connect_session_context_cluster');
   cluster_input.change((event) => {
     fix_num_cores(event);
-    toggle_options("batch_connect_session_context_version");
     toggle_options("batch_connect_session_context_node_type");
+    //toggle_options("batch_connect_session_context_version");
   });
 }
 

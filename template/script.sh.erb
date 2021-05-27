@@ -19,7 +19,10 @@ setup_env () {
   # the host into the guest, and so those values may vary between sites.
 
   module load ondemand
-  module load xalt/latest rstudio_launcher/centos7 <%= context.version %>
+  module load xalt/latest <%= context.version %>
+  <%- if context.cluster != "kubernetes" -%>
+  module load rstudio_launcher/centos7
+  <%- end -%>
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
   mkdir -p "<%= tutorial_dir %>/Rworkshop"
@@ -95,6 +98,7 @@ set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
+<%- if context.cluster != "kubernetes" -%>
 # --contain is used to override the bindpaths specified in OSC's
 # singularity.conf which would otherwise conflict in /etc
 # using --contain requires us to bind mount in addition directories including
@@ -110,3 +114,11 @@ SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
  --auth-encrypt-password 0 \
  --rsession-path "${RSESSION_WRAPPER_FILE}"
+<%- else -%>
+rserver \
+  --www-port 8080 \
+  --auth-none 0 \
+  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
+  --auth-encrypt-password 0 \
+  --rsession-path "${RSESSION_WRAPPER_FILE}"
+<%- end -%>

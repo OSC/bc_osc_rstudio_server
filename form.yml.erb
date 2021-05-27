@@ -7,6 +7,9 @@
 cluster:
   - "owens"
   - "pitzer"
+<% if OodAppkit.clusters["kubernetes"].allow? -%>
+  - "kubernetes"
+<% end -%>
 form:
   - version
   - account
@@ -63,21 +66,24 @@ attributes:
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 48,
           data-option-for-owens: true,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes: false
         ]
       - [
           "40 core",     "any-40core",
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 40,
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes: false
         ]
       - [
           "48 core",     "any-48core",
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 48,
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes: false
         ]
       - [
           "any gpu",     "gpu",
@@ -86,21 +92,24 @@ attributes:
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 48,
           data-option-for-owens: true,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes: false
         ]
       - [
           "40 core gpu",     "gpu-40core",
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 40,
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes: false
         ]
       - [
           "48 core gpu",     "gpu-48core",
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 48,
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes: false
         ]
       - [
           "hugemem", "hugemem",
@@ -109,14 +118,16 @@ attributes:
           data-min-ppn-pitzer: 80,
           data-max-ppn-pitzer: 80,
           data-option-for-owens: true,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes: false
         ]
       - [
           "largemem", "largemem",
           data-min-ppn-pitzer: 48,
           data-max-ppn-pitzer: 48,
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes: false
         ]
       - [
           "debug",   "debug",
@@ -125,7 +136,32 @@ attributes:
           data-min-ppn-pitzer: 1,
           data-max-ppn-pitzer: 48,
           data-option-for-owens: true,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes: false
+        ]
+      - [
+          "pitzer",   "pitzer",
+          data-option-for-owens: false,
+          data-option-for-pitzer: false,
+          data-option-for-kubernetes: true
+        ]
+      - [
+          "owens",   "owens",
+          data-option-for-owens: false,
+          data-option-for-pitzer: false,
+          data-option-for-kubernetes: true
+        ]
+      - [
+          "pitzer gpu",   "pitzer-gpu",
+          data-option-for-owens: false,
+          data-option-for-pitzer: false,
+          data-option-for-kubernetes: true
+        ]
+      - [
+          "owens gpu",   "owens-gpu",
+          data-option-for-owens: false,
+          data-option-for-pitzer: false,
+          data-option-for-kubernetes: true
         ]
   version:
     widget: select
@@ -135,52 +171,72 @@ attributes:
       - [
           "4.0.2", "app_rstudio_server/4.0.2",
           data-option-for-owens: true,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes-owens: true,
+          data-option-for-kubernetes-pitzer: true
         ]
       - [
           "3.6.3", "app_rstudio_server/3.6.3",
           data-option-for-owens: true,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes-owens: true,
+          data-option-for-kubernetes-pitzer: true
         ]
       - [
           "3.6.1", "gnu/9.1.0 mkl/2019.0.3 R/3.6.1 rstudio/1.1.380_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-kubernetes-owens: true,
+          data-option-for-kubernetes-pitzer: false
         ]
       - [
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.1.380_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-kubernetes-owens: true,
+          data-option-for-kubernetes-pitzer: false
         ]
       - [
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.2.1335 texlive",
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes-owens: false,
+          data-option-for-kubernetes-pitzer: true
         ]
       - [
           "3.5.2", "intel/18.0.4 R/3.5.2 rstudio/1.1.456 texlive",
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes-owens: false,
+          data-option-for-kubernetes-pitzer: true
         ]
       - [
           "3.5.1", "intel/18.0.4 R/3.5.1 rstudio/1.1.456 texlive",
           data-option-for-owens: false,
-          data-option-for-pitzer: true
+          data-option-for-pitzer: true,
+          data-option-for-kubernetes-owens: false,
+          data-option-for-kubernetes-pitzer: true
         ]
       - [
           "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-kubernetes-owens: true,
+          data-option-for-kubernetes-pitzer: false
         ]
       - [
           "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-kubernetes-owens: true,
+          data-option-for-kubernetes-pitzer: false
         ]
       - [
           "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server texlive",
           data-option-for-owens: true,
-          data-option-for-pitzer: false
+          data-option-for-pitzer: false,
+          data-option-for-kubernetes-owens: true,
+          data-option-for-kubernetes-pitzer: false
         ]
   include_tutorials:
     widget: "check_box"
