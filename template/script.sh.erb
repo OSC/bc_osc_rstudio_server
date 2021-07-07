@@ -20,7 +20,7 @@ setup_env () {
 
   module load ondemand
   module load xalt/latest <%= context.version %>
-  <%- if context.cluster != "kubernetes" -%>
+  <%- if context.cluster !~ /kubernetes/ -%>
   module load rstudio_launcher/centos7
   <%- end -%>
   <%- if context.include_tutorials == "1" %>
@@ -98,7 +98,7 @@ set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
-<%- if context.cluster != "kubernetes" -%>
+<%- if context.cluster !~ /kubernetes/ -%>
 # --contain is used to override the bindpaths specified in OSC's
 # singularity.conf which would otherwise conflict in /etc
 # using --contain requires us to bind mount in addition directories including
