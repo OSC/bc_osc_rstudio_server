@@ -150,10 +150,7 @@ function toggle_email_on_started(selected_cluster) {
  */
 function set_node_type_change_handler() {
   const node_type_input = $('#batch_connect_session_context_node_type');
-  node_type_input.change((event) => {
-    fix_num_cores(event)
-    toggle_options("batch_connect_session_context_version");
-  });
+  node_type_input.change((event) => fix_num_cores(event));
 }
 
 /**
@@ -175,7 +172,7 @@ function set_cluster_change_handler() {
   cluster_input.change((event) => {
     fix_num_cores(event);
     toggle_options("batch_connect_session_context_node_type");
-    //toggle_options("batch_connect_session_context_version");
+    toggle_options("batch_connect_session_context_version");
     toggle_email_on_started(event.target.value);
   });
 }
