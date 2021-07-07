@@ -140,7 +140,7 @@ function toggle_options(element_name) {
  */
 function toggle_email_on_started(selected_cluster) {
   const element = $('#batch_connect_session_context_bc_email_on_started');
-  const supported = selected_cluster != 'kubernetes';;
+  const supported = !selected_cluster.includes('kubernetes');
 
   toggle_visibility_of_form_group(element, supported);
 }
