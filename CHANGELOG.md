@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.19.0] - 2021-07-09
+
+### Added
+- [64](https://github.com/OSC/bc_osc_rstudio_server/pull/64) added support for kubernetes clusters.
+
 ## [0.18.1] - 2021-01-20
 ### Added
 - [62](https://github.com/OSC/bc_osc_rstudio_server/pull/62) added the ability for
