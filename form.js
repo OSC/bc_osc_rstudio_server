@@ -170,9 +170,9 @@ function set_version_change_handler() {
 function set_cluster_change_handler() {
   const cluster_input = $('#batch_connect_session_context_cluster');
   cluster_input.change((event) => {
-    fix_num_cores(event);
     toggle_options("batch_connect_session_context_node_type");
     toggle_options("batch_connect_session_context_version");
+    fix_num_cores(event);
     toggle_email_on_started(event.target.value);
   });
 }
