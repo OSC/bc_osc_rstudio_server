@@ -1,4 +1,16 @@
 # Export the module function if it exists
+<% if context.cluster =~ /kubernetes/ -%>
+exec &> >(tee -a "pod.log")
+
+source /etc/profile.d/lmod.sh
+
+source /bin/find_host_port
+source /bin/save_passwd_as_secret
+password="$PASSWORD"
+host="$HOST_CFG"
+port="$PORT_CFG"
+export SINGULARITY_HOME="$HOME"
+<% else -%>
 [[ $(type -t module) == "function" ]] && export -f module
 
 # Find available port to run server on
@@ -6,6 +18,7 @@ port=$(find_port ${host})
 
 # Define a password and export it for RStudio authentication
 password="$(create_passwd 16)"
+<% end -%>
 export RSTUDIO_PASSWORD="${password}"
 
 <%- if context.include_tutorials == "1" -%>
