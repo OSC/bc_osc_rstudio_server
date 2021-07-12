@@ -18,11 +18,12 @@ setup_env () {
   # SINGULARITY_BINDPATH is being used to bind all RStudio's requirements from
   # the host into the guest, and so those values may vary between sites.
 
-  module load ondemand
-  module load xalt/latest <%= context.version %>
+  module load xalt/latest ondemand
   <%- if context.cluster !~ /kubernetes/ -%>
   module load rstudio_launcher/centos7
   <%- end -%>
+  module load <%= context.version %>
+  
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
   mkdir -p "<%= tutorial_dir %>/Rworkshop"
@@ -115,6 +116,7 @@ SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain \
  --auth-encrypt-password 0 \
  --rsession-path "${RSESSION_WRAPPER_FILE}"
 <%- else -%>
+cd ${SINGULARITY_HOME:=$HOME}
 rserver \
   --www-port 8080 \
   --auth-none 0 \
