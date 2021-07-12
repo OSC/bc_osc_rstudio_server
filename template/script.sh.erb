@@ -116,6 +116,7 @@ SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain \
  --auth-encrypt-password 0 \
  --rsession-path "${RSESSION_WRAPPER_FILE}"
 <%- else -%>
+cd ${SINGULARITY_HOME:=$HOME}
 rserver \
   --www-port 8080 \
   --auth-none 0 \
