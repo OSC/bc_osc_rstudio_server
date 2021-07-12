@@ -19,10 +19,11 @@ setup_env () {
   # the host into the guest, and so those values may vary between sites.
 
   module load ondemand
-  module load xalt/latest <%= context.version %>
   <%- if context.cluster !~ /kubernetes/ -%>
   module load rstudio_launcher/centos7
   <%- end -%>
+  module load xalt/latest <%= context.version %>
+  
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
   mkdir -p "<%= tutorial_dir %>/Rworkshop"
