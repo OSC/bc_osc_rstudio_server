@@ -53,6 +53,21 @@ else
   export WORKING_DIR="<%= session_dir %>"
 fi
 
+# sanatize SINGULARITY_BINDPATH for mounts that don't exist or that you
+# have no access to.
+set -x
+if [[ "${SINGULARITY_BINDPATH:-x}" != "x" ]]; then
+
+  SAFE_BINDPATH=""
+  IFS=',' read -r -a array <<< "$SINGULARITY_BINDPATH"
+  for dir in "${array[@]}"; do
+    [ -d "$dir" ] && SAFE_BINDPATH="$dir,$SAFE_BINDPATH"
+  done
+
+  export SINGULARITY_BINDPATH=$(echo $SAFE_BINDPATH | sed 's/,$//')
+fi
+set +x
+
 #
 # Start RStudio Server
 #
