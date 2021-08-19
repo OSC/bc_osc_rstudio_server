@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.19.5] - 2012-08-19
+
+### Fixed
+- [76](https://github.com/OSC/bc_osc_rstudio_server/pull/76) fixed an issue with classrooms where
+  classrooms (the `version` attribute) was being hidden. Default now is to show everything and one
+  has to explicitly set items to false for it to be hidden.
+
+### Changed
+
+- [75](https://github.com/OSC/bc_osc_rstudio_server/pull/75) Changed memory limits for hyperthreaded
+  kubernetes nodes.
+
 ## [0.19.4] - 2021-08-18
 
 ### Fixed
