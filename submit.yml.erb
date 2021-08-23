@@ -82,6 +82,8 @@ script:
       env:
         CLUSTER: "<%= compute_cluster %>"
         KUBECONFIG: "/dev/null"
+      labels:
+        cluster: "<%= compute_cluster %>"
       port: "8080"
       cpu: "<%= num_cores %>"
       memory: "<%= memory_mb %>Mi"
