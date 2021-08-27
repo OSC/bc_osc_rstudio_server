@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.19.6] - 2012-08-27
+
+### Changed
+
+- `cluster` label is now `osc.edu/cluster` in [78](https://github.com/OSC/bc_osc_rstudio_server/pull/78)
+
 ## [0.19.5] - 2012-08-19
 
 ### Fixed
@@ -329,7 +336,9 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.4...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.6...HEAD
+[0.19.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.6...v0.19.6
+[0.19.5]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.4...v0.19.5
 [0.19.4]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.3...v0.19.4
 [0.19.3]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.2...v0.19.3
 [0.19.2]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.1...v0.19.2
