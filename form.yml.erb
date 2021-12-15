@@ -61,157 +61,147 @@ attributes:
     options:
       - [
           "any",     "any",
-          data-min-ppn-owens: 1,
-          data-max-ppn-owens: 28,
-          data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 48,
-          data-option-for-owens: true,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-min-num-cores-for-cluster-owens: 1,
+          data-max-num-cores-for-cluster-owens: 28,
+          data-min-num-cores-for-cluster-pitzer: 1,
+          data-max-num-cores-for-cluster-pitzer: 48,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "40 core",     "any-40core",
-          data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 40,
-          data-option-for-owens: false,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-min-num-cores-for-cluster-pitzer: 1,
+          data-max-num-cores-for-cluster-pitzer: 40,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "48 core",     "any-48core",
-          data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 48,
-          data-option-for-owens: false,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-min-num-cores-for-cluster-pitzer: 1,
+          data-max-num-cores-for-cluster-pitzer: 48,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "any gpu",     "gpu",
-          data-min-ppn-owens: 1,
-          data-max-ppn-owens: 28,
-          data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 48,
-          data-option-for-owens: true,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-min-num-cores-for-cluster-owens: 1,
+          data-max-num-cores-for-cluster-owens: 28,
+          data-min-num-cores-for-cluster-pitzer: 1,
+          data-max-num-cores-for-cluster-pitzer: 48,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "40 core gpu",     "gpu-40core",
-          data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 40,
-          data-option-for-owens: false,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-min-num-cores-for-cluster-pitzer: 1,
+          data-max-num-cores-for-cluster-pitzer: 40,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "48 core gpu",     "gpu-48core",
-          data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 48,
-          data-option-for-owens: false,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-min-num-cores-for-cluster-pitzer: 1,
+          data-max-num-cores-for-cluster-pitzer: 48,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "hugemem", "hugemem",
-          data-min-ppn-owens: 48,
-          data-max-ppn-owens: 48,
-          data-min-ppn-pitzer: 80,
-          data-max-ppn-pitzer: 80,
-          data-option-for-owens: true,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-min-num-cores-for-cluster-owens: 48,
+          data-max-num-cores-for-cluster-owens: 48,
+          data-min-num-cores-for-cluster-pitzer: 80,
+          data-max-num-cores-for-cluster-pitzer: 80,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "largemem", "largemem",
-          data-min-ppn-pitzer: 48,
-          data-max-ppn-pitzer: 48,
-          data-option-for-owens: false,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-min-num-cores-for-cluster-pitzer: 48,
+          data-max-num-cores-for-cluster-pitzer: 48,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-pitzer: true,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "debug",   "debug",
-          data-min-ppn-owens: 1,
-          data-max-ppn-owens: 28,
-          data-min-ppn-pitzer: 1,
-          data-max-ppn-pitzer: 48,
-          data-option-for-owens: true,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-min-num-cores-for-cluster-owens: 1,
+          data-max-num-cores-for-cluster-owens: 28,
+          data-min-num-cores-for-cluster-pitzer: 1,
+          data-max-num-cores-for-cluster-pitzer: 48,
+          data-option-for-cluster-owens: true,
+          data-option-for-cluster-pitzer: true,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "pitzer",   "pitzer",
-          data-min-ppn-kubernetes: 1,
-          data-max-ppn-kubernetes: 10,
-          data-min-ppn-kubernetes-test: 1,
-          data-max-ppn-kubernetes-test: 10,
-          data-min-ppn-kubernetes-dev: 1,
-          data-max-ppn-kubernetes-dev: 6,
-          data-option-for-owens: false,
-          data-option-for-pitzer: false,
-          data-option-for-kubernetes: true,
-          data-option-for-kubernetes-test: true,
-          data-option-for-kubernetes-dev: true
+          data-min-num-cores-for-cluster-kubernetes: 1,
+          data-max-num-cores-for-cluster-kubernetes: 10,
+          data-min-num-cores-for-cluster-kubernetes-test: 1,
+          data-max-num-cores-for-cluster-kubernetes-test: 10,
+          data-min-num-cores-for-cluster-kubernetes-dev: 1,
+          data-max-num-cores-for-cluster-kubernetes-dev: 6,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-kubernetes: true,
+          data-option-for-cluster-kubernetes-test: true,
+          data-option-for-cluster-kubernetes-dev: true
         ]
       - [
           "owens",   "owens",
-          data-min-ppn-kubernetes: 1,
-          data-max-ppn-kubernetes: 10,
-          data-min-ppn-kubernetes-test: 1,
-          data-max-ppn-kubernetes-test: 10,
-          data-min-ppn-kubernetes-dev: 1,
-          data-max-ppn-kubernetes-dev: 6,
-          data-option-for-owens: false,
-          data-option-for-pitzer: false,
-          data-option-for-kubernetes: true,
-          data-option-for-kubernetes-test: true,
-          data-option-for-kubernetes-dev: true
+          data-min-num-cores-for-cluster-kubernetes: 1,
+          data-max-num-cores-for-cluster-kubernetes: 10,
+          data-min-num-cores-for-cluster-kubernetes-test: 1,
+          data-max-num-cores-for-cluster-kubernetes-test: 10,
+          data-min-num-cores-for-cluster-kubernetes-dev: 1,
+          data-max-num-cores-for-cluster-kubernetes-dev: 6,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-kubernetes: true,
+          data-option-for-cluster-kubernetes-test: true,
+          data-option-for-cluster-kubernetes-dev: true
         ]
       - [
           "pitzer gpu",   "pitzer-gpu",
-          data-min-ppn-kubernetes: 1,
-          data-max-ppn-kubernetes: 10,
-          data-min-ppn-kubernetes-test: 1,
-          data-max-ppn-kubernetes-test: 10,
-          data-min-ppn-kubernetes-dev: 1,
-          data-max-ppn-kubernetes-dev: 6,
-          data-option-for-owens: false,
-          data-option-for-pitzer: false,
-          data-option-for-kubernetes: true,
-          data-option-for-kubernetes-test: true,
-          data-option-for-kubernetes-dev: true
+          data-min-num-cores-for-cluster-kubernetes: 1,
+          data-max-num-cores-for-cluster-kubernetes: 10,
+          data-min-num-cores-for-cluster-kubernetes-test: 1,
+          data-max-num-cores-for-cluster-kubernetes-test: 10,
+          data-min-num-cores-for-cluster-kubernetes-dev: 1,
+          data-max-num-cores-for-cluster-kubernetes-dev: 6,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-kubernetes: true,
+          data-option-for-cluster-kubernetes-test: true,
+          data-option-for-cluster-kubernetes-dev: true
         ]
       - [
           "owens gpu",   "owens-gpu",
-          data-min-ppn-kubernetes: 1,
-          data-max-ppn-kubernetes: 10,
-          data-min-ppn-kubernetes-test: 1,
-          data-max-ppn-kubernetes-test: 10,
-          data-min-ppn-kubernetes-dev: 1,
-          data-max-ppn-kubernetes-dev: 6,
-          data-option-for-owens: false,
-          data-option-for-pitzer: false,
-          data-option-for-kubernetes: true,
-          data-option-for-kubernetes-test: true,
-          data-option-for-kubernetes-dev: true
+          data-min-num-cores-for-cluster-kubernetes: 1,
+          data-max-num-cores-for-cluster-kubernetes: 10,
+          data-min-num-cores-for-cluster-kubernetes-test: 1,
+          data-max-num-cores-for-cluster-kubernetes-test: 10,
+          data-min-num-cores-for-cluster-kubernetes-dev: 1,
+          data-max-num-cores-for-cluster-kubernetes-dev: 6,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-kubernetes: true,
+          data-option-for-cluster-kubernetes-test: true,
+          data-option-for-cluster-kubernetes-dev: true
         ]
   version:
     widget: select
@@ -220,83 +210,65 @@ attributes:
     options:
       - [
           "4.0.2", "app_rstudio_server/4.0.2",
-          data-option-for-owens: true,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: true,
-          data-option-for-kubernetes-test: true,
-          data-option-for-kubernetes-dev: true
         ]
       - [
           "3.6.3", "app_rstudio_server/3.6.3",
-          data-option-for-owens: true,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: true,
-          data-option-for-kubernetes-test: true,
-          data-option-for-kubernetes-dev: true
         ]
       - [
           "3.6.1", "gnu/9.1.0 mkl/2019.0.3 R/3.6.1 rstudio/1.1.380_server texlive",
-          data-option-for-owens: true,
-          data-option-for-pitzer: false,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.1.380_server texlive",
-          data-option-for-owens: true,
-          data-option-for-pitzer: false,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.2.1335 texlive",
-          data-option-for-owens: false,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "3.5.2", "intel/18.0.4 R/3.5.2 rstudio/1.1.456 texlive",
-          data-option-for-owens: false,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "3.5.1", "intel/18.0.4 R/3.5.1 rstudio/1.1.456 texlive",
-          data-option-for-owens: false,
-          data-option-for-pitzer: true,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server texlive",
-          data-option-for-owens: true,
-          data-option-for-pitzer: false,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server texlive",
-          data-option-for-owens: true,
-          data-option-for-pitzer: false,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
       - [
           "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server texlive",
-          data-option-for-owens: true,
-          data-option-for-pitzer: false,
-          data-option-for-kubernetes: false,
-          data-option-for-kubernetes-test: false,
-          data-option-for-kubernetes-dev: false
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false
         ]
   include_tutorials:
     widget: "check_box"
