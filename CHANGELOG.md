@@ -342,8 +342,9 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.6...HEAD
-[0.19.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.6...v0.19.6
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.20.0...HEAD
+[0.20.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.6...v0.20.0
+[0.19.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.5...v0.19.6
 [0.19.5]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.4...v0.19.5
 [0.19.4]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.3...v0.19.4
 [0.19.3]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.2...v0.19.3
