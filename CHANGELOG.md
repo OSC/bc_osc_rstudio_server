@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.20.0] - 2012-12-15
+
+### Changed
+
+- Use OnDemand's built-in dynamic javascript in [87](https://github.com/OSC/bc_osc_rstudio_server/pull/87).
+
 ## [0.19.6] - 2012-08-27
 
 ### Changed
