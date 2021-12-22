@@ -20,7 +20,7 @@ rpm-build:
     - if: $CI_COMMIT_TAG
     - if: '$CI_PIPELINE_SOURCE == "external_pull_request_event"'
   script:
-    - ./tmp/ondemand-packaging/bin/ood_packaging -w $CI_PROJECT_DIR/tmp/work -o $CI_PROJECT_DIR/tmp/output -V $CI_COMMIT_TAG $CI_PROJECT_DIR/packaging
+    - ./tmp/ondemand-packaging/bin/ood_packaging -w $CI_PROJECT_DIR/tmp/work -o $CI_PROJECT_DIR/tmp/output -V $CI_COMMIT_TAG -T $CI_PROJECT_DIR/packaging
   parallel:
     matrix:
       - OOD_PACKAGING_DIST: [el7, el8]
