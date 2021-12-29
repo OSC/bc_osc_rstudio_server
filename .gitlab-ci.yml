@@ -9,7 +9,7 @@ variables:
 before_script:
   - docker info
   - '[ -d tmp ] || mkdir tmp'
-  - git clone https://github.com/OSC/ondemand-packaging.git tmp/ondemand-packaging --branch feature/rake-task-gem
+  - git clone --branch main https://github.com/OSC/ondemand-packaging.git tmp/ondemand-packaging
 stages:
   - build
   - deploy
