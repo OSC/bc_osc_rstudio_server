@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added R 4.1.0 in []().
+- Added R 4.1.0 in [89](https://github.com/OSC/bc_osc_rstudio_server/pull/89).
 
 ## [0.20.0] - 2012-12-15
 
