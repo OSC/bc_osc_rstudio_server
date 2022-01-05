@@ -23,7 +23,7 @@ setup_env () {
   module load rstudio_launcher/centos7
   <%- end -%>
   module load <%= context.version %>
-  
+
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
   mkdir -p "<%= tutorial_dir %>/Rworkshop"
@@ -110,9 +110,12 @@ cd "${SINGULARITY_HOME}"
 module list
 hostname
 
+mkdir "$TMPDIR/run"
+
+
 set -x
 # Launch the RStudio Server
-echo "Starting up rserver..."
+echo "Starting up rserver... at $(date)"
 
 <%- if context.cluster !~ /kubernetes/ -%>
 # --contain is used to override the bindpaths specified in OSC's
@@ -129,7 +132,8 @@ SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
  --auth-encrypt-password 0 \
- --rsession-path "${RSESSION_WRAPPER_FILE}"
+ --rsession-path "${RSESSION_WRAPPER_FILE}" \
+ --server-data-dir "/tmp/run"
 <%- else -%>
 cd ${SINGULARITY_HOME:=$HOME}
 rserver \
