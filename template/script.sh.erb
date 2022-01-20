@@ -61,7 +61,7 @@ if [[ "${SINGULARITY_BINDPATH:-x}" != "x" ]]; then
   SAFE_BINDPATH=""
   IFS=',' read -r -a array <<< "$SINGULARITY_BINDPATH"
   for dir in "${array[@]}"; do
-    [ -d "$dir" ] && SAFE_BINDPATH="$dir,$SAFE_BINDPATH"
+    [ -d "$dir" ] && [ "$dir" != "/etc" ] && SAFE_BINDPATH="$dir,$SAFE_BINDPATH"
   done
 
   export SINGULARITY_BINDPATH=$(echo $SAFE_BINDPATH | sed 's/,$//')
@@ -111,6 +111,7 @@ module list
 hostname
 
 mkdir "$TMPDIR/run"
+mkdir "$TMPDIR/lib"
 
 
 set -x
@@ -127,13 +128,16 @@ echo "Starting up rserver... at $(date)"
 SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain \
  -B $TMPDIR:/tmp \
  -B $WORKING_DIR \
+ -B $WORKING_DIR/etc:/etc/rstudio \
  "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
  --auth-encrypt-password 0 \
  --rsession-path "${RSESSION_WRAPPER_FILE}" \
- --server-data-dir "/tmp/run"
+ --server-data-dir='/tmp/run' \
+ --server-user=$(whoami)
+
 <%- else -%>
 cd ${SINGULARITY_HOME:=$HOME}
 rserver \
