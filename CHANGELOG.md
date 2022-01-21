@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.21.1] - 2022-01-21
+
+### Fixed
+
+- Fixed R `app_rstudio/4.1.0` module in [91](https://github.com/OSC/bc_osc_rstudio_server/pull/91).
 
 ## [0.21.0] - 2022-01-04
 
@@ -348,7 +353,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.20.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.20.1...HEAD
+[0.20.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.20.0...v0.20.1
 [0.20.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.6...v0.20.0
 [0.19.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.5...v0.19.6
 [0.19.5]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.4...v0.19.5
