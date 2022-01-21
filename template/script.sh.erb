@@ -110,9 +110,12 @@ cd "${SINGULARITY_HOME}"
 module list
 hostname
 
+# rstudio runtime stuff
 mkdir "$TMPDIR/run"
 mkdir "$TMPDIR/lib"
 
+# server log directory in this job's working directory
+mkdir -p "$WORKING_DIR/logs"
 
 set -x
 # Launch the RStudio Server
