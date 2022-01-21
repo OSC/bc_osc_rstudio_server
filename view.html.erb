@@ -13,14 +13,14 @@
   /**
     these are my updates jeff
   */
-  let cookie = `csrf-token=<%= csrf_token %>;${expires};${cookiePath};secure`;
+  let cookie = `csrf-token=<%= csrf_token %>;${expires};${cookiePath};SameSite=strict;secure`;
   document.cookie = cookie;
 })();
 </script>
 
 <form action="/rnode/<%= host %>/<%= port %>/auth-do-sign-in" method="post" target="_blank">
   <!-- <input type="hidden" name="_csrf" value="<%= csrf_token %>"/> -->
-  <input id="csrfToken" type="hidden" name="csrf-token" value="<%= csrf_token %>"/>
+  <input type="hidden" name="csrf-token" value="<%= csrf_token %>"/>
   <input type="hidden" name="username" value="<%= ENV["USER"] %>">
   <input type="hidden" name="password" value="<%= password %>">
   <input type="hidden" name="staySignedIn" value="1">
