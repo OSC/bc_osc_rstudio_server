@@ -134,6 +134,7 @@ SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain \
  -B $TMPDIR:/tmp \
  -B $WORKING_DIR \
  -B $WORKING_DIR/etc:/etc/rstudio \
+ -B /etc/fonts \
  "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
