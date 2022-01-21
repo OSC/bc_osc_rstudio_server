@@ -1,9 +1,3 @@
-<%
-  require 'securerandom'
-
-  csrf_token = SecureRandom.uuid
-%>
-
 <script type="text/javascript">
 (function () {
   let date = new Date();
@@ -11,7 +5,7 @@
   let expires = "expires=" + date.toUTCString();
   let cookiePath = "path=/rnode/" + "<%= host.to_s %>" + "/" + "<%= port.to_s %>/";
   /**
-    these are my updates jeff
+    rstuido wants a cookie called csrf-token - but that's going to change in 2020!
   */
   let cookie = `csrf-token=<%= csrf_token %>;${expires};${cookiePath};SameSite=strict;secure`;
   document.cookie = cookie;
@@ -19,7 +13,6 @@
 </script>
 
 <form action="/rnode/<%= host %>/<%= port %>/auth-do-sign-in" method="post" target="_blank">
-  <!-- <input type="hidden" name="_csrf" value="<%= csrf_token %>"/> -->
   <input type="hidden" name="csrf-token" value="<%= csrf_token %>"/>
   <input type="hidden" name="username" value="<%= ENV["USER"] %>">
   <input type="hidden" name="password" value="<%= password %>">
