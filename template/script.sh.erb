@@ -4,7 +4,10 @@
   session_dir = session.staged_root
   tutorial_dir = session.staged_root.join('ParallelR')
 
-  r_version = context.version.split('/')[1]
+  match = /^app_rstudio_server\/(.+)$|.+ R\/(.+) .+/.match(context.version)
+  r_version = match[1] unless match[1].nil?
+  r_version = match[2] unless match[2].nil?
+
 %>
 
 # Load the required environment
