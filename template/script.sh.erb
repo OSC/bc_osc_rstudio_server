@@ -8,6 +8,7 @@
   r_version = match[1] unless match[1].nil?
   r_version = match[2] unless match[2].nil?
 
+  module_dir = context.cluster == 'owens' ? '/usr' : '/apps'
 %>
 
 # Load the required environment
@@ -90,6 +91,7 @@ sed 's/^ \{2\}//' > "$WORKING_DIR/rsession.sh" << EOL
   export RSESSION_LOG_FILE="$WORKING_DIR/rsession.log"
 
   exec &>>"\${RSESSION_LOG_FILE}"
+  set -x
 
   # rsession.sh doesn't share the same env as the outside script, so these
   # need to be set explicitly
@@ -100,9 +102,10 @@ sed 's/^ \{2\}//' > "$WORKING_DIR/rsession.sh" << EOL
   export MODULEPATH="$MODULEPATH"
   export LMOD_PKG="$LMOD_PKG"
 
+  env
+
   # Launch the original command
   echo "Launching rsession..."
-  set -x
   exec rsession --r-libs-user "${R_LIBS_USER}" "\${@}"
 EOL
 )
@@ -133,11 +136,15 @@ echo "Starting up rserver... at $(date)"
 # /dev and /proc
 # optional_tutorial_home_bind is used when include_tutorials to change the home
 # directory to get a clean environment without clobbering files
-SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" singularity run --contain \
+SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" \
+  singularity run --contain \
  -B $TMPDIR:/tmp \
  -B $WORKING_DIR \
  -B $WORKING_DIR/etc:/etc/rstudio \
  -B /etc/fonts \
+ -B /etc/profile \
+ -B /etc/profile.d \
+ -B <%= module_dir %> \
  "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
