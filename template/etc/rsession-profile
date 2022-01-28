@@ -1,0 +1,6 @@
+  export R_LIBS_SITE="${R_LIBS_SITE}"
+  export TZ="US/Eastern"
+  export HOME="$SINGULARITY_HOME"
+  export MODULEPATH_ROOT="$MODULEPATH_ROOT"
+  export MODULEPATH="$MODULEPATH"
+  export LMOD_PKG="$LMOD_PKG"
