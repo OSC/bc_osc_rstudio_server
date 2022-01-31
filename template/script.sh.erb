@@ -144,6 +144,7 @@ SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" \
  -B /etc/fonts \
  -B /etc/profile \
  -B /etc/profile.d \
+ -B /etc/alternatives \
  -B <%= module_dir %> \
  "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
