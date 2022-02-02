@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-header">
+    Module issues in terminal
+  </div>
+  <div class="card-body">
+  There's a known issue loading modules in RStudio's environment after changing versions or clusters.</br></br>
+
+  Should you have issues using modules in the RConsole or terminal simply
+  restart the terminal, restart the RConole and/or logout of the RStudio session and log
+  back in.
+  </div>
+</div>
+
+<button class="btn btn-dark mt-3" type="button" data-toggle="collapse" data-target="#importing_modules" aria-expanded="false" aria-controls="collapseExample">
+  How to import modules in R
+</button>
+
+<dl class="row collapse" id="importing_modules">
+
+  <dt class="col-sm-4">
+    <p class="font-weight-bold">Import the module function</p>
+  </dt>
+  <dd class="col-sm-8">
+    <p class="bg-light text-black">source(file.path(Sys.getenv("LMOD_PKG"), "init/R"))</p>
+  </dd>
+
+  <dt class="col-sm-4">
+    <p class="font-weight-bold">Example loading 'blast'</p>
+  </dt>
+  <dd class="col-sm-8">
+    <p class="bg-light text-black">module("load", "blast")</p>
+  </dd>
+
+  <dt class="col-sm-4">
+    <p class="font-weight-bold">Example loading a custom module</p>
+  </dt>
+  <dd class="col-sm-8">
+    <div class="bg-light text-black">
+      module("use", "~/local/share/lmodfiles") <div class="mt-1"></div>
+      module("load", "MyModuleA")
+    </div>
+  </dd>
+</dl>
