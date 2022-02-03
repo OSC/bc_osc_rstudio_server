@@ -45,6 +45,7 @@ if [[ "$SINGULARITY_HOME" != "$HOME" ]]; then
   mkdir -p "<%= tutorial_dir %>"
   mkdir -p "$SINGULARITY_HOME"
   mv "<%= session_dir %>/bin" "<%= tutorial_dir %>"
+  mv "<%= session_dir %>/etc" "<%= tutorial_dir %>"
   touch "$SINGULARITY_HOME/0_${OSC_CLASS_ID:-osc_class}.md"
 
   export WORKING_DIR="<%= tutorial_dir %>"
