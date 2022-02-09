@@ -165,5 +165,9 @@ rserver \
   --auth-none 0 \
   --auth-pam-helper-path "${RSTUDIO_AUTH}" \
   --auth-encrypt-password 0 \
-  --rsession-path "${RSESSION_WRAPPER_FILE}"
+  --rsession-path "${RSESSION_WRAPPER_FILE}" \
+  <%- if r_version > '4.1' -%>
+  --server-data-dir='/tmp/run' \
+  --server-user=$(whoami)
+  <%- end -%>
 <%- end -%>
