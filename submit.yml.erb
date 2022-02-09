@@ -33,12 +33,13 @@
               end
 
 -%>
-<% if cluster =~ /owens|pitzer/ -%>
+
 ---
 batch_connect:
   template: "basic"
   conn_params:
     - csrf_token
+<% if cluster =~ /owens|pitzer/ -%>
 script:
   accounting_id: "<%= account %>"
 <% if node_type =~ /gpu/ -%>
@@ -68,7 +69,6 @@ script:
      'ess'     => '/fs/ess',
    }
 -%>
----
 script:
   accounting_id: "<%= account %>"
   wall_time: "<%= bc_num_hours.to_i * 3600 %>"
@@ -85,11 +85,27 @@ script:
       env:
         CLUSTER: "<%= compute_cluster %>"
         KUBECONFIG: "/dev/null"
+        TMPDIR: "/tmp"
       labels:
         osc.edu/cluster: "<%= compute_cluster %>"
       port: "8080"
       cpu: "<%= num_cores %>"
       memory: "<%= memory_mb %>Mi"
+    configmap:
+      files:
+        - filename: "logging.conf"
+          data: |
+            [*]
+            log-level=debug
+            logger-type=file
+            log-dir=<%= Pathname.new(staged_root).join('logs') %>
+          mount_path: '/etc/rstudio/logging.conf'
+          sub_path: 'logging.conf'
+        - filename: "database.conf"
+          data: |
+            directory=/tmp/lib/rstudio-server
+          mount_path: '/etc/rstudio/database.conf'
+          sub_path: 'database.conf'
     mounts:
     <%- mounts.each_pair do |name, mount| -%>
       - type: host

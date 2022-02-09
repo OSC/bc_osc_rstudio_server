@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.21.9] - 2020-02-09
+
+### Fixed
+- [99](https://github.com/OSC/bc_osc_rstudio_server/pull/99) disables R/4.1.0 in k8s even
+  though it adds a lot of things to get 4.1.0 to work. See PR for details.
+
+## 0.21.2 - 0.21.8
+
+Lot's of PRs made quickly in this timeframe to get 4.1.0 to actually work with
+Rstudio 2021.09. 
+
 ## [0.21.1] - 2022-01-21
 
 ### Fixed
@@ -353,7 +365,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.20.1...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.21.9...HEAD
+[0.21.9]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.21.8...v0.21.9
 [0.20.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.20.0...v0.20.1
 [0.20.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.6...v0.20.0
 [0.19.6]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.5...v0.19.6
