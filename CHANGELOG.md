@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.22.0] - 2020-06-16
+
+### Added
+
+- Added support for apptainer in [103](https://github.com/OSC/bc_osc_rstudio_server/pull/103).
+
+### Changed
+
+- [102](https://github.com/OSC/bc_osc_rstudio_server/pull/102) changed node selector to the new k8s pattern.
+
 ## [0.21.9] - 2020-02-09
 
 ### Fixed
@@ -365,7 +375,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.21.9...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.22.0...HEAD
+[0.22.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.21.9...v0.22.0
 [0.21.9]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.21.8...v0.21.9
 [0.20.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.20.0...v0.20.1
 [0.20.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.19.6...v0.20.0

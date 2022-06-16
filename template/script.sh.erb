@@ -72,6 +72,7 @@ if [[ "${APPTAINER_BINDPATH:-x}" != "x" ]]; then
   done
 
   export APPTAINER_BINDPATH=$(echo $SAFE_BINDPATH | sed 's/,$//')
+  export SINGULARITY_BINDPATH="$APPTAINER_BINDPATH"
 fi
 set +x
 
@@ -130,6 +131,9 @@ set -x
 # Launch the RStudio Server
 echo "Starting up rserver... at $(date)"
 
+export APPTAINERENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
+export SINGULARITYENV_LD_LIBRARY_PATH="$APPTAINERENV_LD_LIBRARY_PATH"
+
 <%- if context.cluster !~ /kubernetes/ -%>
 # --contain is used to override the bindpaths specified in OSC's
 # singularity.conf which would otherwise conflict in /etc
@@ -137,8 +141,7 @@ echo "Starting up rserver... at $(date)"
 # /dev and /proc
 # optional_tutorial_home_bind is used when include_tutorials to change the home
 # directory to get a clean environment without clobbering files
-APPTAINERENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" \
-  singularity run --contain \
+singularity run --contain \
  -B $TMPDIR:/tmp \
  -B $WORKING_DIR \
  -B $WORKING_DIR/etc:/etc/rstudio \
