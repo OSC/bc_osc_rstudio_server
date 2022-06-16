@@ -17,11 +17,11 @@ setup_env () {
 
   # The rserver container module should set these environment variables:
 
-  #   SINGULARITY_BINDPATH="/etc,/media,/mnt,/opt,/run,/srv,/usr,/var,/users"
+  #   APPTAINER_BINDPATH="/etc,/media,/mnt,/opt,/run,/srv,/usr,/var,/users"
   #   RSTUDIO_SERVER_IMAGE="/usr/local/project/ondemand/singularity/rstudio/rstudio_launcher_centos7.simg"
   #   PATH="$PATH:/path/to/R:/path/to/rstudio/rserver"
  
-  # SINGULARITY_BINDPATH is being used to bind all RStudio's requirements from
+  # APPTAINER_BINDPATH is being used to bind all RStudio's requirements from
   # the host into the guest, and so those values may vary between sites.
 
   module load xalt/latest ondemand
@@ -33,45 +33,46 @@ setup_env () {
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
   mkdir -p "<%= tutorial_dir %>/Rworkshop"
-  export SINGULARITY_HOME="<%= tutorial_dir %>"
+  export APPTAINER_HOME="<%= tutorial_dir %>"
   <%- end %>
 }
 setup_env
 
 # if you're in a specialized version of RStudio (classes or tutorials)
-if [[ "$SINGULARITY_HOME" != "$HOME" ]]; then
+if [[ "$APPTAINER_HOME" != "$HOME" ]]; then
 
   # prepare the host directories and files
   mkdir -p "<%= tutorial_dir %>"
-  mkdir -p "$SINGULARITY_HOME"
+  mkdir -p "$APPTAINER_HOME"
   mv "<%= session_dir %>/bin" "<%= tutorial_dir %>"
   mv "<%= session_dir %>/etc" "<%= tutorial_dir %>"
-  touch "$SINGULARITY_HOME/0_${OSC_CLASS_ID:-osc_class}.md"
+  touch "$APPTAINER_HOME/0_${OSC_CLASS_ID:-osc_class}.md"
 
   export WORKING_DIR="<%= tutorial_dir %>"
 
   # Copy over classroom materials if the env variable exists
   if [[ -n "$OSC_CLASS_FILES" ]]; then
     set -x
-    rsync -avz --ignore-existing "$OSC_CLASS_FILES" "$SINGULARITY_HOME"
+    rsync -avz --ignore-existing "$OSC_CLASS_FILES" "$APPTAINER_HOME"
     { set +x; } 2>/dev/null
   fi
 else
   export WORKING_DIR="<%= session_dir %>"
 fi
 
-# sanatize SINGULARITY_BINDPATH for mounts that don't exist or that you
+# sanatize APPTAINER_BINDPATH for mounts that don't exist or that you
 # have no access to.
 set -x
-if [[ "${SINGULARITY_BINDPATH:-x}" != "x" ]]; then
+if [[ "${APPTAINER_BINDPATH:-x}" != "x" ]]; then
 
   SAFE_BINDPATH=""
-  IFS=',' read -r -a array <<< "$SINGULARITY_BINDPATH"
+  IFS=',' read -r -a array <<< "$APPTAINER_BINDPATH"
   for dir in "${array[@]}"; do
     [ -d "$dir" ] && [ "$dir" != "/etc" ] && SAFE_BINDPATH="$dir,$SAFE_BINDPATH"
   done
 
-  export SINGULARITY_BINDPATH=$(echo $SAFE_BINDPATH | sed 's/,$//')
+  export APPTAINER_BINDPATH=$(echo $SAFE_BINDPATH | sed 's/,$//')
+  export SINGULARITY_BINDPATH="$APPTAINER_BINDPATH"
 fi
 set +x
 
@@ -98,7 +99,7 @@ sed 's/^ \{2\}//' > "$WORKING_DIR/rsession.sh" << EOL
   # need to be set explicitly
   export R_LIBS_SITE="${R_LIBS_SITE}"
   export TZ="US/Eastern"
-  export HOME="$SINGULARITY_HOME"
+  export HOME="$APPTAINER_HOME"
   export MODULEPATH_ROOT="$MODULEPATH_ROOT"
   export MODULEPATH="$MODULEPATH"
   export LMOD_PKG="$LMOD_PKG"
@@ -113,7 +114,7 @@ EOL
 chmod 700 "$WORKING_DIR/rsession.sh"
 
 # Set working directory to home directory
-cd "${SINGULARITY_HOME}"
+cd "${APPTAINER_HOME}"
 
 # Output debug info
 module list
@@ -130,6 +131,9 @@ set -x
 # Launch the RStudio Server
 echo "Starting up rserver... at $(date)"
 
+export APPTAINERENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
+export SINGULARITYENV_LD_LIBRARY_PATH="$APPTAINERENV_LD_LIBRARY_PATH"
+
 <%- if context.cluster !~ /kubernetes/ -%>
 # --contain is used to override the bindpaths specified in OSC's
 # singularity.conf which would otherwise conflict in /etc
@@ -137,8 +141,7 @@ echo "Starting up rserver... at $(date)"
 # /dev and /proc
 # optional_tutorial_home_bind is used when include_tutorials to change the home
 # directory to get a clean environment without clobbering files
-SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" \
-  singularity run --contain \
+singularity run --contain \
  -B $TMPDIR:/tmp \
  -B $WORKING_DIR \
  -B $WORKING_DIR/etc:/etc/rstudio \
@@ -159,7 +162,7 @@ SINGULARITYENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH" \
  <%- end -%>
 
 <%- else -%>
-cd ${SINGULARITY_HOME:=$HOME}
+cd ${APPTAINER_HOME:=$HOME}
 rserver \
   --www-port 8080 \
   --auth-none 0 \
