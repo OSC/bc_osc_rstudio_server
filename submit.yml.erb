@@ -39,7 +39,7 @@ batch_connect:
   template: "basic"
   conn_params:
     - csrf_token
-<% if cluster =~ /owens|pitzer/ -%>
+<% if cluster =~ /owens|pitzer|ascend/ -%>
 script:
   accounting_id: "<%= account %>"
 <% if node_type =~ /gpu/ -%>

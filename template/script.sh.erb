@@ -4,7 +4,7 @@
   session_dir = session.staged_root
   tutorial_dir = session.staged_root.join('ParallelR')
 
-  match = /^app_rstudio_server\/(.+)$|.+ R\/(.+) .+/.match(context.version)
+  match = /^app_rstudio_server\/(.+)$|.+ R\/(.+)/.match(context.version)
   r_version = match[1] unless match[1].nil?
   r_version = match[2] unless match[2].nil?
 
@@ -24,8 +24,8 @@ setup_env () {
   # APPTAINER_BINDPATH is being used to bind all RStudio's requirements from
   # the host into the guest, and so those values may vary between sites.
 
-  module load xalt/latest ondemand
-  <%- if context.cluster !~ /kubernetes/ -%>
+  module load xalt/latest project/ondemand
+  <%- if context.cluster !~ /kubernetes|ascend/ -%>
   module load rstudio_launcher/centos7
   <%- end -%>
   module load <%= context.version %>
@@ -134,6 +134,9 @@ echo "Starting up rserver... at $(date)"
 export APPTAINERENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
 export SINGULARITYENV_LD_LIBRARY_PATH="$APPTAINERENV_LD_LIBRARY_PATH"
 
+export APPTAINERENV_PATH="$PATH:/usr/lib/rstudio-server/bin"
+export SINGULARITYENV_PATH="$PATH:/usr/lib/rstudio-server/bin"
+
 <%- if context.cluster !~ /kubernetes/ -%>
 # --contain is used to override the bindpaths specified in OSC's
 # singularity.conf which would otherwise conflict in /etc
@@ -150,7 +153,7 @@ singularity run --contain \
  -B /etc/profile.d \
  -B /etc/alternatives \
  -B <%= module_dir %> \
- "$RSTUDIO_SERVER_IMAGE" \
+ "$RSTUDIO_SERVER_IMAGE" <%= context.cluster == 'ascend' ? 'rserver' : nil %> \
  --www-port "${port}" \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
