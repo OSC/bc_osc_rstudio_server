@@ -153,7 +153,7 @@ singularity run --contain \
  -B /etc/profile.d \
  -B /etc/alternatives \
  -B <%= module_dir %> \
- "$RSTUDIO_SERVER_IMAGE" <%= context.cluster == 'ascend' ? 'rserver' : nil %> \
+ "$RSTUDIO_SERVER_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
