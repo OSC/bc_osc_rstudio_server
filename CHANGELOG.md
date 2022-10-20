@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.23.0] - 2020-10-20
+
+- Added support for Ascend cluster in [104](https://github.com/OSC/bc_osc_rstudio_server/pull/104).
+
 ## [0.22.0] - 2020-06-16
 
 ### Added
@@ -375,7 +379,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.22.0...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.23.0...HEAD
+[0.23.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.22.0...v0.23.0
 [0.22.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.21.9...v0.22.0
 [0.21.9]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.21.8...v0.21.9
 [0.20.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.20.0...v0.20.1
