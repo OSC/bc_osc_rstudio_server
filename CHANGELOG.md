@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.23.2] - 2020-10-24
+
+- Fixed min & max for ascend to be 88 instead of 96 in [106](https://github.com/OSC/bc_osc_rstudio_server/pull/106).
+
 ## [0.23.1] - 2020-10-24
 
 - Fixed min & max for ascend and update form labels for R version in [105](https://github.com/OSC/bc_osc_rstudio_server/pull/105).
