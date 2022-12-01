@@ -9,6 +9,11 @@
   r_version = match[2] unless match[2].nil?
 
   module_dir = context.cluster == 'owens' ? '/usr' : '/apps'
+  all_modules = if r_version >= '4.2' && ['owens', 'pitzer'].include?(context.cluster)
+                  "gnu/11.2.0 mkl/2021.3.0 #{context.version}"
+                else
+                  context.version
+                end
 %>
 
 # Load the required environment
@@ -28,7 +33,7 @@ setup_env () {
   <%- if context.cluster !~ /kubernetes|ascend/ -%>
   module load rstudio_launcher/centos7
   <%- end -%>
-  module load <%= context.version %>
+  module load <%= all_modules %>
 
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
