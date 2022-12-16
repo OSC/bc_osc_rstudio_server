@@ -20,15 +20,6 @@
 setup_env () {
   module purge
 
-  # The rserver container module should set these environment variables:
-
-  #   APPTAINER_BINDPATH="/etc,/media,/mnt,/opt,/run,/srv,/usr,/var,/users"
-  #   RSTUDIO_SERVER_IMAGE="/usr/local/project/ondemand/singularity/rstudio/rstudio_launcher_centos7.simg"
-  #   PATH="$PATH:/path/to/R:/path/to/rstudio/rserver"
- 
-  # APPTAINER_BINDPATH is being used to bind all RStudio's requirements from
-  # the host into the guest, and so those values may vary between sites.
-
   module load xalt/latest project/ondemand
   <%- if context.cluster !~ /kubernetes|ascend/ -%>
   module load rstudio_launcher/centos7
@@ -38,7 +29,6 @@ setup_env () {
   <%- if context.include_tutorials == "1" %>
   export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
   mkdir -p "<%= tutorial_dir %>/Rworkshop"
-  export APPTAINER_HOME="<%= tutorial_dir %>"
   <%- end %>
 }
 setup_env
@@ -64,22 +54,6 @@ if [[ "$APPTAINER_HOME" != "$HOME" ]]; then
 else
   export WORKING_DIR="<%= session_dir %>"
 fi
-
-# sanatize APPTAINER_BINDPATH for mounts that don't exist or that you
-# have no access to.
-set -x
-if [[ "${APPTAINER_BINDPATH:-x}" != "x" ]]; then
-
-  SAFE_BINDPATH=""
-  IFS=',' read -r -a array <<< "$APPTAINER_BINDPATH"
-  for dir in "${array[@]}"; do
-    [ -d "$dir" ] && [ "$dir" != "/etc" ] && SAFE_BINDPATH="$dir,$SAFE_BINDPATH"
-  done
-
-  export APPTAINER_BINDPATH=$(echo $SAFE_BINDPATH | sed 's/,$//')
-  export SINGULARITY_BINDPATH="$APPTAINER_BINDPATH"
-fi
-set +x
 
 #
 # Start RStudio Server
@@ -119,28 +93,21 @@ EOL
 chmod 700 "$WORKING_DIR/rsession.sh"
 
 # Set working directory to home directory
-cd "${APPTAINER_HOME}"
+cd "${HOME}"
 
 # Output debug info
 module list
 hostname
 
-# rstudio runtime stuff
-mkdir "$TMPDIR/run"
-mkdir "$TMPDIR/lib"
-
 # server log directory in this job's working directory
 mkdir -p "$WORKING_DIR/logs"
+
+# use the system installed rserver
+export PATH="$PATH:/usr/lib/rstudio-server/bin"
 
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver... at $(date)"
-
-export APPTAINERENV_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
-export SINGULARITYENV_LD_LIBRARY_PATH="$APPTAINERENV_LD_LIBRARY_PATH"
-
-export APPTAINERENV_PATH="$PATH:/usr/lib/rstudio-server/bin"
-export SINGULARITYENV_PATH="$PATH:/usr/lib/rstudio-server/bin"
 
 <%- if context.cluster !~ /kubernetes/ -%>
 # --contain is used to override the bindpaths specified in OSC's
@@ -149,16 +116,10 @@ export SINGULARITYENV_PATH="$PATH:/usr/lib/rstudio-server/bin"
 # /dev and /proc
 # optional_tutorial_home_bind is used when include_tutorials to change the home
 # directory to get a clean environment without clobbering files
-singularity run --contain \
- -B $TMPDIR:/tmp \
- -B $WORKING_DIR \
- -B $WORKING_DIR/etc:/etc/rstudio \
- -B /etc/fonts \
- -B /etc/profile \
- -B /etc/profile.d \
- -B /etc/alternatives \
- -B <%= module_dir %> \
- "$RSTUDIO_SERVER_IMAGE" \
+bwrap --dev-bind / / --tmpfs /tmp \
+ --bind $WORKING_DIR/etc /etc/rstudio \
+ --setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH" \
+  rserver \
  --www-port "${port}" \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
