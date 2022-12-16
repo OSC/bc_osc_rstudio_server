@@ -93,24 +93,21 @@ EOL
 chmod 700 "$WORKING_DIR/rsession.sh"
 
 # Set working directory to home directory
-cd "${APPTAINER_HOME}"
+cd "${HOME}"
 
 # Output debug info
 module list
 hostname
 
-# rstudio runtime stuff
-mkdir "$TMPDIR/run"
-mkdir "$TMPDIR/lib"
-
 # server log directory in this job's working directory
 mkdir -p "$WORKING_DIR/logs"
+
+# use the system installed rserver
+export PATH="$PATH:/usr/lib/rstudio-server/bin"
 
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver... at $(date)"
-
-export PATH="$PATH:/usr/lib/rstudio-server/bin"
 
 <%- if context.cluster !~ /kubernetes/ -%>
 # --contain is used to override the bindpaths specified in OSC's
