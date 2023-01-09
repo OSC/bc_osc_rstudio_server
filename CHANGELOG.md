@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.25.2] - 2023-01-09
+
+- Use correct minimums for huge & large mem nodes in [114](https://github.com/OSC/bc_osc_rstudio_server/pull/114).
+
 ## [0.25.1] - 2023-01-09
 
 - Allow for partial nodes huge & large mem nodes in [113](https://github.com/OSC/bc_osc_rstudio_server/pull/113).
@@ -406,7 +410,8 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.25.1...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.25.2...HEAD
+[0.25.2]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.25.1...v0.25.2
 [0.25.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.25.0...v0.25.1
 [0.25.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.24.1...v0.25.0
 [0.24.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.24.0...v0.24.1
