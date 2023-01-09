@@ -6,6 +6,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.25.1] - 2023-01-09
+
+- Allow for partial nodes huge & large mem nodes in [113](https://github.com/OSC/bc_osc_rstudio_server/pull/113).
+
+## [0.25.0] - 2022-12-16
+
+- Added c18 options back in [111](https://github.com/OSC/bc_osc_rstudio_server/pull/111).
+- Use brwap instead of singularity in [112](https://github.com/OSC/bc_osc_rstudio_server/pull/112).
+
+## [0.24.1] - 2022-10-08
+
+- Removed c18 options in [110](https://github.com/OSC/bc_osc_rstudio_server/pull/110).
+
+## [0.24.0] - 2022-12-01
+
+- Added support for R/4.2.1 in [109](https://github.com/OSC/bc_osc_rstudio_server/pull/109).
+- Fixed ascend's max cpu in [107](https://github.com/OSC/bc_osc_rstudio_server/pull/107).
+
+
 ## [0.23.2] - 2020-10-24
 
 - Fixed min & max for ascend to be 88 instead of 96 in [106](https://github.com/OSC/bc_osc_rstudio_server/pull/106).
@@ -387,7 +406,12 @@ loads R_LIBS_SITE environment variable if it is set.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.23.1...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.25.1...HEAD
+[0.25.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.25.0...v0.25.1
+[0.25.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.24.1...v0.25.0
+[0.24.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.24.0...v0.24.1
+[0.24.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.23.1...v0.24.0
+[0.23.2]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.23.1...v0.23.2
 [0.23.1]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.23.0...v0.23.1
 [0.23.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.22.0...v0.23.0
 [0.22.0]: https://github.com/OSC/bc_osc_rstudio_server/compare/v0.21.9...v0.22.0
