@@ -25,12 +25,8 @@ setup_env () {
   module load rstudio_launcher/centos7
   <%- end -%>
   module load <%= all_modules %>
-
-  <%- if context.include_tutorials == "1" %>
-  export R_LIBS_USER="<%= tutorial_dir %>/Rworkshop"
-  mkdir -p "<%= tutorial_dir %>/Rworkshop"
-  <%- end %>
 }
+
 setup_env
 
 # if you're in a specialized version of RStudio (classes or tutorials)
@@ -110,12 +106,6 @@ set -x
 echo "Starting up rserver... at $(date)"
 
 <%- if context.cluster !~ /kubernetes/ -%>
-# --contain is used to override the bindpaths specified in OSC's
-# singularity.conf which would otherwise conflict in /etc
-# using --contain requires us to bind mount in addition directories including
-# /dev and /proc
-# optional_tutorial_home_bind is used when include_tutorials to change the home
-# directory to get a clean environment without clobbering files
 bwrap --dev-bind / / --tmpfs /tmp \
  --bind $WORKING_DIR/etc /etc/rstudio \
  --setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH" \
