@@ -1,8 +1,3 @@
-<%-
-  groups = OodSupport::User.new.groups.sort_by(&:id).tap { |groups|
-    groups.unshift(groups.delete(OodSupport::Process.group))
-  }.map(&:name).grep(/^P./)
--%>
 ---
 cluster:
   - "owens"
@@ -13,7 +8,7 @@ cluster:
   - "kubernetes-dev"
 form:
   - version
-  - account
+  - auto_accounts
   - bc_num_hours
   - node_type
   - num_cores
@@ -29,13 +24,8 @@ attributes:
     min: 1
     max: 28
     step: 1
-  account:
+  auto_accounts:
     label: "Project"
-    widget: select
-    options:
-      <%- groups.each do |group| %>
-      - "<%= group %>"
-      <%- end %>
   node_type:
     widget: select
     label: "Node type"
@@ -223,6 +213,9 @@ attributes:
     label: "R version"
     help: "This defines the version of R you want to load."
     options:
+      - [
+          "4.4.0", "rstudio/2022.07.2 R/4.4.0",
+        ]
       - [
           "4.3.0", "rstudio/2022.07.2 R/4.3.0",
         ]
