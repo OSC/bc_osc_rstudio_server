@@ -214,6 +214,9 @@ attributes:
     help: "This defines the version of R you want to load."
     options:
       - [
+          "4.4.0", "rstudio/2022.07.2 R/4.4.0",
+        ]
+      - [
           "4.3.0", "rstudio/2022.07.2 R/4.3.0",
         ]
       - [
