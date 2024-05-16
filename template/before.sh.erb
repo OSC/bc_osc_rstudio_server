@@ -1,3 +1,6 @@
+# rstudio 1.4+ needs a csrf token
+csrf_token=<%= SecureRandom.uuid %>
+
 # Export the module function if it exists
 <% if context.cluster =~ /kubernetes/ -%>
 exec &> >(tee -a "pod.log")
@@ -10,6 +13,9 @@ password="$PASSWORD"
 host="$HOST_CFG"
 port="$PORT_CFG"
 export SINGULARITY_HOME="$HOME"
+
+/bin/bash /opt/open_ondemand/helpers/k8_helper csrf_token "$csrf_token"
+
 <% else -%>
 [[ $(type -t module) == "function" ]] && export -f module
 
@@ -20,7 +26,5 @@ port=$(find_port ${host})
 password="$(create_passwd 16)"
 
 <% end -%>
-# rstudio 1.4+ needs a csrf token
-csrf_token=<%= SecureRandom.uuid %>
 
 export RSTUDIO_PASSWORD="${password}"

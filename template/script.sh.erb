@@ -9,7 +9,7 @@
   r_version = match[2] unless match[2].nil?
 
   module_dir = context.cluster == 'owens' ? '/usr' : '/apps'
-  all_modules = if r_version >= '4.2' && ['owens', 'pitzer'].include?(context.cluster)
+  all_modules = if r_version >= '4.2' && ['owens', 'pitzer', 'kubernetes', 'kubernetes-test', 'kubernetes-dev'].include?(context.cluster)
                   "gnu/11.2.0 mkl/2021.3.0 #{context.version}"
                 else
                   context.version
@@ -29,27 +29,8 @@ setup_env () {
 
 setup_env
 
-# if you're in a specialized version of RStudio (classes or tutorials)
-if [[ "$APPTAINER_HOME" != "$HOME" ]]; then
 
-  # prepare the host directories and files
-  mkdir -p "<%= tutorial_dir %>"
-  mkdir -p "$APPTAINER_HOME"
-  mv "<%= session_dir %>/bin" "<%= tutorial_dir %>"
-  mv "<%= session_dir %>/etc" "<%= tutorial_dir %>"
-  touch "$APPTAINER_HOME/0_${OSC_CLASS_ID:-osc_class}.md"
-
-  export WORKING_DIR="<%= tutorial_dir %>"
-
-  # Copy over classroom materials if the env variable exists
-  if [[ -n "$OSC_CLASS_FILES" ]]; then
-    set -x
-    rsync -avz --ignore-existing "$OSC_CLASS_FILES" "$APPTAINER_HOME"
-    { set +x; } 2>/dev/null
-  fi
-else
-  export WORKING_DIR="<%= session_dir %>"
-fi
+export WORKING_DIR="<%= session_dir %>"
 
 #
 # Start RStudio Server
