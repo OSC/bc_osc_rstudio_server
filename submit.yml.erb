@@ -76,7 +76,7 @@ script:
   native:
     container:
       name: "rstudio-server"
-      image: "docker-registry.osc.edu/ondemand/ondemand-base-rhel7:0.10.0"
+      image: "docker-registry.osc.edu/ondemand/ondemand-base-rhel7:0.11.1"
       image_pull_policy: "IfNotPresent"
       command: ["/bin/bash","-l","<%= staged_root %>/job_script_content.sh"]
       restart_policy: 'OnFailure'
@@ -104,6 +104,18 @@ script:
             directory=/tmp/lib/rstudio-server
           mount_path: '/etc/rstudio/database.conf'
           sub_path: 'database.conf'
+        - filename: 'k8_helper'
+          data: |
+            #!/usr/bin/env bash
+
+            set -x
+
+            KEY=$1
+            VALUE=$(echo -n $2 | base64)
+            CFG="$(hostname)-secret"
+
+            kubectl get secret ${CFG} -o json | jq --arg key $KEY --arg value $VALUE '.data[$key] = $value'  | kubectl apply -f -
+          mount_path: '/opt/open_ondemand/helpers'
     mounts:
     <%- mounts.each_pair do |name, mount| -%>
       - type: host
