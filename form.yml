@@ -3,6 +3,7 @@ cluster:
   - "owens"
   - "pitzer"
   - "ascend"
+  - "cardinal"
   - "kubernetes"
   - "kubernetes-test"
   - "kubernetes-dev"
@@ -67,6 +68,7 @@ attributes:
           data-max-num-cores-for-cluster-pitzer: 40,
           data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -77,6 +79,7 @@ attributes:
           data-max-num-cores-for-cluster-pitzer: 48,
           data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -99,6 +102,7 @@ attributes:
           data-max-num-cores-for-cluster-pitzer: 40,
           data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -109,6 +113,7 @@ attributes:
           data-max-num-cores-for-cluster-pitzer: 48,
           data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -120,6 +125,7 @@ attributes:
           data-min-num-cores-for-cluster-pitzer: 20,
           data-max-num-cores-for-cluster-pitzer: 80,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -131,6 +137,7 @@ attributes:
           data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: true,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -144,6 +151,7 @@ attributes:
           data-option-for-cluster-owens: true,
           data-option-for-cluster-pitzer: true,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -159,6 +167,7 @@ attributes:
           data-option-for-cluster-owens: false,
           data-option-for-cluster-pitzer: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: true,
           data-option-for-cluster-kubernetes-test: true,
           data-option-for-cluster-kubernetes-dev: true
@@ -174,6 +183,7 @@ attributes:
           data-option-for-cluster-owens: false,
           data-option-for-cluster-pitzer: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: true,
           data-option-for-cluster-kubernetes-test: true,
           data-option-for-cluster-kubernetes-dev: true
@@ -189,6 +199,7 @@ attributes:
           data-option-for-cluster-owens: false,
           data-option-for-cluster-pitzer: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: true,
           data-option-for-cluster-kubernetes-test: true,
           data-option-for-cluster-kubernetes-dev: true
@@ -204,6 +215,7 @@ attributes:
           data-option-for-cluster-owens: false,
           data-option-for-cluster-pitzer: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: true,
           data-option-for-cluster-kubernetes-test: true,
           data-option-for-cluster-kubernetes-dev: true
@@ -214,30 +226,46 @@ attributes:
     help: "This defines the version of R you want to load."
     options:
       - [
+          "4.4.0", "gcc/12.3.0 R/4.4.0",
+          data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-owens: false,
+          data-option-for-cluster-ascend: false,
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false,
+        ]
+      - [
           "4.4.0", "rstudio/2022.07.2 R/4.4.0",
+          data-option-for-cluster-cardinal: false,
         ]
       - [
           "4.3.0", "rstudio/2022.07.2 R/4.3.0",
+          data-option-for-cluster-cardinal: false,
         ]
       - [
           "4.2.1", "rstudio/2022.07.2 R/4.2.1",
+          data-option-for-cluster-cardinal: false,
         ]
       - [
           "4.1.0", "app_rstudio_server/4.1.0",
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-ascend: false
         ]
       - [
           "4.0.2", "app_rstudio_server/4.0.2",
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-ascend: false,
         ]
       - [
           "3.6.3", "app_rstudio_server/3.6.3",
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-ascend: false,
         ]
       - [
           "3.6.1", "gnu/9.1.0 mkl/2019.0.3 R/3.6.1 rstudio/1.1.380_server texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -246,6 +274,7 @@ attributes:
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.1.380_server texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -254,6 +283,7 @@ attributes:
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.2.1335 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-owens: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -262,6 +292,7 @@ attributes:
           "3.5.2", "intel/18.0.4 R/3.5.2 rstudio/1.1.456 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-owens: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -270,6 +301,7 @@ attributes:
           "3.5.1", "intel/18.0.4 R/3.5.1 rstudio/1.1.456 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-owens: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -278,6 +310,7 @@ attributes:
           "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -286,6 +319,7 @@ attributes:
           "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -294,6 +328,7 @@ attributes:
           "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false

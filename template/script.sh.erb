@@ -21,7 +21,7 @@ setup_env () {
   module purge
 
   module load xalt/latest project/ondemand
-  <%- if context.cluster !~ /kubernetes|ascend/ -%>
+  <%- if context.cluster !~ /kubernetes|ascend|cardinal/ -%>
   module load rstudio_launcher/centos7
   <%- end -%>
   module load <%= all_modules %>
@@ -55,7 +55,7 @@ sed 's/^ \{2\}//' > "$WORKING_DIR/rsession.sh" << EOL
   # need to be set explicitly
   export R_LIBS_SITE="${R_LIBS_SITE}"
   export TZ="US/Eastern"
-  export HOME="$APPTAINER_HOME"
+  export HOME="$HOME"
   export MODULEPATH_ROOT="$MODULEPATH_ROOT"
   export MODULEPATH="$MODULEPATH"
   export LMOD_PKG="$LMOD_PKG"
