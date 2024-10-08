@@ -271,15 +271,6 @@ attributes:
           data-option-for-cluster-kubernetes-dev: false
         ]
       - [
-          "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.1.380_server texlive",
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-pitzer: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.2.1335 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-owens: false,
@@ -308,24 +299,6 @@ attributes:
         ]
       - [
           "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server texlive",
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-pitzer: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "3.4.2", "intel/16.0.3 R/3.4.2 rstudio/1.1.380_server texlive",
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-pitzer: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "3.3.2", "intel/16.0.3 R/3.3.2 rstudio/1.0.136_server texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: false,
           data-option-for-cluster-cardinal: false,
