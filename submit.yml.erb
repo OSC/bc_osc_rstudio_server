@@ -39,7 +39,7 @@ batch_connect:
   template: "basic"
   conn_params:
     - csrf_token
-<% if cluster =~ /owens|pitzer|ascend/ -%>
+<% if cluster =~ /owens|pitzer|ascend|cardinal/ -%>
 script:
 <% if node_type =~ /gpu/ -%>
   gpus_per_node: 1
