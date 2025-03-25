@@ -1,6 +1,5 @@
 ---
 cluster:
-  - "owens"
   - "pitzer"
   - "ascend"
   - "ascend-nextgen"
@@ -21,8 +20,8 @@ attributes:
     label: "Number of cores"
     value: 1
     help: |
-      Number of cores on node type (4 GB per core unless requesting whole
-      node). Leave blank if requesting full node.
+      Minimums and Maximums will change depending on your choice of Node type
+      and Cluster.
     min: 1
     max: 28
     step: 1
@@ -53,8 +52,6 @@ attributes:
     options:
       - [
           "any",     "any",
-          data-min-num-cores-for-cluster-owens: 1,
-          data-max-num-cores-for-cluster-owens: 28,
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
           data-min-num-cores-for-cluster-ascend: 1,
@@ -71,7 +68,6 @@ attributes:
           "40 core",     "any-40core",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 40,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
           data-option-for-cluster-cardinal: false,
@@ -83,7 +79,6 @@ attributes:
           "48 core",     "any-48core",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
           data-option-for-cluster-cardinal: false,
@@ -93,8 +88,6 @@ attributes:
         ]
       - [
           "any gpu",     "gpu",
-          data-min-num-cores-for-cluster-owens: 1,
-          data-max-num-cores-for-cluster-owens: 28,
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
           data-min-num-cores-for-cluster-ascend: 1,
@@ -111,7 +104,6 @@ attributes:
           "40 core gpu",     "gpu-40core",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 40,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
           data-option-for-cluster-cardinal: false,
@@ -123,7 +115,6 @@ attributes:
           "48 core gpu",     "gpu-48core",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
           data-option-for-cluster-cardinal: false,
@@ -133,8 +124,6 @@ attributes:
         ]
       - [
           "hugemem", "hugemem",
-          data-min-num-cores-for-cluster-owens: 4,
-          data-max-num-cores-for-cluster-owens: 48,
           data-min-num-cores-for-cluster-pitzer: 20,
           data-max-num-cores-for-cluster-pitzer: 80,
           data-min-num-cores-for-cluster-cardinal: 47,
@@ -149,7 +138,6 @@ attributes:
           "largemem", "largemem",
           data-min-num-cores-for-cluster-pitzer: 24,
           data-max-num-cores-for-cluster-pitzer: 48,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
           data-option-for-cluster-pitzer: true,
@@ -160,11 +148,8 @@ attributes:
         ]
       - [
           "debug",   "debug",
-          data-min-num-cores-for-cluster-owens: 1,
-          data-max-num-cores-for-cluster-owens: 28,
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
-          data-option-for-cluster-owens: true,
           data-option-for-cluster-pitzer: true,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
@@ -181,7 +166,6 @@ attributes:
           data-max-num-cores-for-cluster-kubernetes-test: 10,
           data-min-num-cores-for-cluster-kubernetes-dev: 1,
           data-max-num-cores-for-cluster-kubernetes-dev: 6,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-pitzer: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
@@ -215,7 +199,6 @@ attributes:
           data-max-num-cores-for-cluster-kubernetes-test: 10,
           data-min-num-cores-for-cluster-kubernetes-dev: 1,
           data-max-num-cores-for-cluster-kubernetes-dev: 6,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-pitzer: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
@@ -232,7 +215,6 @@ attributes:
           data-max-num-cores-for-cluster-kubernetes-test: 10,
           data-min-num-cores-for-cluster-kubernetes-dev: 1,
           data-max-num-cores-for-cluster-kubernetes-dev: 6,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-pitzer: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
@@ -249,7 +231,6 @@ attributes:
       - [
           "4.4.0", "gcc/12.3.0 R/4.4.0",
           data-option-for-cluster-pitzer: false,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
@@ -302,7 +283,6 @@ attributes:
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.2.1335 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
@@ -312,7 +292,6 @@ attributes:
           "3.5.2", "intel/18.0.4 R/3.5.2 rstudio/1.1.456 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
@@ -322,7 +301,6 @@ attributes:
           "3.5.1", "intel/18.0.4 R/3.5.1 rstudio/1.1.456 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-ascend-nextgen: false,
-          data-option-for-cluster-owens: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
