@@ -215,7 +215,6 @@ attributes:
       - [
           "4.4.0", "gcc/12.3.0 R/4.4.0",
           data-option-for-cluster-pitzer: false,
-          data-option-for-cluster-ascend: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false,
@@ -223,14 +222,17 @@ attributes:
       - [
           "4.4.0", "rstudio/2022.07.2 R/4.4.0",
           data-option-for-cluster-cardinal: false,
+          data-option-for-cluster-ascend: false,
         ]
       - [
           "4.3.0", "rstudio/2022.07.2 R/4.3.0",
           data-option-for-cluster-cardinal: false,
+          data-option-for-cluster-ascend: false,
         ]
       - [
           "4.2.1", "rstudio/2022.07.2 R/4.2.1",
           data-option-for-cluster-cardinal: false,
+          data-option-for-cluster-ascend: false,
         ]
       - [
           "4.1.0", "app_rstudio_server/4.1.0",
