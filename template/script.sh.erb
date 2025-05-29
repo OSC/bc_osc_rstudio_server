@@ -9,7 +9,7 @@
   r_version = match[2] unless match[2].nil?
 
   module_dir = context.cluster == 'owens' ? '/usr' : '/apps'
-  all_modules = if r_version >= '4.2' && ['owens', 'pitzer', 'kubernetes', 'kubernetes-test', 'kubernetes-dev'].include?(context.cluster)
+  all_modules = if r_version >= '4.2' && ['owens', 'kubernetes', 'kubernetes-test', 'kubernetes-dev'].include?(context.cluster)
                   "gnu/11.2.0 mkl/2021.3.0 #{context.version}"
                 else
                   context.version
@@ -21,9 +21,6 @@ setup_env () {
   module purge
 
   module load project/ondemand
-  <%- if context.cluster !~ /kubernetes|ascend|cardinal/ -%>
-  module load rstudio_launcher/centos7
-  <%- end -%>
   module load <%= all_modules %>
 }
 
