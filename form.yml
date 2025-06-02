@@ -1,6 +1,7 @@
 ---
 cluster:
   - "pitzer"
+  - "pitzer-rhel9"
   - "ascend"
   - "cardinal"
   - "kubernetes"
@@ -53,6 +54,8 @@ attributes:
           "any",     "any",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
+          data-min-num-cores-for-cluster-pitzer-rhel9: 1,
+          data-max-num-cores-for-cluster-pitzer-rhel9: 48,
           data-min-num-cores-for-cluster-ascend: 1,
           data-max-num-cores-for-cluster-ascend: 118,
           data-min-num-cores-for-cluster-cardinal: 1,
@@ -65,6 +68,8 @@ attributes:
           "40 core",     "any-40core",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 40,
+          data-min-num-cores-for-cluster-pitzer-rhel9: 1,
+          data-max-num-cores-for-cluster-pitzer-rhel9: 40,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
@@ -75,6 +80,8 @@ attributes:
           "48 core",     "any-48core",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
+          data-min-num-cores-for-cluster-pitzer-rhel9: 1,
+          data-max-num-cores-for-cluster-pitzer-rhel9: 48,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
@@ -85,6 +92,8 @@ attributes:
           "any gpu",     "gpu",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
+          data-min-num-cores-for-cluster-pitzer-rhel9: 1,
+          data-max-num-cores-for-cluster-pitzer-rhel9: 48,
           data-min-num-cores-for-cluster-ascend: 1,
           data-max-num-cores-for-cluster-ascend: 118,
           data-min-num-cores-for-cluster-cardinal: 1,
@@ -97,6 +106,8 @@ attributes:
           "40 core gpu",     "gpu-40core",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 40,
+          data-min-num-cores-for-cluster-pitzer-rhel9: 1,
+          data-max-num-cores-for-cluster-pitzer-rhel9: 40,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
@@ -107,6 +118,8 @@ attributes:
           "48 core gpu",     "gpu-48core",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
+          data-min-num-cores-for-cluster-pitzer-rhel9: 1,
+          data-max-num-cores-for-cluster-pitzer-rhel9: 48,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
@@ -117,6 +130,8 @@ attributes:
           "hugemem", "hugemem",
           data-min-num-cores-for-cluster-pitzer: 20,
           data-max-num-cores-for-cluster-pitzer: 80,
+          data-min-num-cores-for-cluster-pitzer-rhel9: 20,
+          data-max-num-cores-for-cluster-pitzer-rhel9: 80,
           data-min-num-cores-for-cluster-cardinal: 47,
           data-max-num-cores-for-cluster-cardinal: 96,
           data-option-for-cluster-ascend: false,
@@ -128,6 +143,8 @@ attributes:
           "largemem", "largemem",
           data-min-num-cores-for-cluster-pitzer: 24,
           data-max-num-cores-for-cluster-pitzer: 48,
+          data-min-num-cores-for-cluster-pitzer-rhel9: 24,
+          data-max-num-cores-for-cluster-pitzer-rhel9: 48,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: true,
           data-option-for-cluster-cardinal: false,
@@ -139,6 +156,8 @@ attributes:
           "debug",   "debug",
           data-min-num-cores-for-cluster-pitzer: 1,
           data-max-num-cores-for-cluster-pitzer: 48,
+          data-min-num-cores-for-cluster-pitzer-rhel9: 1,
+          data-max-num-cores-for-cluster-pitzer-rhel9: 48,
           data-option-for-cluster-pitzer: true,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
@@ -155,6 +174,7 @@ attributes:
           data-min-num-cores-for-cluster-kubernetes-dev: 1,
           data-max-num-cores-for-cluster-kubernetes-dev: 6,
           data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-pitzer-rhel9: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: true,
@@ -170,6 +190,7 @@ attributes:
           data-min-num-cores-for-cluster-kubernetes-dev: 1,
           data-max-num-cores-for-cluster-kubernetes-dev: 6,
           data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-pitzer-rhel9: false,
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: true,
@@ -192,36 +213,43 @@ attributes:
           "4.4.0", "rstudio/2022.07.2 R/4.4.0",
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-pitzer-rhel9: false,
         ]
       - [
           "4.3.0", "rstudio/2022.07.2 R/4.3.0",
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-pitzer-rhel9: false,
         ]
       - [
           "4.2.1", "rstudio/2022.07.2 R/4.2.1",
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-pitzer-rhel9: false,
         ]
       - [
           "4.1.0", "app_rstudio_server/4.1.0",
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-pitzer-rhel9: false,
         ]
       - [
           "4.0.2", "app_rstudio_server/4.0.2",
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-pitzer-rhel9: false,
         ]
       - [
           "3.6.3", "app_rstudio_server/3.6.3",
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-ascend: false,
+          data-option-for-cluster-pitzer-rhel9: false,
         ]
       - [
           "3.6.1", "gnu/9.1.0 mkl/2019.0.3 R/3.6.1 rstudio/1.1.380_server texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-pitzer-rhel9: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
@@ -231,6 +259,7 @@ attributes:
           "3.6.0", "gnu/7.3.0 mkl/2018.0.3 R/3.6.0 rstudio/1.2.1335 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
+          data-option-for-cluster-pitzer-rhel9: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -239,6 +268,7 @@ attributes:
           "3.5.2", "intel/18.0.4 R/3.5.2 rstudio/1.1.456 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
+          data-option-for-cluster-pitzer-rhel9: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -247,6 +277,7 @@ attributes:
           "3.5.1", "intel/18.0.4 R/3.5.1 rstudio/1.1.456 texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-cardinal: false,
+          data-option-for-cluster-pitzer-rhel9: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
           data-option-for-cluster-kubernetes-dev: false
@@ -255,6 +286,7 @@ attributes:
           "3.5.0", "intel/18.0.3 R/3.5.0 rstudio/1.1.380_server texlive",
           data-option-for-cluster-ascend: false,
           data-option-for-cluster-pitzer: false,
+          data-option-for-cluster-pitzer-rhel9: false,
           data-option-for-cluster-cardinal: false,
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
