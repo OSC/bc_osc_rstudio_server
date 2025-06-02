@@ -8,8 +8,7 @@
   r_version = match[1] unless match[1].nil?
   r_version = match[2] unless match[2].nil?
 
-  module_dir = context.cluster == 'owens' ? '/usr' : '/apps'
-  all_modules = if r_version >= '4.2' && ['owens', 'pitzer', 'kubernetes', 'kubernetes-test', 'kubernetes-dev'].include?(context.cluster)
+  all_modules = if r_version >= '4.2' && ['pitzer', 'kubernetes', 'kubernetes-test', 'kubernetes-dev'].include?(context.cluster)
                   "gnu/11.2.0 mkl/2021.3.0 #{context.version}"
                 else
                   context.version

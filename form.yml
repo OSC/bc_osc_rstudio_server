@@ -162,38 +162,7 @@ attributes:
           data-option-for-cluster-kubernetes-dev: true
         ]
       - [
-          "owens",   "owens",
-          data-min-num-cores-for-cluster-kubernetes: 1,
-          data-max-num-cores-for-cluster-kubernetes: 10,
-          data-min-num-cores-for-cluster-kubernetes-test: 1,
-          data-max-num-cores-for-cluster-kubernetes-test: 10,
-          data-min-num-cores-for-cluster-kubernetes-dev: 1,
-          data-max-num-cores-for-cluster-kubernetes-dev: 6,
-          data-option-for-cluster-owens: false,
-          data-option-for-cluster-pitzer: false,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: true,
-          data-option-for-cluster-kubernetes-test: true,
-          data-option-for-cluster-kubernetes-dev: true
-        ]
-      - [
           "pitzer gpu",   "pitzer-gpu",
-          data-min-num-cores-for-cluster-kubernetes: 1,
-          data-max-num-cores-for-cluster-kubernetes: 10,
-          data-min-num-cores-for-cluster-kubernetes-test: 1,
-          data-max-num-cores-for-cluster-kubernetes-test: 10,
-          data-min-num-cores-for-cluster-kubernetes-dev: 1,
-          data-max-num-cores-for-cluster-kubernetes-dev: 6,
-          data-option-for-cluster-pitzer: false,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: true,
-          data-option-for-cluster-kubernetes-test: true,
-          data-option-for-cluster-kubernetes-dev: true
-        ]
-      - [
-          "owens gpu",   "owens-gpu",
           data-min-num-cores-for-cluster-kubernetes: 1,
           data-max-num-cores-for-cluster-kubernetes: 10,
           data-min-num-cores-for-cluster-kubernetes-test: 1,
