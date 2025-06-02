@@ -28,7 +28,7 @@ batch_connect:
   template: "basic"
   conn_params:
     - csrf_token
-<% if cluster =~ /owens|pitzer|ascend|cardinal/ -%>
+<% if cluster !~ /kubernetes/ -%>
 script:
 <% if node_type =~ /gpu/ -%>
   gpus_per_node: 1
@@ -38,12 +38,7 @@ script:
     - "<%= arg %>"
     <%- end %>
 <% elsif cluster =~ /kubernetes/
-   if node_type =~ /owens/
-     compute_cluster = "owens"
-     apps_path = "/usr/local"
-     # Memory per core with hyperthreading enabled
-     memory_mb = num_cores.to_i * 2200
-   elsif node_type =~ /pitzer/
+   if node_type =~ /pitzer/
      compute_cluster = "pitzer"
      apps_path = "/apps"
      # Memory per core with hyperthreading enabled
