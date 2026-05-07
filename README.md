@@ -3,32 +3,18 @@
 ![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_rstudio_server.svg)
 [![GitHub License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-## Overview
+An interactive app designed for OSC OnDemand that launches an RStudio Server
+within an Owens batch job.
 
-An [Open OnDemand](https://openondemand.org/) Batch Connect app that launches an [RStudio](https://posit.co/products/open-source/rstudio) server as an interactive session on OSC HPC clusters. RStudio is an open-source development environment for R.
+## Prerequisites
 
-This app uses the Batch Connect `basic` template with Slurm and supports
-clusters: Ascend, Pitzer, Cardinal, and Kubernetes.
+This Batch Connect app requires the following software be installed on the
+**compute nodes** that the batch job is intended to run on (**NOT** the
+OnDemand node):
 
-- **Upstream project:** [RStudio](https://posit.co/products/open-source/rstudio)
-
-## Screenshots
-
-![RStudio running in browser](docs/bc_osc_rstudio.png)
-
-## Features
-
-- Launches RStudio Server in a web browser
-- Runs on OSC compute nodes through interactive jobs
-- Configurable cores, memory, wall time, and R version via the launch form
-- Access to OSC file systems (home, project, scratch) from within the session
-- Built-in RStudio tools: console, script editor, plots pane, terminal
-
-## Requirements
-
-### Compute Node Software
-
-- [Lmod] 6.0.1+ or any other `module restore` and `module load <modules>` based CLI used to load appropriate environments within the batch job before launching the RStudio Server.
+- [Lmod] 6.0.1+ or any other `module restore` and `module load <modules>` based
+  CLI used to load appropriate environments within the batch job before
+  launching the RStudio Server.
 
 **without Singularity**
 
@@ -43,11 +29,6 @@ clusters: Ascend, Pitzer, Cardinal, and Kubernetes.
 - Corresponding module to launch the above Singularity image (see
   [example_module])
 
-### Open OnDemand
-
-- Open OnDemand
-- Scheduler: Slurm, Kubernetes
-
 [R]: https://www.r-project.org/
 [RStudio Server]: https://www.rstudio.com/products/rstudio-server/
 [PRoot]: https://proot-me.github.io/
@@ -56,87 +37,38 @@ clusters: Ascend, Pitzer, Cardinal, and Kubernetes.
 [nickjer/singularity-rstudio]: https://www.singularity-hub.org/collections/463
 [example_module]: https://github.com/nickjer/singularity-rstudio/blob/master/example_module/
 
-## App Installation
-
-### 1. Clone the repository
+## Install
 
 Use git to clone this app and checkout the desired branch/version you want to
 use:
 
 ```sh
-scl enable git19 -- git clone https://github.com/OSC/bc_osc_rstudio_server.git
-cd bc_osc_rstudio_server
-# Pin to a release (recommended)
-scl enable git19 -- git checkout v0.33.0
+scl enable git19 -- git clone <repo>
+cd <dir>
+scl enable git19 -- git checkout <tag/branch>
 ```
+
+You will not need to do anything beyond this as all necessary assets are
+installed. You will also not need to restart this app as it isn't a Passenger
+app.
 
 To update the app you would:
 
 ```sh
-cd bc_osc_rstuio_server
+cd <dir>
 scl enable git19 -- git fetch
 scl enable git19 -- git checkout <tag/branch>
 ```
 
-### 2. Configure for your site
-Edit `form.yml` and update these values for your cluster:                                                                                               | Attribute          | OSC Default                          | Change to                        |
-|--------------------|--------------------------------------|----------------------------------|
-| `cluster`          | `ascend`, `pitzer`, `cardinal`, etc. | Your cluster name(s)             |
-| `version`  | `4.4.0` (and others)                 | R versions available on your system |
-| `node_type`        | OSC-specific node types              | Node types available on your cluster |
-| `num_cores`    | `28`                                 | Max cores on your compute nodes  |
-
-### 3. Verify 
-No OOD restart is needed (Batch Connect apps are detected automatically). Visit your OOD dashboard and look for **RStudio Server** under **Interactive Apps > Servers**.
-
-## Configuration
-### form.yml attributes
-| Attribute | Description | Default |
-|-----------|-------------|---------|
-| `cluster` | Target cluster ID(s) | `ascend`, `pitzer`, `kubernetes`, `kubernetes-test`, `kubernetes-dev`, `cardinal` |
-| `num_cores` | Number of cores | `1` | 
-| `bc_num_hours` | Maximum wall time (hours) | `1` | 
-
-<!--### Environment variables-->
-
-## Troubleshooting
-
-### Job starts but app doesn't appear (Batch Connect)
-
-1. Check the job's `output.log` in `~/ondemand/data/sys/YOUR-APP/`
-2. Verify the module loads correctly: `module load software/1.0`
-
-<!-- Add more here in the future as it comes up -->
-
-## Testing
-| Site                      | OOD Version    | Scheduler | Status     |
-|---------------------------|----------------|-----------|------------|
-| Ohio Supercomputer Center | 4.1.4 | Slurm/K8s     | Production |
-
-To verify your installation:
-
-1. Launch the app from the OOD dashboard with default settings
-2. Confirm the application loads in the browser
-
-## Known Limitations
-- GPU nodes can be selected via node type in the launch form, but no GPU-specific environment is configured automatically (e.g., CUDA modules); additional setup is required for GPU-enabled workflows
-- Only tested on RHEL
+Again, you do not need to restart the app as it isn't a Passenger app.
 
 ## Contributing
 
-Contributions are welcome. To contribute:
-
 1. Fork it ( https://github.com/OSC/bc_osc_rstudio_server/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Submit a pull request with a description of your changes
-
-For bugs or feature requests, [open an issue](https://github.com/OSC/bc_osc_rstudio_server/issues).
-
-This app is part of the [OOD Appverse](https://ondemand.connectci.org/affinity-groups/ood-appverse). Join the [Appverse Affinity Group](https://ondemand.connectci.org/affinity-groups/ood-appverse) to connect with other contributors.
-
-## References
-- [RStudio](https://posit.co/products/open-source/rstudio) - The application launched by this OOD app
-- [Open OnDemand](https://openondemand.org/) — the HPC portal framework
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
 
 ## License
 
@@ -145,14 +77,6 @@ This app is part of the [OOD Appverse](https://ondemand.connectci.org/affinity-g
 * Code is licensed under MIT (see LICENSE.txt)o
 * RStudio, Shiny and the RStudio logo are all registered trademarks of RStudio.
 
-## Acknowledgments
-
-This app is built on [Open OnDemand](https://openondemand.org/), developed and
-maintained by the [Ohio Supercomputer Center (OSC)](https://www.osc.edu/).
-
-Open OnDemand is supported by the National Science Foundation under awards
-[NSF SI2-SSE-1534949](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1534949)
-and [NSF CSSI-Frameworks-1835725](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1835725).
 
 ## RServer command line arguements
 
