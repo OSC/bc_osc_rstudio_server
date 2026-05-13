@@ -182,6 +182,12 @@ attributes:
     help: "This defines the version of R you want to load."
     options:
       - [
+          "4.5.2", "gcc/12.3.0 R/4.5.2",
+          data-option-for-cluster-kubernetes: false,
+          data-option-for-cluster-kubernetes-test: false,
+          data-option-for-cluster-kubernetes-dev: false,
+        ]
+      - [
           "4.4.0", "gcc/12.3.0 R/4.4.0",
           data-option-for-cluster-kubernetes: false,
           data-option-for-cluster-kubernetes-test: false,
