@@ -5,12 +5,14 @@
 
 ## Overview
 
-An [Open OnDemand](https://openondemand.org/) Batch Connect app that launches an [RStudio](https://posit.co/products/open-source/rstudio) server as an interactive session on OSC HPC clusters. RStudio is an open-source development environment for R.
+An [Open OnDemand](https://openondemand.org/) Batch Connect app that launches an [RStudio Server](https://posit.co/products/open-source/rstudio) session for [R](https://www.r-project.org) on OSC HPC clusters. RStudio Server provides a web-based IDE for R with code editing, debugging, and visualization capabilities.
 
 This app uses the Batch Connect `basic` template with Slurm and supports
 clusters: Ascend, Pitzer, Cardinal, and Kubernetes.
 
-- **Upstream project:** [RStudio](https://posit.co/products/open-source/rstudio)
+- **Upstream project:** [RStudio Server](https://posit.co/products/open-source/rstudio)
+- **Batch Connect template:** `basic`
+- **Scheduler:** Slurm
 
 ## Screenshots
 
@@ -18,86 +20,97 @@ clusters: Ascend, Pitzer, Cardinal, and Kubernetes.
 
 ## Features
 
-- Launches RStudio Server in a web browser
-- Runs on OSC compute nodes through interactive jobs
-- Configurable cores, memory, wall time, and R version via the launch form
+- Multi-cluster support (Pitzer, Ascend, Cardinal, Kubernetes)
+- Multiple R versions available (4.4.0, 4.3.0, 4.2.1, 4.1.0, 4.0.2, 3.6.3)
+  via `app_rstudio_server/` and `R/` modules
+- GPU-enabled node types
+- Configurable cores, wall time, and node type (standard, 40-core, 48-core,
+  GPU, hugemem, largemem, debug) via the launch form
+- Kubernetes container support with Docker image
+- Module-based software loading via Lmod (`project/ondemand`,
+  `rstudio_launcher/centos7`, `app_rstudio_server/` or `R/`)
+- CSRF token support for RStudio 1.4+
+- Bubblewrap (`bwrap`) isolation for non-Kubernetes clusters
 - Access to OSC file systems (home, project, scratch) from within the session
-- Built-in RStudio tools: console, script editor, plots pane, terminal
 
 ## Requirements
 
 ### Compute Node Software
 
-- [Lmod] 6.0.1+ or any other `module restore` and `module load <modules>` based CLI used to load appropriate environments within the batch job before launching the RStudio Server.
+This Batch Connect app requires the following software be installed on the **compute nodes** that the batch job is intended to run on (**NOT** the OnDemand node):
 
-**without Singularity**
-
-- [R] 3.3.2+ (earlier versions are untested but may work for you)
-- [RStudio Server] 1.0.136+ (earlier versions are untested by may work for you)
-- [PRoot] 5.1.0+ (used to setup fake bind mount)
-
-**or with Singularity**
-
-- [Singularity] 2.4.2+
-- A Singularity image similar to [nickjer/singularity-rstudio]
-- Corresponding module to launch the above Singularity image (see
-  [example_module])
+- [Lmod](https://www.tacc.utexas.edu/research-development/tacc-projects/lmod)
+  6.0.1+ or any other `module restore` and `module load <modules>` based CLI
+- [R](https://www.r-project.org/) 3.3.2+ (earlier versions are untested but
+  may work)
+- [RStudio Server](https://www.rstudio.com/products/rstudio-server/) 1.0.136+
+- [Bubblewrap](https://github.com/containers/bubblewrap) (`bwrap`) for
+  non-Kubernetes clusters
 
 ### Open OnDemand
 
-- Open OnDemand
+- Tested to work with the latest version of Open OnDemand
 - Scheduler: Slurm, Kubernetes
 
-[R]: https://www.r-project.org/
-[RStudio Server]: https://www.rstudio.com/products/rstudio-server/
-[PRoot]: https://proot-me.github.io/
-[Singularity]: http://singularity.lbl.gov/
-[Lmod]: https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
-[nickjer/singularity-rstudio]: https://www.singularity-hub.org/collections/463
-[example_module]: https://github.com/nickjer/singularity-rstudio/blob/master/example_module/
+### Optional
+
+- [Singularity](https://sylabs.io/singularity/) 2.4.2+ (alternative to
+  bubblewrap -- see [nickjer/singularity-rstudio](https://www.singularity-hub.org/collections/463))
+
 
 ## App Installation
 
 ### 1. Clone the repository
 
-Use git to clone this app and checkout the desired branch/version you want to
-use:
+Use git to clone this app and checkout the desired branch/version you want to use:
 
 ```sh
-scl enable git19 -- git clone https://github.com/OSC/bc_osc_rstudio_server.git
+cd /var/www/ood/apps/sys
+git clone https://github.com/OSC/bc_osc_rstudio_server.git
 cd bc_osc_rstudio_server
+
 # Pin to a release (recommended)
-scl enable git19 -- git checkout v0.33.0
+git checkout v0.33.0
 ```
 
-To update the app you would:
-
-```sh
-cd bc_osc_rstuio_server
-scl enable git19 -- git fetch
-scl enable git19 -- git checkout <tag/branch>
-```
+No restart is needed -- Batch Connect apps are not Passenger apps and are detected automatically
 
 ### 2. Configure for your site
 Edit `form.yml` and update these values for your cluster:                                                                                               | Attribute          | OSC Default                          | Change to                        |
 |--------------------|--------------------------------------|----------------------------------|
 | `cluster`          | `ascend`, `pitzer`, `cardinal`, etc. | Your cluster name(s)             |
-| `version`  | `4.4.0` (and others)                 | R versions available on your system |
+| `version`  | `gcc/12.3.0 R/4.4.0` (and others)                 | Module load strings for R versions available on your system |
 | `node_type`        | OSC-specific node types              | Node types available on your cluster |
-| `num_cores`    | `28`                                 | Max cores on your compute nodes  |
+| `num_cores.max`    | `28`                                 | Max cores on your compute nodes  |
 
-### 3. Verify 
-No OOD restart is needed (Batch Connect apps are detected automatically). Visit your OOD dashboard and look for **RStudio Server** under **Interactive Apps > Servers**.
+In `script.sh.erb`, the app loads modules with:
+```
+module load project/ondemand
+module load rstudio_launcher/centos7
+module load <version>
+```
+Ensure equivalent modules are available on your system.
+
+### To Update the App
+ 
+```sh
+cd /var/www/ood/apps/sys/bc_osc_rstuio_server
+git fetch
+git checkout <tag>
+```
+
+No OOD restart is needed.
 
 ## Configuration
 ### form.yml attributes
-| Attribute | Description | Default |
-|-----------|-------------|---------|
-| `cluster` | Target cluster ID(s) | `ascend`, `pitzer`, `kubernetes`, `kubernetes-test`, `kubernetes-dev`, `cardinal` |
-| `num_cores` | Number of cores | `1` | 
-| `bc_num_hours` | Maximum wall time (hours) | `1` | 
 
-<!--### Environment variables-->
+| Attribute     | Widget       | Description                                              | Default |
+|---------------|--------------|----------------------------------------------------------|---------|
+| `cluster`     | select       | Target cluster ID(s)                                     | `pitzer`, `ascend`, `cardinal`, `kubernetes`, `kubernetes-test`, `kubernetes-dev` |
+| `version`     | select       | R version / module load string                           | `gcc/12.3.0 R/4.4.0` |
+| `bc_num_hours`| number       | Maximum wall time (hours)                                | `1` |
+| `node_type`   | select       | Compute node type (any, 40 core, 48 core, GPU, hugemem, largemem, debug) | `any` |
+| `num_cores`   | number_field | Number of CPU cores (1--28, varies by node type/cluster) | `1` |
 
 ## Troubleshooting
 
@@ -111,7 +124,7 @@ No OOD restart is needed (Batch Connect apps are detected automatically). Visit 
 ## Testing
 | Site                      | OOD Version    | Scheduler | Status     |
 |---------------------------|----------------|-----------|------------|
-| Ohio Supercomputer Center | 4.1.4 | Slurm/K8s     | Production |
+| Ohio Supercomputer Center | 4.2.2 | Slurm/K8s     | Production |
 
 To verify your installation:
 
