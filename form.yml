@@ -3,179 +3,22 @@ cluster:
   - "pitzer"
   - "ascend"
   - "cardinal"
-  - "kubernetes"
-  - "kubernetes-test"
-  - "kubernetes-dev"
 form:
   - version
   - auto_accounts
   - bc_num_hours
-  - node_type
-  - num_cores
+  - global_job_type
+  - global_enable_mem
+  - global_num_cores
+  - global_mem
+  - global_gpus
+  - global_gpu_type
+  - global_enable_debug
+  - global_default_values
   - bc_email_on_started
 attributes:
-  num_cores:
-    widget: "number_field"
-    label: "Number of cores"
-    value: 1
-    help: |
-      Minimums and Maximums will change depending on your choice of Node type
-      and Cluster.
-    min: 1
-    max: 28
-    step: 1
   auto_accounts:
     label: "Project"
-  node_type:
-    widget: select
-    label: "Node type"
-    help: |
-      - **Standard Compute** <br>
-        These are standard HPC machines. Owens has 648 of these nodes with 40
-        cores and 128 GB of memory. Pitzer has 224 with 40 cores and
-        340 with 48. All pitzer nodes have 192 GB of RAM. Chosing any will decrease
-        your wait time.
-      - **GPU Enabled** <br>
-        These are HPC machines GPUs. Owens has 160 nodes with 1 [NVIDIA Tesla P100 GPU]
-        on Owens and Pitzer has 74 with 2 [NVIDIA Tesla V100 GPUs]. They have the same
-        CPU and memory characteristics of standard compute. Though Pitzer's 40 core machines
-        have 2 GPUs with 16 GB of RAM and 48 core machines have 2with 32 GB of RAM.
-        Densegpu types have 4 GPUs with 16 GB of RAM.
-      - **Large Memory** <br>
-        These are HPC machines with very large amounts of memory. Owens has 16 hugemem
-        with 48 cores and 1.5 TB of RAM. Pitzer has 4 with 3 TB of RAM and 80 cores.
-        Pitzer also has 12 Largmem nodes have 48 cores with 768 GB of RAM.
-
-      [NVIDIA Tesla P100 GPU]: http://www.nvidia.com/object/tesla-p100.html
-      [NVIDIA Tesla V100 GPUs]: https://www.nvidia.com/en-us/data-center/v100/
-    options:
-      - [
-          "any",     "any",
-          data-min-num-cores-for-cluster-pitzer: 1,
-          data-max-num-cores-for-cluster-pitzer: 48,
-          data-min-num-cores-for-cluster-ascend: 1,
-          data-max-num-cores-for-cluster-ascend: 118,
-          data-min-num-cores-for-cluster-cardinal: 1,
-          data-max-num-cores-for-cluster-cardinal: 96,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "40 core",     "any-40core",
-          data-min-num-cores-for-cluster-pitzer: 1,
-          data-max-num-cores-for-cluster-pitzer: 40,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "48 core",     "any-48core",
-          data-min-num-cores-for-cluster-pitzer: 1,
-          data-max-num-cores-for-cluster-pitzer: 48,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "any gpu",     "gpu",
-          data-min-num-cores-for-cluster-pitzer: 1,
-          data-max-num-cores-for-cluster-pitzer: 48,
-          data-min-num-cores-for-cluster-ascend: 1,
-          data-max-num-cores-for-cluster-ascend: 118,
-          data-min-num-cores-for-cluster-cardinal: 1,
-          data-max-num-cores-for-cluster-cardinal: 96,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "40 core gpu",     "gpu-40core",
-          data-min-num-cores-for-cluster-pitzer: 1,
-          data-max-num-cores-for-cluster-pitzer: 40,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "48 core gpu",     "gpu-48core",
-          data-min-num-cores-for-cluster-pitzer: 1,
-          data-max-num-cores-for-cluster-pitzer: 48,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "hugemem", "hugemem",
-          data-min-num-cores-for-cluster-pitzer: 20,
-          data-max-num-cores-for-cluster-pitzer: 80,
-          data-min-num-cores-for-cluster-cardinal: 47,
-          data-max-num-cores-for-cluster-cardinal: 96,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "largemem", "largemem",
-          data-min-num-cores-for-cluster-pitzer: 24,
-          data-max-num-cores-for-cluster-pitzer: 48,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-pitzer: true,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "debug",   "debug",
-          data-min-num-cores-for-cluster-pitzer: 1,
-          data-max-num-cores-for-cluster-pitzer: 48,
-          data-option-for-cluster-pitzer: true,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false
-        ]
-      - [
-          "pitzer",   "pitzer",
-          data-min-num-cores-for-cluster-kubernetes: 1,
-          data-max-num-cores-for-cluster-kubernetes: 10,
-          data-min-num-cores-for-cluster-kubernetes-test: 1,
-          data-max-num-cores-for-cluster-kubernetes-test: 10,
-          data-min-num-cores-for-cluster-kubernetes-dev: 1,
-          data-max-num-cores-for-cluster-kubernetes-dev: 6,
-          data-option-for-cluster-pitzer: false,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: true,
-          data-option-for-cluster-kubernetes-test: true,
-          data-option-for-cluster-kubernetes-dev: true
-        ]
-      - [
-          "pitzer gpu",   "pitzer-gpu",
-          data-min-num-cores-for-cluster-kubernetes: 1,
-          data-max-num-cores-for-cluster-kubernetes: 10,
-          data-min-num-cores-for-cluster-kubernetes-test: 1,
-          data-max-num-cores-for-cluster-kubernetes-test: 10,
-          data-min-num-cores-for-cluster-kubernetes-dev: 1,
-          data-max-num-cores-for-cluster-kubernetes-dev: 6,
-          data-option-for-cluster-pitzer: false,
-          data-option-for-cluster-ascend: false,
-          data-option-for-cluster-cardinal: false,
-          data-option-for-cluster-kubernetes: true,
-          data-option-for-cluster-kubernetes-test: true,
-          data-option-for-cluster-kubernetes-dev: true
-        ]
   version:
     widget: select
     label: "R version"
@@ -183,15 +26,9 @@ attributes:
     options:
       - [
           "4.5.2", "gcc/12.3.0 R/4.5.2",
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false,
         ]
       - [
           "4.4.0", "gcc/12.3.0 R/4.4.0",
-          data-option-for-cluster-kubernetes: false,
-          data-option-for-cluster-kubernetes-test: false,
-          data-option-for-cluster-kubernetes-dev: false,
         ]
       - [
           "4.4.0", "rstudio/2022.07.2 R/4.4.0",
