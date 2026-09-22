@@ -20,9 +20,6 @@ setup_env () {
   module purge
 
   module load project/ondemand
-  <%- if context.cluster !~ /kubernetes|ascend|cardinal/ -%>
-  module load rstudio_launcher/centos7
-  <%- end -%>
   module load <%= all_modules %>
 }
 
