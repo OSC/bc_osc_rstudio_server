@@ -25,6 +25,9 @@ attributes:
     help: "This defines the version of R you want to load."
     options:
       - [
+          "4.6.1", "gcc/12.3.0 R/4.6.1"
+        ]
+      - [
           "4.5.2", "gcc/12.3.0 R/4.5.2",
         ]
       - [
